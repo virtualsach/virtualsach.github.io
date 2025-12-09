@@ -1,0 +1,24 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+
+<!-- Open Graph / SEO -->
+<meta property="og:title" content="{{ .Title }}" />
+<meta property="og:description"
+    content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}" />
+<meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+
+<!-- Fonts: Inter & Outfit -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@500;700;900&display=swap"
+    rel="stylesheet">
+
+<!-- Alpine.js -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+<!-- Custom Styles -->
+{{ $style := resources.Get "css/style.css" }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}">

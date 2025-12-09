@@ -1,14 +1,27 @@
 {{ define "main" }}
-<article>
-    <header style="margin-bottom: 2rem;">
-        <h1>{{ .Title }}</h1>
-        <div style="color: #8b949e; font-family: var(--font-mono); font-size: 0.9rem;">
+<article class="section container max-w-3xl mx-auto pt-24">
+    <header class="mb-12 text-center">
+        <div class="text-primary font-medium mb-4 uppercase tracking-wide text-sm">
             {{ .Date.Format "January 2, 2006" }}
         </div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            {{ .Title }}
+        </h1>
+        {{ with .Description }}
+        <p class="text-xl text-muted">
+            {{ . }}
+        </p>
+        {{ end }}
     </header>
 
-    <div class="content">
+    <div class="prose prose-invert prose-lg mx-auto glass-card p-8 md:p-12">
         {{ .Content }}
+    </div>
+
+    <div class="mt-12 text-center">
+        <a href="/" class="text-primary hover:text-white transition-colors">
+            ← Back to Home
+        </a>
     </div>
 </article>
 {{ end }}

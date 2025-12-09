@@ -1,0 +1,88 @@
+{{ define "main" }}
+<section class="section relative overflow-hidden flex items-center justify-center min-h-[80vh]">
+    <!-- Background Decor (Glow Orbs) -->
+    <div
+        style="position: absolute; top: 10%; left: 10%; width: 300px; height: 300px; background: var(--color-primary); filter: blur(150px); opacity: 0.2; border-radius: 50%; z-index: -1;">
+    </div>
+    <div
+        style="position: absolute; bottom: 10%; right: 10%; width: 400px; height: 400px; background: var(--color-secondary); filter: blur(150px); opacity: 0.2; border-radius: 50%; z-index: -1;">
+    </div>
+
+    <div class="container text-center animate-float">
+        <h1 class="text-4xl md:text-7xl font-bold mb-4">
+            Building the <span class="text-gradient">Future</span>
+            <br>Bit by Bit.
+        </h1>
+        <p class="text-xl md:text-2xl text-muted max-w-2xl mx-auto mb-8">
+            Architecting scalable systems, designing intuitive interfaces, and exploring the edge of AI.
+        </p>
+        <div class="flex justify-center gap-md">
+            <a href="/projects" class="glass"
+                style="padding: 1rem 2rem; border-radius: 50px; font-weight: 600; border: 1px solid var(--color-primary); color: var(--color-primary);">
+                View Projects
+            </a>
+            <a href="/about" style="padding: 1rem 2rem; color: var(--text-muted); font-weight: 500;">
+                About Me →
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="section container">
+    <div class="flex justify-between items-end mb-8">
+        <h2 class="text-3xl font-bold">Latest <span class="text-gradient">Insights</span></h2>
+        <a href="/posts" class="text-sm text-primary hover:text-white">View All Posts</a>
+    </div>
+
+    <div class="grid grid-cols-3 gap-md">
+        {{ range first 3 (where .Site.RegularPages "Type" "posts") }}
+        <article class="glass-card p-6 flex flex-col h-full">
+            <div class="text-sm text-muted mb-2">
+                {{ .Date.Format "Jan 2, 2006" }}
+            </div>
+            <h3 class="text-xl font-bold mb-2">
+                <a href="{{ .Permalink }}" class="hover:text-primary transition-colors">
+                    {{ .Title }}
+                </a>
+            </h3>
+            <p class="text-muted text-sm mb-4 flex-grow">
+                {{ .Summary | truncate 100 }}
+            </p>
+            <a href="{{ .Permalink }}"
+                class="text-primary text-sm font-medium hover:translate-x-1 transition-transform inline-block">
+                Read More →
+            </a>
+        </article>
+        {{ end }}
+    </div>
+</section>
+
+<section class="section container">
+    <div class="flex justify-between items-end mb-8">
+        <h2 class="text-3xl font-bold">Featured <span class="text-gradient">Projects</span></h2>
+        <a href="/projects" class="text-sm text-primary hover:text-white">View All Projects</a>
+    </div>
+
+    <!-- Placeholder for Projects (assuming pages/projects exist or we list a few hardcoded/data-driven ones) -->
+    <div class="grid grid-cols-2 gap-md">
+        <!-- Example Project Card (Static for now until content exists) -->
+        <div class="glass-card p-8 bg-gradient-to-br from-white/5 to-transparent">
+            <h3 class="text-2xl font-bold mb-2">Virtual Sachin V1</h3>
+            <p class="text-muted mb-4">The site you are looking at right now. Built with Hugo, energized with Alpine.js.
+            </p>
+            <div class="flex gap-sm">
+                <span class="text-xs glass px-2 py-1 rounded">Hugo</span>
+                <span class="text-xs glass px-2 py-1 rounded">CSS3</span>
+            </div>
+        </div>
+        <div class="glass-card p-8 bg-gradient-to-br from-white/5 to-transparent">
+            <h3 class="text-2xl font-bold mb-2">Cloud Weaver</h3>
+            <p class="text-muted mb-4">Teraform IaC templates for Azure infrastructure automation.</p>
+            <div class="flex gap-sm">
+                <span class="text-xs glass px-2 py-1 rounded">Terraform</span>
+                <span class="text-xs glass px-2 py-1 rounded">Azure</span>
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}

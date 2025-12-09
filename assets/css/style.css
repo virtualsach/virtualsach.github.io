@@ -1,0 +1,248 @@
+/* 
+  Virtual Sachin - Premium Design System 
+  Theme: Modern Technocrat
+*/
+
+:root {
+    /* HSL Color Palette for easier theming */
+    /* Backgrounds: Deep space darks */
+    --bg-dark-h: 222;
+    --bg-dark-s: 47%;
+    --bg-dark-l: 11%;
+    /* #0f172a */
+
+    --bg-card-h: 220;
+    --bg-card-s: 40%;
+    --bg-card-l: 16%;
+
+    /* Accents: Electric Cyan & Purple */
+    --accent-primary-h: 190;
+    --accent-primary-s: 100%;
+    --accent-primary-l: 50%;
+    /* Cyan */
+
+    --accent-secondary-h: 270;
+    --accent-secondary-s: 100%;
+    --accent-secondary-l: 60%;
+    /* Purple */
+
+    /* Text Colors */
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+
+    /* Derived Colors */
+    --color-bg: hsl(var(--bg-dark-h), var(--bg-dark-s), var(--bg-dark-l));
+    --color-bg-card: hsl(var(--bg-card-h), var(--bg-card-s), var(--bg-card-l));
+    --color-primary: hsl(var(--accent-primary-h), var(--accent-primary-s), var(--accent-primary-l));
+    --color-secondary: hsl(var(--accent-secondary-h), var(--accent-secondary-s), var(--accent-secondary-l));
+
+    /* Gradients */
+    --gradient-main: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    --gradient-glow: radial-gradient(circle at center, rgba(34, 211, 238, 0.15) 0%, rgba(15, 23, 42, 0) 70%);
+
+    /* Spacing System (Fibonacci-ish) */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 8rem;
+
+    /* Typography */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+/* Modern Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    background-image: var(--gradient-glow);
+    background-attachment: fixed;
+    /* Parallax-like fixed bg */
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--space-sm);
+    letter-spacing: -0.02em;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+}
+
+/* Glassmorphism Utilities */
+.glass {
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    border-color: rgba(34, 211, 238, 0.3);
+}
+
+/* Layout Utilities */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-sm);
+}
+
+.grid {
+    display: grid;
+    gap: var(--space-md);
+}
+
+.grid-cols-2 {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid-cols-3 {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.gap-sm {
+    gap: var(--space-sm);
+}
+
+.gap-md {
+    gap: var(--space-md);
+}
+
+.section {
+    padding: var(--space-lg) 0;
+}
+
+/* Animations */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.text-gradient {
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Typography / Prose (Custom implementation since no Tailwind) */
+.prose {
+    max-width: 65ch;
+    color: var(--text-muted);
+}
+
+.prose h1,
+.prose h2,
+.prose h3 {
+    color: var(--text-main);
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+}
+
+.prose p {
+    margin-bottom: 1.5em;
+    line-height: 1.8;
+}
+
+.prose a {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.prose strong {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.prose ul,
+.prose ol {
+    margin-bottom: 1.5em;
+    padding-left: 1.5em;
+}
+
+.prose li {
+    margin-bottom: 0.5em;
+}
+
+.prose blockquote {
+    border-left: 4px solid var(--color-primary);
+    padding-left: 1rem;
+    font-style: italic;
+    color: var(--text-main);
+    margin: 2em 0;
+}
+
+.prose img {
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    margin: 2em auto;
+}
