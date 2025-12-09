@@ -63,26 +63,19 @@
         <a href="/projects" class="text-sm text-primary hover:text-white">View All Projects</a>
     </div>
 
-    <!-- Placeholder for Projects (assuming pages/projects exist or we list a few hardcoded/data-driven ones) -->
+    <!-- Dynamic Projects List -->
     <div class="grid grid-cols-2 gap-md">
-        <!-- Example Project Card (Static for now until content exists) -->
-        <div class="glass-card p-8 bg-gradient-to-br from-white/5 to-transparent">
-            <h3 class="text-2xl font-bold mb-2">Virtual Sachin V1</h3>
-            <p class="text-muted mb-4">The site you are looking at right now. Built with Hugo, energized with Alpine.js.
-            </p>
-            <div class="flex gap-sm">
-                <span class="text-xs glass px-2 py-1 rounded">Hugo</span>
-                <span class="text-xs glass px-2 py-1 rounded">CSS3</span>
+        {{ range first 4 (where .Site.RegularPages "Section" "projects") }}
+        <a href="{{ .Permalink }}" class="glass-card p-8 bg-gradient-to-br from-white/5 to-transparent block group">
+            <h3 class="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">{{ .Title }}</h3>
+            <p class="text-muted mb-4">{{ .Summary }}</p>
+            <div class="flex gap-sm flex-wrap">
+                {{ range .Params.tags }}
+                <span class="text-xs glass px-2 py-1 rounded text-primary">{{ . }}</span>
+                {{ end }}
             </div>
-        </div>
-        <div class="glass-card p-8 bg-gradient-to-br from-white/5 to-transparent">
-            <h3 class="text-2xl font-bold mb-2">Cloud Weaver</h3>
-            <p class="text-muted mb-4">Teraform IaC templates for Azure infrastructure automation.</p>
-            <div class="flex gap-sm">
-                <span class="text-xs glass px-2 py-1 rounded">Terraform</span>
-                <span class="text-xs glass px-2 py-1 rounded">Azure</span>
-            </div>
-        </div>
+        </a>
+        {{ end }}
     </div>
 </section>
 {{ end }}
