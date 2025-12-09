@@ -6,3 +6,33 @@ title = "Virtual Sachin"
 [params]
   description = "Cloud Architect | Automation Expert | Infrastructure Strategy"
   author = "Sachin"
+
+  [[params.social]]
+    name = "GitHub"
+    url = "https://github.com/virtualsach"
+  [[params.social]]
+    name = "LinkedIn"
+    url = "https://linkedin.com/in/virtualsachin-example"
+  [[params.social]]
+    name = "Twitter"
+    url = "https://twitter.com/virtualsachin"
+
+[menus]
+  [[menus.main]]
+    name = "About"
+    url = "/about"
+    weight = 10
+  [[menus.main]]
+    name = "Projects"
+    url = "/projects"
+    weight = 20
+  [[menus.main]]
+    name = "Insights"
+    url = "/posts"
+    weight = 30
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
