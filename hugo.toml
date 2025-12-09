@@ -1,7 +1,7 @@
 baseURL = "https://virtualsach.in/"
 languageCode = "en-us"
 title = "Virtual Sachin"
-theme = ""
+
 
 [params]
   description = "Cloud Architect | Automation Expert | Infrastructure Strategy"
