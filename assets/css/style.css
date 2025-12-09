@@ -246,6 +246,59 @@ a:hover {
     margin: 2em auto;
 }
 
+/* Utility Classes (Mini-Tailwind) */
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.max-w-3xl {
+    max-width: 48rem;
+}
+
+/* ~768px */
+.max-w-4xl {
+    max-width: 56rem;
+}
+
+/* ~896px */
+
+.pt-24 {
+    padding-top: 6rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+.mb-12 {
+    margin-bottom: 3rem;
+}
+
+.mt-12 {
+    margin-top: 3rem;
+}
+
+.p-8 {
+    padding: 2rem;
+}
+
 /* Responsive Navigation Utilities */
 .hidden {
     display: none;
@@ -263,38 +316,42 @@ a:hover {
 /* Desktop Breakpoint (> 768px) */
 @media (min-width: 768px) {
     .desktop-nav {
-        display: none;
+        display: flex;
     }
 
     .mobile-toggle {
-        display: block;
+        display: none;
     }
 
-    /* Desktop Breakpoint (> 768px) */
-    @media (min-width: 768px) {
-        .desktop-nav {
-            display: flex;
-        }
-
-        .mobile-toggle {
-            display: none;
-        }
-
-        .mobile-menu-overlay {
-            display: none !important;
-        }
+    .mobile-menu-overlay {
+        display: none !important;
     }
 
-    /* Nav Link Styling */
-    .nav-link {
-        padding: 0.5rem 1rem;
-        border-radius: 50px;
-        transition: all 0.3s ease;
+    .md\:p-12 {
+        padding: 3rem;
     }
 
-    .nav-link:hover {
-        background: rgba(255, 255, 255, 0.1);
-        color: var(--color-primary);
-        text-shadow: none;
-        box-shadow: 0 0 15px rgba(34, 211, 238, 0.2);
+    .md\:text-5xl {
+        font-size: 3rem;
     }
+}
+
+/* Nav Link Styling */
+.nav-link {
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-primary);
+    text-shadow: none;
+    box-shadow: 0 0 15px rgba(34, 211, 238, 0.2);
+}
+
+/* Prose Override for wider reading experience */
+.prose {
+    max-width: 75ch;
+    /* Slightly wider for better flow */
+}
