@@ -1,0 +1,25 @@
+{{ define "main" }}
+
+{{ if .IsHome }}
+<div class="terminal-hero">
+    <div class="terminal-line">
+        <span class="prompt">user@virtualsachin:~$</span>
+        <span class="command">./introduce_self.sh</span>
+    </div>
+    <div class="output">
+        {{ .Site.Params.description }}
+    </div>
+</div>
+{{ end }}
+
+<section class="post-list">
+    {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
+    {{ range $paginator.Pages }}
+    <div class="post-item">
+        <a href="{{ .RelPermalink }}" class="post-title">{{ .Title }}</a>
+        <span class="post-date">{{ .Date.Format "2006-01-02" }}</span>
+    </div>
+    {{ end }}
+</section>
+
+{{ end }}
