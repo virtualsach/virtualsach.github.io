@@ -7,11 +7,18 @@ title = "Virtual Sachin"
   description = "Cloud Architect | Automation Expert | Infrastructure Strategy"
   author = "Sachin"
 
-  [params.social]
-    github = "https://github.com/virtualsach"
-    linkedin = "https://www.linkedin.com/in/sachin-sharma-711/"
-    twitter = "https://twitter.com/virtualsachin"
-    email = "mailto:sachin@virtualsach.in"
+  [[params.social]]
+    name = "GitHub"
+    url = "https://github.com/virtualsach"
+  [[params.social]]
+    name = "LinkedIn"
+    url = "https://www.linkedin.com/in/sachin-sharma-711/"
+  [[params.social]]
+    name = "Twitter"
+    url = "https://twitter.com/virtualsachin"
+  [[params.social]]
+    name = "Email"
+    url = "mailto:sachin@virtualsach.in"
 
 [menus]
   [[menus.main]]
