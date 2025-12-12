@@ -4,7 +4,7 @@ date: 2025-12-12
 description: "Associate Director, Systems Thinker, and Builder of Resilient Clouds."
 ---
 
-# The Architect's Manifesto
+# The Modern Architect
 
 > "Complexity is the enemy of execution."
 
@@ -14,9 +14,9 @@ I don't just design systems; I build **digital cathedrals**—structures that ar
 
 ## My Philosophy
 
-* **Infrastructure as Code, Culture as Code:** A script can build a server, but only culture can maintain it. I automate the "boring stuff" (Ansible, Terraform) so my teams can focus on innovation.
-* **Resilience over Uptime:** Uptime is luck; resilience is engineering. I design systems that expect failure (Chaos Engineering) and recover before the pager goes off.
-* **Security by Design:** Security isn't a firewall at the edge; it's an identity in the cloud. I believe in Zero Trust, micro-segmentation, and rigorous identity governance.
+* **Infrastructure as Code, Culture as Code:** A script can build a server, but only culture can maintain it. I automate the "boring stuff" so teams can focus on innovation.
+* **Identity is the Perimeter:** The firewall is dead. In a work-from-anywhere world, I secure the Identity and the Data, not just the network edge.
+* **Data Gravity:** Architecture follows data. Understanding how information flows is the key to designing the pipes that carry it.
 
 ---
 
