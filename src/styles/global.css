@@ -70,3 +70,44 @@ body {
 .prose-invert a:hover {
     border-color: #60a5fa;
 }
+
+/* About Page Specific Renovations */
+.about-content h1 {
+    @apply text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-8 mt-4 text-center tracking-tight;
+}
+
+.about-content blockquote {
+    @apply text-xl md:text-2xl font-light italic text-slate-300 border-l-4 border-blue-500 pl-6 my-12 relative bg-white/5 p-6 rounded-r-lg;
+}
+
+.about-content h2 {
+    @apply text-3xl font-bold text-white mt-16 mb-8 border-b border-white/10 pb-4 inline-block;
+}
+
+.about-content h3 {
+    @apply text-xl font-semibold text-blue-400 mt-12 mb-4;
+}
+
+/* Transform Lists into Grid Cards */
+.about-content ul {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6 p-0 list-none my-8;
+}
+
+.about-content ul li {
+    @apply glass-card p-6 m-0 flex flex-col justify-start items-start h-full;
+}
+
+.about-content ul li::before {
+    display: none;
+    /* Remove default bullets */
+}
+
+/* Style the strong tags inside list items (Titles) */
+.about-content ul li strong {
+    @apply text-lg text-blue-300 mb-2 block;
+}
+
+/* Paragraphs */
+.about-content p {
+    @apply text-lg leading-relaxed text-slate-300 mb-6;
+}
