@@ -18,6 +18,4 @@ If you have a complex distributed system that needs architecting, or a team that
 
 ---
 
-## Send a Message
-
-I am available for consulting and speaking. Reach me directly at [sachin@virtualsach.in](mailto:sachin@virtualsach.in).
+I am currently accepting consulting engagements for Q1 2025. Reach me directly: <sachin@virtualsach.in>

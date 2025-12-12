@@ -10,6 +10,7 @@ title = "Virtual Sachin"
   [params.social]
     github = "https://github.com/virtualsach"
     linkedin = "https://www.linkedin.com/in/sachin-sharma-711/"
+    twitter = "https://twitter.com/virtualsachin"
     email = "mailto:sachin@virtualsach.in"
 
 [menus]
