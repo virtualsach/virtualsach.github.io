@@ -47,29 +47,156 @@ body {
 }
 
 /* Typography for Markdown Content */
+/* Premium Typography System for Markdown Content */
 .prose-invert {
-    --tw-prose-body: #94a3b8;
+    /* Base Colors & Spacing */
+    --tw-prose-body: #cbd5e1;
+    /* Slate-300 */
     --tw-prose-headings: #f8fafc;
+    /* Slate-50 */
     --tw-prose-links: #60a5fa;
+    /* Blue-400 */
     --tw-prose-bold: #f1f5f9;
-    --tw-prose-counters: #94a3b8;
-    --tw-prose-bullets: #475569;
+    /* Slate-100 */
+    --tw-prose-counters: #60a5fa;
+    /* Blue-400 */
+    --tw-prose-bullets: #4b5563;
+    /* Slate-600 */
     --tw-prose-hr: #334155;
-    --tw-prose-quotes: #f1f5f9;
-    --tw-prose-quote-borders: #334155;
+    /* Slate-700 */
+    --tw-prose-quotes: #e2e8f0;
+    /* Slate-200 */
+    --tw-prose-quote-borders: #3b82f6;
+    /* Blue-500 */
     --tw-prose-code: #e2e8f0;
+    /* Slate-200 */
     --tw-prose-pre-code: #e2e8f0;
-    --tw-prose-pre-bg: #1e293b;
+    /* Slate-200 */
+    --tw-prose-pre-bg: #0f172a;
+    /* Slate-900 */
+
+    font-size: 1.125rem;
+    /* 18px */
+    line-height: 1.8;
 }
 
+/* Headings */
+.prose-invert h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin-bottom: 2rem;
+    background: linear-gradient(to right, #60a5fa, #c084fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.prose-invert h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f8fafc;
+}
+
+.prose-invert h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: #60a5fa;
+    /* Blue-400 */
+}
+
+/* Paragraphs */
+.prose-invert p {
+    margin-bottom: 1.5rem;
+}
+
+/* Links */
 .prose-invert a {
     text-decoration: none;
     border-bottom: 1px solid rgba(96, 165, 250, 0.3);
-    transition: border-color 0.2s;
+    transition: all 0.2s ease;
+    font-weight: 500;
 }
 
 .prose-invert a:hover {
     border-color: #60a5fa;
+    color: #93c5fd;
+    /* Blue-300 */
+    background: rgba(96, 165, 250, 0.1);
+    border-radius: 2px;
+}
+
+/* Blockquotes */
+.prose-invert blockquote {
+    font-style: italic;
+    border-left-width: 4px;
+    border-color: var(--color-primary);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1.5rem 2rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    margin: 2rem 0;
+}
+
+/* Lists */
+.prose-invert ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.prose-invert li {
+    margin-bottom: 0.5rem;
+}
+
+/* Code Blocks & Inline Code */
+.prose-invert code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+    font-family: 'Fira Code', monospace;
+    /* Assuming generic monospace fallback */
+    color: #e2e8f0;
+}
+
+.prose-invert pre {
+    background: #0f172a !important;
+    /* Force dark background */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    overflow-x: auto;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.prose-invert pre code {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    color: inherit;
+    font-size: 0.875rem;
+}
+
+/* Images */
+.prose-invert img {
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 2rem auto;
+}
+
+/* Strong/Bold */
+.prose-invert strong {
+    color: #f1f5f9;
+    font-weight: 700;
 }
 
 /* About Page Specific Renovations */
