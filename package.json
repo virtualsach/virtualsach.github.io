@@ -1,0 +1,14 @@
+{
+  "name": "virtualsach-site",
+  "version": "1.0.0",
+  "description": "Virtual Sachin Portfolio Site",
+  "scripts": {
+    "dev": "hugo server -D",
+    "build": "hugo --minify",
+    "clean": "rm -rf public resources",
+    "new:post": "echo 'Run: hugo new content posts/your-slug.md'",
+    "new:project": "echo 'Run: hugo new content projects/your-slug.md'"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
