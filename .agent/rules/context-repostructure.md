@@ -2,24 +2,21 @@
 trigger: always_on
 ---
 
-Engine: Astro (v4+).
+# Project Structure & Technology
 
-Styling: Tailwind CSS (Utility classes). Do not write raw CSS files.
+**Engine**: Astro v5+ (Migrated from Hugo)
+**Styling**: Tailwind CSS v4 (via Vite)
+**Deploy**: GitHub Pages (via `withastro/action`)
 
-Content Location:
+## key Paths
 
-Blog Posts: src/content/blog/ (Markdown/MDX).
+*   **Blog Posts**: `src/content/blog/*.md` (Standard Markdown)
+*   **Projects**: `src/content/projects/*.md` (Case Studies)
+*   **Pages**: `src/pages/*.astro`
+*   **Styles**: `src/styles/global.css` (Premium Design System)
 
-Projects: src/content/projects/ (Markdown/MDX).
+## Brand Identity
 
-File Structure:
-
-Pages: src/pages/
-
-Components: src/components/ (Must be .astro files).
-
-Layouts: src/layouts/
-
-Config: src/content/config.ts defines the data schema.
-
-Brand Identity: Virtual Sachin (Associate Director, Cloud Architect).
+**Persona**: Virtual Sachin (Modern Technocrat, Associate Director, Cloud Architect).
+**Aesthetic**: Glassmorphism, Dark Mode, Blue/Purple Gradients.
+**Philosophy**: "Complexity is the Enemy," "Infrastructure as Code."

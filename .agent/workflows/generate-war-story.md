@@ -1,19 +1,16 @@
 ---
-description: "Write a war story about [TOPIC] from [YEAR]" Instructions
+description: "Generate a new Project Case Study or Blog Post with High-Readability Formatting"
 ---
 
-Lookup: Check Context_CareerTimeline to find the correct Company and Role for the requested [YEAR].
+# Generate Content Workflow
 
-Brainstorm: Generate 3 "Angle" options based on the tech stack of that era (e.g., if Net4, think "Physical DC"; if IBM, think "NSX Overlay").
-
-Confirm: Ask the user to select the best angle.
-
-Draft: Create a new file in content/posts/ with:
-
-Filename: YYYY-MM-topic-slug.md
-
-Frontmatter: Set date to a random day in that month/year. Set draft: false.
-
-Content: Write the post using Identity_VirtualSachin voice. Include at least one code block or CLI snippet.
-
-Output: Show the file path created.
+1.  **Context Lookup**: Check `.agent/rules/context-careertimeline.md` to align the [YEAR] with the correct Role/Company.
+2.  **Angle Selection**: Propose 3 angles (Technical Deep Dive, Career Lesson, or Architecture Review). Ask user to choose.
+3.  **Drafting**: Create the file in `src/content/projects/` or `src/content/blog/` matching the user's choice.
+4.  **Formatting Enforcement**:
+    *   **Hook**: Start with a > Blockquote.
+    *   **Structure**: Challenge -> Tech Stack -> Deep Dive -> Outcome.
+    *   **Visuals**: Use Bullet Points for lists > 3 items.
+    *   **Highlighting**: **Bold** tech terms (NSX, ASR, BGP).
+    *   **Brevity**: Max 3 lines per paragraph.
+5.  **Review**: Show the file path and ask for user approval.
