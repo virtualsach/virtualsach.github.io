@@ -36,38 +36,6 @@ I don't just design systems; I build **digital cathedrals**—structures that ar
 
 ---
 
-## The Journey (Highlights)
-
-### **Systems Integration Advisor @ NTT Data**
-
-*Architected private clouds for the financial sector.*
-
-* **Automation First:** Built an end-to-end automation suite using **Ansible and PowerCLI** to deploy NSX-T environments, reducing provisioning time by 80%.
-* **Modernization:** Led the migration of mission-critical banking workloads from legacy vSphere/NSX-V to a future-proof **NSX-T** infrastructure.
-
-### **VMware NSX Consultant @ IBM**
-
-*Designed the bridge between physical and virtual worlds.*
-
-* **Hybrid Cloud:** Designed the **SDDC (Software Defined Data Center)** architecture on IBM SoftLayer to migrate on-prem workloads to the cloud.
-* **Complex Networking:** Successfully integrated **Arista Hardware VTEPs** with NSX to stretch Layer 2 networks between bare-metal databases and virtual apps.
-* **Migration:** Executed massive workload migrations using **VMware HCX**, moving hundreds of VMs with zero downtime.
-
-### **Technical Lead (Security) @ Wipro**
-
-*Managed high-stakes security operations.*
-
-* **Migration:** Led the critical migration of business apps from **Cisco ACE** to **F5 LTM**, improving SSL offloading performance.
-* **Team Leadership:** Mentored a team of 18 engineers, serving as the escalation point for Sev1 "War Room" incidents.
-* **IPv6 Strategy:** Designed and implemented **NAT64/DNS64** solutions on A10 Load Balancers to bridge legacy IPv4 apps to the modern web.
-
-### **The Foundation @ Net4 & Spectranet**
-
-*Where I learned the physics of the internet.*
-
-* **Greenfield Build:** Designed two Tier-3 Data Centers from scratch, handling everything from cabling to Core Routing.
-* **Traffic Engineering:** Optimized BGP peering policies to reduce bandwidth costs while maintaining low latency for ISP customers.
-
 ---
 
 ## Connect

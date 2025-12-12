@@ -1,0 +1,77 @@
+---
+const careerPath = [
+    {
+        role: "Systems Integration Advisor",
+        company: "NTT Data",
+        date: "2020 - 2022",
+        description: "Architected private clouds for the financial sector. Built end-to-end automation suites using Ansible/PowerCLI.",
+        tags: ["NSX-T", "Ansible", "Automation"]
+    },
+    {
+        role: "VMware NSX Consultant",
+        company: "IBM",
+        date: "2017 - 2020",
+        description: "Designed the bridge between physical and virtual worlds. Migrated 500+ VMs with HCX and integrated Arista HW-VTEPs.",
+        tags: ["IBM Cloud", "HCX", "Arista"]
+    },
+    {
+        role: "Technical Lead (Security)",
+        company: "Wipro",
+        date: "2014 - 2017",
+        description: "Managed high-stakes security operations. Led the migration from Cisco ACE to F5 LTM during active attacks.",
+        tags: ["F5 LTM", "Cisco ASA", "War Room"]
+    },
+    {
+        role: "Assistant Manager",
+        company: "Net4 India",
+        date: "2011 - 2014",
+        description: "Greenfield build of two Tier-3 Data Centers. Managed physical infrastructure and core ISP routing.",
+        tags: ["BGP", "Data Center", "Physical"]
+    },
+    {
+        role: "Field Engineer",
+        company: "Spectranet",
+        date: "2009 - 2011",
+        description: "The trenches. Debugging RF links on rooftops and managing WiMAX infrastructure.",
+        tags: ["RF", "WiMAX", "Field Work"]
+    }
+];
+---
+
+<div class="relative max-w-4xl mx-auto py-10">
+    <!-- Vertical Line -->
+    <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/0 via-blue-500/50 to-blue-500/0"></div>
+
+    <div class="space-y-12">
+        {careerPath.map((item, index) => (
+            <div class={`relative flex flex-col md:flex-row gap-8 items-center group ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>
+                
+                <!-- Dot -->
+                <div class="absolute left-4 md:left-1/2 -translate-x-[5px] w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)] z-10 group-hover:scale-150 transition-transform duration-300"></div>
+
+                <!-- Date (Mobile: Right of dot, Desktop: Opposite side) -->
+                <div class={`w-full md:w-1/2 pl-12 md:pl-0 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 text-left'}`}>
+                    <div class="text-blue-400 font-mono text-sm tracking-wider mb-1">{item.date}</div>
+                </div>
+
+                <!-- Content Card -->
+                <div class={`w-full md:w-1/2 pl-12 md:pl-0 ${index % 2 === 0 ? 'md:pl-12' : 'md:pr-12'}`}>
+                    <div class="glass-card p-6 relative hover:bg-white/5 transition-colors border border-white/5 hover:border-blue-500/30">
+                        <h3 class="text-xl font-bold text-slate-100">{item.role}</h3>
+                        <div class="text-slate-400 font-medium mb-3">{item.company}</div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            {item.description}
+                        </p>
+                        <div class="flex flex-wrap gap-2 justify-start">
+                            {item.tags.map(tag => (
+                                <span class="text-xs px-2 py-1 rounded-full bg-blue-500/10 text-blue-300 border border-blue-500/20">
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        ))}
+    </div>
+</div>

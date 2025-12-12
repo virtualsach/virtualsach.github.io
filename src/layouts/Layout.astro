@@ -1,5 +1,9 @@
 ---
 import '../styles/global.css';
+import { ViewTransitions } from 'astro:transitions';
+import GridBackground from '../components/GridBackground.astro';
+import CommandPalette from '../components/CommandPalette.astro';
+
 interface Props {
 	title: string;
     description?: string;
@@ -37,10 +41,13 @@ const {
         <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
 		<title>{title}</title>
+        <ViewTransitions />
 	</head>
-	<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col">
+	<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-blue-500/30">
+        <GridBackground />
+        
 		<!-- Navigation -->
-		<header class="fixed w-full top-0 z-50 glass border-b border-white/5">
+		<header class="fixed w-full top-0 z-50 glass border-b border-white/5" transition:persist>
 			<nav class="container mx-auto px-6 h-20 flex justify-between items-center">
 				<a href="/" class="text-xl font-bold tracking-tight">
 					Virtual<span class="text-blue-400">Sachin</span>.
@@ -58,12 +65,12 @@ const {
 		</header>
 
 		<!-- Main Content -->
-		<main class="flex-grow pt-24">
+		<main class="flex-grow pt-24" transition:animate="fade">
 			<slot />
 		</main>
 
 		<!-- Footer -->
-		<footer class="border-t border-white/5 py-12 mt-20 glass">
+		<footer class="border-t border-white/5 py-12 mt-20 glass relative z-10">
 			<div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
 				<div class="text-slate-500 text-sm">
 					© {new Date().getFullYear()} Virtual Sachin. All rights reserved.
@@ -75,5 +82,7 @@ const {
 				</div>
 			</div>
 		</footer>
+        
+        <CommandPalette />
 	</body>
 </html>

@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Timeline from '../components/Timeline.astro';
 import { getEntry } from 'astro:content';
 
 const entry = await getEntry('pages', 'about');
@@ -16,6 +17,11 @@ const { Content } = await entry.render();
 
     <div class="about-content max-w-none">
       <Content />
+    </div>
+
+    <div class="mt-20">
+        <h2 class="text-3xl font-bold mb-10 text-center">The <span class="text-gradient">Journey</span></h2>
+        <Timeline />
     </div>
   </main>
 </Layout>
