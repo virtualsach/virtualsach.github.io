@@ -13,6 +13,8 @@
     </main>
 
     {{ partial "footer.html" . }}
+    {{ $js := resources.Get "js/main.js" }}
+    <script src="{{ $js.RelPermalink }}" defer></script>
 </body>
 
 </html>
