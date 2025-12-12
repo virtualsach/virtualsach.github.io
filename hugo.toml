@@ -25,10 +25,7 @@ title = "Virtual Sachin"
     name = "Insights"
     url = "/posts"
     weight = 30
-  [[menus.main]]
-    name = "Let's Talk"
-    url = "/contact"
-    weight = 40
+
 
 [markup]
   [markup.goldmark]
