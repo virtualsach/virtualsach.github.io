@@ -1,70 +1,94 @@
 ---
 title: "Mission Critical: Securing Artemis Hospital Digital Backbone"
 date: 2009-03-10
-description: "Designed a rigid Zone-Based Security Architecture for Artemis Hospital, protecting sensitive Patient Data (HIS) via physical segmentation while enabling public access."
-summary: "Physical Segmentation and Zone-Based Security for a major hospital."
-tags: ["cisco-asa", "security", "healthcare", "segmentation", "case-study"]
+description: "Designed a rigid Zone-Based Security Architecture using Cisco ASA, physically segmenting critical HIS/Biomedical networks from public Guest Wi-Fi."
+summary: "Zero Trust before it was cool: Securing a major hospital with Cisco ASA and Physical Segmentation."
+tags: ["cisco-asa", "security", "healthcare", "segmentation", "vpn", "case-study"]
 ---
+
+# Executive Summary
+
+In a hospital, network security isn't just about data; it's about patient safety. **Artemis Hospital** needed a digital backbone that could support open access for hundreds of daily visitors while maintaining an ironclad shield around Patient Health Records (HIS) and life-critical Biomedical equipment. I implemented a rigid **Zone-Based Security Architecture** on Cisco ASA firewalls that ensured **100% uptime** and **Zero Data Breaches**.
 
 # The Challenge
 
-**Artemis Hospital**, a premier healthcare facility, required a digital backbone that balanced life-critical reliability with ironclad security.
-The network had to support two conflicting requirements:
+A hospital network is a chaotic mix of trust levels.
 
-1. **Open Access:** Guest Wi-Fi for patients/families and VoIP for staff.
-2. **Zero Trust:** Absolute isolation for the **Hospital Information System (HIS)** containing sensitive patient records and the **Biomedical Network** connecting life-support devices.
+* **The Conflict:** Doctors need instant access to records on tablets (Mobility). Patients and families expect high-speed Guest Wi-Fi (Public Access).
+* **The Risk:** A malware-infected guest laptop could theoretically jump VLANs and infect the **CT Scanner** or the **Hospital Information System (HIS)** database.
+* **Compliance:** Strict healthcare regulations demanded absolute proof of data isolation.
 
-**The Risk:** A malware infection from a guest's laptop could theoretically jump to the HIS or, worse, a connected ventilator.
+# Tech Stack & Architecture
 
-# The Solution
+* **Firewall:** Cisco ASA 5500 Series (The Core Enforcer).
+* **Switching:** Cisco Catalyst 6500 Core Switches.
+* **Concepts:** DMZ, VLAN Segmentation, IPSec VPN.
+* **Policy Logic:** Cisco ASA **Security Levels** (0 to 100).
 
-I implemented a rigid **Zone-Based Security Architecture**. We didn't rely on simple ACLs; we relied on **Physical Segmentation**.
+# The Solution (Deep Dive)
 
-**The Tech Stack:**
+We moved beyond simple Access Control Lists (ACLs) to a strict **Zone-Based Policy**.
 
-* **Firewall:** Cisco ASA 5500 Series
-* **Core:** Cisco Catalyst 6500 Switches
-* **Isolation:** Air-gapped VLANs and DMZ
+## 1. The Security Level Concept
 
-**Key Innovation: Physical Segmentation**
-We treated the Bio-Medical network as a "Hostile Zone."
+The Cisco ASA uses "Security Levels" to define innate trust. Traffic flows from High to Low by default, but *never* from Low to High without explicit permission.
 
-* **HIS Network:** Housed in a secure VLAN with no internet access. Only specific doctor terminals could access it via a whitelisted proxy.
-* **Biomedical Network:** Completely isolated. Data export was one-way.
-* **Public Network:** Physically separated on distinct switch interfaces in the Core, routed through a strict DMZ on the ASA.
+* **Inside Zone (Security 100):** The HIS Database and Critical Servers. Trusted above all else.
+* **Biomedical Zone (Security 90):** MRI Machines, CT Scanners, Ventilators. High trust, but isolated from the main admin network to prevent lateral movement.
+* **DMZ (Security 50):** Public Website, Patient Portal.
+* **Outside/Guest (Security 0):** The Internet and Guest Wi-Fi. Untrusted.
 
-# Architecture: The Traffic Flow
+## 2. Biomedical Segmentation
 
-We ensured that "East-West" traffic between zones was impossible without passing through the firewall inspection engine.
+We physically isolated the Biomedical network. These machines often run legacy, unpatchable operating systems (like Windows XP embedded).
+
+* **Policy:** No traffic allowed *in* from the internet.
+* **Export:** One-way outbound IPSec tunnels allowed Teleradiology data (X-Rays/MRI scans) to be sent securely to remote specialists.
+
+## 3. Site-to-Site VPN for Teleradiology
+
+We configured **Site-to-Site IPSec VPNs** on the ASA to connect Artemis with specialized diagnostic centers.
+
+* **Encryption:** AES-256 for data in transit.
+* **Integrity:** SHA-1 hashing (standard at the time).
 
 ```mermaid
 graph TD
     Internet((Internet))
     
-    subgraph "DMZ (Public Zone)"
-    Guest[Guest Wi-Fi]
-    Web[Public Website]
+    subgraph "Cisco ASA 5500"
+    Firewall[Stateful Inspection Engine]
     end
     
-    subgraph "Secure Zone (Restricted)"
+    subgraph "Trust Level 0 (Outside)"
+    Guest[Guest Wi-Fi]
+    Web[Unknown Threats]
+    end
+    
+    subgraph "Trust Level 50 (DMZ)"
+    Portal[Patient Portal]
+    end
+    
+    subgraph "Trust Level 90 (Bio-Med)"
+    MRI[MRI Scanners]
+    CT[CT Scanners]
+    end
+    
+    subgraph "Trust Level 100 (Inside)"
     HIS[HIS Database]
     Docs[Doctor Stations]
     end
     
-    subgraph "Critical Zone (Isolated)"
-    Bio[Biomedical Equipment]
-    end
+    Internet <-->|Refused unless permitted| Firewall
+    Guest --x|BLOCKED| Internal
+    Guest --x|BLOCKED| MRI
     
-    Internet <-->|ASA: Inspection| Guest
-    Guest --x|BLOCKED| HIS
-    Guest --x|BLOCKED| Bio
-    
-    Docs <-->|ASA: Strict Policy| HIS
-    Bio -.->|One-Way Syslog| HIS
+    Docs <-->|Allowed (High -> Low)| MRI
+    MRI -.->|IPSec VPN| Remote[Remote Radiologist]
 ```
 
-# Business Impact
+# The Outcome
 
-* **Security:** Achieved **Zero Breaches** of Patient Data during my tenure. The malware outbreaks that affected the Guest Wi-Fi never crossed the DMZ barrier.
-* **Operations:** Maintained **100% Uptime** for the HIS network. Doctors never lost access to patient records during critical surgeries.
-* **Compliance:** Met strict healthcare data privacy standards by proving physical and logical isolation of data.
+* **Security:** Achieved **Zero Data Breaches** or viral outbreaks during my tenure, despite frequent malware incidents on the guest network.
+* **Availability:** Maintained **100% Uptime** for the critical HIS and Voice (EPABX) networks.
+* **Safety:** Successfully isolated the "Internet of Medical Things" (IoMT) long before the term existed.
