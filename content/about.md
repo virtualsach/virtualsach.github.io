@@ -62,4 +62,4 @@ I am **Virtual Sachin**, a Technical Architect focused on building scalable, res
 ## Connect
 
 I am always open to discussing complex engineering challenges.
-[Email Me](mailto:sachin@virtualsachin.example) | [GitHub](https://github.com/virtualsach) | [LinkedIn](#)
+[Email Me](mailto:sachin@virtualsach.in) | [GitHub](https://github.com/virtualsach) | [LinkedIn](https://www.linkedin.com/in/sachin-sharma-711/)
