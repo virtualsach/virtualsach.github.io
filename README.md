@@ -1,93 +1,43 @@
-# Virtual Sachin - Site Maintenance Guide
+# Astro Starter Kit: Minimal
 
-> **Philosophy**: You are an Architect. Your site should run like a well-architected system.
-> This repository uses **Code-as-Configuration**. You don't "design" pages; you write content, and the system renders it.
-
-## 🚀 Quick Start (Local Development)
-
-To run the site on your machine to preview changes:
-
-1. **Open Terminal** in this folder.
-2. **Run**:
-
-    ```bash
-    npm run dev
-    ```
-
-3. **View**: Open `http://localhost:1313/`
-
-## ✍️ Creating Content
-
-I have set up "Archetypes" (templates) so you don't face an empty screen.
-
-### 1. New Insight (Blog Post)
-
-Use this for technical deep dives, opinion pieces, or tutorials.
-
-**Command:**
-
-```bash
-hugo new content posts/my-topic-name.md
+```sh
+npm create astro@latest -- --template minimal
 ```
 
-*(Replace `my-topic-name` with a URL-friendly slug, e.g., `kubernetes-scaling-strategies`)*
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-**What to write:**
-The file will be created in `content/posts/`. Open it and fill in the sections:
+## 🚀 Project Structure
 
-- **Context**: The specific problem.
-- **Solution**: Your unique approach.
-- **Impact**: Measurable results.
+Inside of your Astro project, you'll see the following folders and files:
 
-### 2. New Project (Case Study)
-
-Use this for major work you want to showcase.
-
-**Command:**
-
-```bash
-hugo new content projects/project-name.md
+```text
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
 ```
 
-**What to write:**
-The file will be created in `content/projects/`.
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-- **The Challenge**: Why was this hard?
-- **Tech Stack**: What tools did you use?
-- **Outcome**: Why was it a success?
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-## 🚢 Deployment
+Any static assets, like images, can be placed in the `public/` directory.
 
-The site is configured with **GitOps**. You do not need to manually deploy anything.
+## 🧞 Commands
 
-**Workflow:**
+All commands are run from the root of the project, from a terminal:
 
-1. **Write** your content locally.
-2. **Set `draft: false`** in the file header (frontmatter) when ready.
-3. **Push** to GitHub:
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-    ```bash
-    git add .
-    git commit -m "feat: new post on chaos engineering"
-    git push
-    ```
+## 👀 Want to learn more?
 
-4. **Wait**: GitHub Actions will automatically build and deploy the site in ~60 seconds.
-
-## 🛠 Troubleshooting
-
-**"I don't see my new post!"**
-
-1. Did you save the file?
-2. Did you change `draft: true` to `draft: false` in the file?
-3. Did the GitHub Action complete successfully? (Check the "Actions" tab on GitHub).
-
-**"The formatting looks weird"**
-
-- Ensure you are using standard Markdown.
-- Use `##` for section headers (H2).
-- Use `*italics*` and `**bold**` for emphasis.
-- Use backticks for code: ` ` `python` ` `.
-
----
-*Maintained by: Virtual Sachin*
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

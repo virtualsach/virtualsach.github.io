@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Outage on Virtual Sachin</title>
+    <link>https://virtualsach.in/tags/outage/</link>
+    <description>Recent content in Outage on Virtual Sachin</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 15 Dec 2011 09:00:00 +0530</lastBuildDate>
+    <atom:link href="https://virtualsach.in/tags/outage/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Route Redistribution Loop that Took Down the Core</title>
+      <link>https://virtualsach.in/posts/route-redistribution-loop-outage/</link>
+      <pubDate>Thu, 15 Dec 2011 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/route-redistribution-loop-outage/</guid>
+      <description>I effectively DDoS-ed our own control plane from the inside. Here is the story of how I melted a core router by forgetting one line of code.</description>
+    </item>
+  </channel>
+</rss>

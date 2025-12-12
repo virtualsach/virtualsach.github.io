@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en-us" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Route Redistribution Loop that Took Down the Core | Virtual Sachin</title>
+<meta name="description" content="Cloud Architect | Automation Expert | Infrastructure Strategy">
+
+
+<meta property="og:title" content="The Route Redistribution Loop that Took Down the Core" />
+<meta property="og:description"
+    content="Cloud Architect | Automation Expert | Infrastructure Strategy" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://virtualsach.in/posts/route-redistribution-loop-outage/" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@500;700;900&display=swap"
+    rel="stylesheet">
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="flex flex-col min-h-screen text-base antialiased selection:bg-cyan-500 selection:text-white">
+    <header class="glass fixed w-full top-0 z-50">
+    <nav class="container flex justify-between items-center" style="height: 80px;" x-data="{ open: false }">
+        
+        <a href="/" class="text-xl font-bold font-heading">
+            Virtual<span class="text-primary">Sachin</span>.
+        </a>
+
+        
+        <div class="desktop-nav gap-md items-center">
+            
+            <a href="/about" class="nav-link font-medium text-sm uppercase tracking-wide">
+                About
+            </a>
+            
+            <a href="/projects" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Projects
+            </a>
+            
+            <a href="/posts" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Insights
+            </a>
+            
+            <a href="/contact" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Let&#39;s Talk
+            </a>
+            
+            <a href="/contact" class="btn-primary"
+                style="padding: 0.5rem 1.5rem; border: 1px solid var(--color-primary); border-radius: 50px; transition: all 0.3s;">
+                Let's Talk
+            </a>
+        </div>
+
+        
+        <button class="mobile-toggle text-2xl focus:outline-none" @click="open = !open">
+
+            <span x-show="!open">☰</span>
+            <span x-show="open" x-cloak>✕</span>
+        </button>
+
+        
+        <div x-show="open" x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 transform translate-y-[-10px]"
+            x-transition:enter-end="opacity-100 transform translate-y-0" x-cloak
+            class="mobile-menu-overlay absolute top-20 left-0 w-full glass border-b border-white/10 flex flex-col items-center py-8 gap-6 z-40">
+
+            
+            <a href="/about" class="text-lg font-medium" @click="open = false">About</a>
+            
+            <a href="/projects" class="text-lg font-medium" @click="open = false">Projects</a>
+            
+            <a href="/posts" class="text-lg font-medium" @click="open = false">Insights</a>
+            
+            <a href="/contact" class="text-lg font-medium" @click="open = false">Let&#39;s Talk</a>
+            
+            <a href="/contact" class="btn-primary px-6 py-2 rounded-full border border-primary text-primary"
+                @click="open = false">
+                Let's Talk
+            </a>
+        </div>
+    </nav>
+</header>
+<div style="height: 80px;"></div> 
+
+    <main class="flex-grow">
+        
+<article class="section container max-w-3xl mx-auto pt-24">
+    <header class="mb-12 text-center">
+        <div class="text-primary font-medium mb-4 uppercase tracking-wide text-sm">
+            December 15, 2011
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            The Route Redistribution Loop that Took Down the Core
+        </h1>
+        
+    </header>
+
+    <div class="prose prose-invert prose-lg mx-auto glass-card p-8 md:p-12">
+        <p>There are two kinds of Network Engineers: those who have caused a network-wide outage, and those who will.</p>
+<p>I earned my badge at Spectranet, working on the Core ISP network. We were dealing with a complex Multi-home BGP setup and needed to propagate some specific external routes into our internal OSPF domain for traffic engineering purposes.</p>
+<p>It sounded simple enough. I’d done it a dozen times in the lab. But the lab isn&rsquo;t the real world.</p>
+<h2 id="the-setup">The Setup</h2>
+<p>The task was straightforward: Redistribute a small subset of BGP routes into OSPF so our internal distribution switches would know how to reach a specific customer block.</p>
+<p>I logged into the Core Router—a beast of a Cisco box that handled gigabits of traffic. My fingers flew across the keyboard.</p>
+<pre tabindex="0"><code class="language-cisco" data-lang="cisco">router ospf 1 
+ redistribute bgp 65000 subnets
+</code></pre><p>I hit Enter.</p>
+<h2 id="the-mistake">The Mistake</h2>
+<p>If you are a seasoned engineer, you likely just winced reading those two lines of code.</p>
+<p>You noticed what was missing. I didn&rsquo;t.</p>
+<p><strong>I had forgotten the Route Map.</strong></p>
+<p>In my haste, I didn&rsquo;t apply a route-map or a prefix-list to filter which BGP routes were redistributed. I told the router to take <strong>every single route</strong> in the BGP table (the full internet routing table, over 500,000 routes at the time) and shove them into our internal OSPF database.</p>
+<h2 id="the-impact-the-meltdown">The Impact: The Meltdown</h2>
+<p>OSPF (Open Shortest Path First) is a link-state protocol. It relies on every router having an identical map of the network (the LSDB). It is designed to handle thousands of routes, not hundreds of thousands.</p>
+<p>The moment I hit enter, the Core Router tried to generate hundreds of thousands of Type-5 LSAs (External LSAs).</p>
+<ul>
+<li><strong>T-minus 5 seconds</strong>: The CLI became sluggish.</li>
+<li><strong>T-minus 10 seconds</strong>: The CPU utilization on the Core Router spiked to 100%.</li>
+<li><strong>T-minus 30 seconds</strong>: The OSPF process crashed under the weight of the database. Adjacencies with neighbor routers started dropping.</li>
+<li><strong>T-minus 60 seconds</strong>: The network started flapping violently. Routes were appearing and disappearing. Traffic across the entire city ground to a halt.</li>
+</ul>
+<p>I had effectively DDoS-ed our own control plane from the inside.</p>
+<h2 id="the-fix">The Fix</h2>
+<p>Panic is a cold feeling. But training kicks in.</p>
+<p>I couldn&rsquo;t even issue a <code>no redistribute</code> command because the CLI was unresponsive due to the CPU spike. The router was too busy processing the LSAs to listen to me.</p>
+<p>I had to go nuclear. I managed to console into the device (which has higher interrupt priority) and hard-killed the BGP session entirely to stop the influx of routes.</p>
+<pre tabindex="0"><code class="language-cisco" data-lang="cisco">clear ip bgp *
+</code></pre><p>The CPU dropped. The LSAs timed out. The network gasped and started to breathe again.</p>
+<p>Once stability returned, I applied the fix—the one line of code that would have saved me 20 minutes of terror:</p>
+<pre tabindex="0"><code class="language-cisco" data-lang="cisco">redistribute bgp 65000 subnets route-map FILTER_CUSTOMER_ONLY
+</code></pre><h2 id="the-lesson">The Lesson</h2>
+<p>I walked away from that terminal with shaking hands and a lesson burned into my brain.</p>
+<p><strong>&ldquo;Measure twice, cut once.&rdquo;</strong></p>
+<p>And more specifically: <strong>NEVER redistribute BGP into an IGP (like OSPF or EIGRP) without a filter.</strong></p>
+<p>IGPs are not designed to hold the internet. They are designed for speed and topology awareness. When you bridge the gap between the massive scale of BGP and the precise mechanics of OSPF, you must be the gatekeeper.</p>
+<p>If you don&rsquo;t filter, you don&rsquo;t just break the network—you melt it.</p>
+<hr>
+<h2 id="-the-dont-melt-the-core-redistribution-checklist">🛡️ The &ldquo;Don&rsquo;t Melt the Core&rdquo; Redistribution Checklist</h2>
+<p>Before you hit Enter on that redistribute command, run through this list. Every single time.</p>
+<h3 id="phase-1-the-recon-pre-configuration">Phase 1: The Recon (Pre-Configuration)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Check Source Table Size</strong>: Run <code>show ip bgp summary</code> or <code>show ip route bgp</code>. Ask: Am I about to dump 900,000 routes? or just 5?</li>
+<li><input disabled="" type="checkbox"> <strong>Check Destination Capacity</strong>: Know the limits of your IGP (OSPF/EIGRP) and the hardware. <em>Rule of Thumb: OSPF gets cranky over 10k-20k routes depending on the hardware.</em></li>
+<li><input disabled="" type="checkbox"> <strong>Check CPU Status</strong>: Run <code>show processes cpu history</code>. <em>Warning: If the router is already idling at 60%, do not perform a redistribution without a maintenance window.</em></li>
+</ul>
+<h3 id="phase-2-the-gatekeeper-the-filter">Phase 2: The Gatekeeper (The Filter)</h3>
+<ul>
+<li>
+<p><input disabled="" type="checkbox"> <strong>Build the Prefix-List</strong>: Do not rely on ACLs for route filtering; they are messy. Use a prefix-list.</p>
+<pre tabindex="0"><code class="language-cisco" data-lang="cisco">ip prefix-list REDIST_FILTER permit 10.x.x.x/24
+</code></pre></li>
+</ul>
+<ul>
+<li>
+<p><input disabled="" type="checkbox"> <strong>Build the Route-Map</strong>: Always wrap your list in a route-map.</p>
+<pre tabindex="0"><code class="language-cisco" data-lang="cisco">route-map BGP_TO_OSPF permit 10
+ match ip address prefix-list REDIST_FILTER
+</code></pre></li>
+<li>
+<p><input disabled="" type="checkbox"> <strong>The Safety Net (Implicit Deny)</strong>: Remember that route-maps have an implicit deny at the end, but adding an explicit deny line (<code>route-map BGP_TO_OSPF deny 20</code>) is good documentation and prevents accidents if you add more permit statements later.</p>
+</li>
+</ul>
+<h3 id="phase-3-the-execution">Phase 3: The Execution</h3>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Apply the Filter FIRST</strong>: Type the full command including the route-map before hitting enter.
+<ul>
+<li>❌ <code>redistribute bgp 65000</code> (DO NOT PRESS ENTER)</li>
+<li>✅ <code>redistribute bgp 65000 subnets route-map BGP_TO_OSPF</code></li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <strong>Console Access</strong>: If you are doing this remotely on a critical core router, are you prepared to lose SSH? Do you have out-of-band management (Console server/Terminal server) access ready?</li>
+</ul>
+<h3 id="phase-4-the-verification">Phase 4: The Verification</h3>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Check the LSA/Topology Table</strong>: <code>show ip ospf database external</code>. Did you see only the specific routes you wanted? Or did the counter explode?</li>
+<li><input disabled="" type="checkbox"> <strong>Watch the CPU</strong>: Keep a <code>show processes cpu sorted 1min</code> running. If OSPF Router process spikes and stays high, undo immediately.</li>
+</ul>
+
+    </div>
+
+    <div class="mt-12 text-center">
+        <a href="/" class="text-primary hover:text-white transition-colors">
+            ← Back to Home
+        </a>
+    </div>
+</article>
+
+    </main>
+
+    <footer class="section glass" style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.05);">
+    <div class="container flex flex-col md:flex-row justify-between items-center gap-md">
+        <div class="text-muted text-sm">
+            © 2025 Virtual Sachin. All rights reserved.
+        </div>
+        <div class="flex gap-md">
+            
+            <a href="https://github.com/virtualsach" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                GitHub
+            </a>
+            
+            <a href="https://linkedin.com/in/virtualsachin-example" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                LinkedIn
+            </a>
+            
+            <a href="https://twitter.com/virtualsachin" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                Twitter
+            </a>
+            
+        </div>
+    </div>
+</footer>
+    
+    <script src="/js/main.js" defer></script>
+</body>
+
+</html>

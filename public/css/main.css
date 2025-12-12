@@ -1,0 +1,157 @@
+:root {
+  /* Light Mode Variables */
+  --bg-color: #ffffff;
+  --text-color: #1a1a1a;
+  --accent-color: #0052cc;
+  --code-bg: #f4f4f4;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  --font-mono: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Mode Variables */
+    --bg-color: #0d1117;
+    --text-color: #c9d1d9;
+    --accent-color: #58a6ff;
+    --code-bg: #161b22;
+  }
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Layout */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-mono);
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
+  border-bottom: 1px solid transparent; /* Prepare for hover */
+  transition: all 0.2s ease-in-out;
+}
+
+a:hover {
+  color: var(--accent-color);
+  border-bottom-color: var(--accent-color);
+}
+
+/* Code Blocks */
+pre, code {
+  font-family: var(--font-mono);
+  background-color: var(--code-bg);
+  border-radius: 4px;
+}
+
+code {
+  padding: 0.2em 0.4em;
+  font-size: 0.9em;
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+pre code {
+  padding: 0;
+  background-color: transparent;
+}
+
+/* Header & Nav */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--code-bg);
+}
+
+.brand {
+  font-family: var(--font-mono);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+nav a {
+  margin-left: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+}
+
+/* Footer */
+footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--code-bg);
+  text-align: center;
+  font-size: 0.85rem;
+  color: #8b949e;
+  font-family: var(--font-mono);
+}
+
+/* Terminal Hero */
+.terminal-hero {
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background-color: var(--code-bg);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  border-left: 4px solid var(--accent-color);
+}
+
+.prompt {
+  color: var(--accent-color);
+  margin-right: 0.5rem;
+}
+.command {
+  font-weight: bold;
+}
+.output {
+  margin-top: 0.5rem;
+  display: block;
+}
+
+/* Post List */
+.post-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--code-bg);
+}
+
+.post-item:last-child {
+  border-bottom: none;
+}
+
+.post-date {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: #8b949e;
+}
+
+.post-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+}

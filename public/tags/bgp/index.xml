@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BGP on Virtual Sachin</title>
+    <link>https://virtualsach.in/tags/bgp/</link>
+    <description>Recent content in BGP on Virtual Sachin</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 Jan 2014 09:00:00 +0530</lastBuildDate>
+    <atom:link href="https://virtualsach.in/tags/bgp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BGP Attributes: Using Local Pref to Save Bandwidth Costs</title>
+      <link>https://virtualsach.in/posts/bgp-attributes-cost-saving/</link>
+      <pubDate>Mon, 20 Jan 2014 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/bgp-attributes-cost-saving/</guid>
+      <description>I learned very quickly that BGP isn&amp;rsquo;t just a routing protocol. It is a financial instrument. Here is how we used Local Pref to slash bandwidth costs.</description>
+    </item>
+    <item>
+      <title>The Route Redistribution Loop that Took Down the Core</title>
+      <link>https://virtualsach.in/posts/route-redistribution-loop-outage/</link>
+      <pubDate>Thu, 15 Dec 2011 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/route-redistribution-loop-outage/</guid>
+      <description>I effectively DDoS-ed our own control plane from the inside. Here is the story of how I melted a core router by forgetting one line of code.</description>
+    </item>
+  </channel>
+</rss>

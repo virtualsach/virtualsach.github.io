@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Open Source on Virtual Sachin</title>
+    <link>https://virtualsach.in/tags/open-source/</link>
+    <description>Recent content in Open Source on Virtual Sachin</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 05 Nov 2012 09:00:00 +0530</lastBuildDate>
+    <atom:link href="https://virtualsach.in/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Observability on a Budget: RANCID &#43; Observium</title>
+      <link>https://virtualsach.in/posts/observability-on-budget/</link>
+      <pubDate>Mon, 05 Nov 2012 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/observability-on-budget/</guid>
+      <description>We built our own Network Operations Center (NOC) stack with RANCID and Observium. It wasn’t pretty, but it was bulletproof. Here is how we achieved total network observability for $0.</description>
+    </item>
+  </channel>
+</rss>

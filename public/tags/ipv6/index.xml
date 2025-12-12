@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IPv6 on Virtual Sachin</title>
+    <link>https://virtualsach.in/tags/ipv6/</link>
+    <description>Recent content in IPv6 on Virtual Sachin</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 14 Aug 2013 09:00:00 +0530</lastBuildDate>
+    <atom:link href="https://virtualsach.in/tags/ipv6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IPv4 Exhaustion is Real: My Strategy for IPv6 Dual Stacking</title>
+      <link>https://virtualsach.in/posts/ipv6-exhaustion-dual-stack/</link>
+      <pubDate>Wed, 14 Aug 2013 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/ipv6-exhaustion-dual-stack/</guid>
+      <description>We ran out of allocatable IPv4 blocks. This wasn&amp;rsquo;t a theoretical exercise; it was an operational crisis. Here is the deep dive into how we architected the transition to IPv6.</description>
+    </item>
+  </channel>
+</rss>

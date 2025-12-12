@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en-us" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Disaster Recovery | Virtual Sachin</title>
+<meta name="description" content="Cloud Architect | Automation Expert | Infrastructure Strategy">
+
+
+<meta property="og:title" content="Disaster Recovery" />
+<meta property="og:description"
+    content="Cloud Architect | Automation Expert | Infrastructure Strategy" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://virtualsach.in/tags/disaster-recovery/" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@500;700;900&display=swap"
+    rel="stylesheet">
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="flex flex-col min-h-screen text-base antialiased selection:bg-cyan-500 selection:text-white">
+    <header class="glass fixed w-full top-0 z-50">
+    <nav class="container flex justify-between items-center" style="height: 80px;" x-data="{ open: false }">
+        
+        <a href="/" class="text-xl font-bold font-heading">
+            Virtual<span class="text-primary">Sachin</span>.
+        </a>
+
+        
+        <div class="desktop-nav gap-md items-center">
+            
+            <a href="/about" class="nav-link font-medium text-sm uppercase tracking-wide">
+                About
+            </a>
+            
+            <a href="/projects" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Projects
+            </a>
+            
+            <a href="/posts" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Insights
+            </a>
+            
+            <a href="/contact" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Let&#39;s Talk
+            </a>
+            
+            <a href="/contact" class="btn-primary"
+                style="padding: 0.5rem 1.5rem; border: 1px solid var(--color-primary); border-radius: 50px; transition: all 0.3s;">
+                Let's Talk
+            </a>
+        </div>
+
+        
+        <button class="mobile-toggle text-2xl focus:outline-none" @click="open = !open">
+
+            <span x-show="!open">☰</span>
+            <span x-show="open" x-cloak>✕</span>
+        </button>
+
+        
+        <div x-show="open" x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 transform translate-y-[-10px]"
+            x-transition:enter-end="opacity-100 transform translate-y-0" x-cloak
+            class="mobile-menu-overlay absolute top-20 left-0 w-full glass border-b border-white/10 flex flex-col items-center py-8 gap-6 z-40">
+
+            
+            <a href="/about" class="text-lg font-medium" @click="open = false">About</a>
+            
+            <a href="/projects" class="text-lg font-medium" @click="open = false">Projects</a>
+            
+            <a href="/posts" class="text-lg font-medium" @click="open = false">Insights</a>
+            
+            <a href="/contact" class="text-lg font-medium" @click="open = false">Let&#39;s Talk</a>
+            
+            <a href="/contact" class="btn-primary px-6 py-2 rounded-full border border-primary text-primary"
+                @click="open = false">
+                Let's Talk
+            </a>
+        </div>
+    </nav>
+</header>
+<div style="height: 80px;"></div> 
+
+    <main class="flex-grow">
+        
+<section class="section container pt-24">
+    <header class="mb-12">
+        <h1 class="text-4xl font-bold mb-4">Disaster Recovery</h1>
+        
+    </header>
+
+    <div class="grid grid-cols-2 gap-md">
+        
+        <article class="glass-card p-6 flex flex-col items-start transition-all hover:translate-y-1">
+            <div class="text-sm text-primary mb-2">
+                Jul 10, 2011
+            </div>
+            <h2 class="text-2xl font-bold mb-3">
+                <a href="https://virtualsach.in/posts/fiber-cut-redundancy-lesson/" class="hover:text-primary transition-colors">
+                    The Night the Fiber Cut: Lessons in WAN Redundancy
+                </a>
+            </h2>
+            <p class="text-muted mb-6 flex-grow">
+                The primary fiber was dead. The backup links were stalling. I learned a lesson that no textbook could teach: Redundancy is only real if you test it.
+            </p>
+            <a href="https://virtualsach.in/posts/fiber-cut-redundancy-lesson/"
+                class="glass px-4 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors">
+                Read Article
+            </a>
+        </article>
+        
+    </div>
+
+    <div class="flex justify-center mt-12 gap-md">
+        
+        
+    </div>
+</section>
+
+    </main>
+
+    <footer class="section glass" style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.05);">
+    <div class="container flex flex-col md:flex-row justify-between items-center gap-md">
+        <div class="text-muted text-sm">
+            © 2025 Virtual Sachin. All rights reserved.
+        </div>
+        <div class="flex gap-md">
+            
+            <a href="https://github.com/virtualsach" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                GitHub
+            </a>
+            
+            <a href="https://linkedin.com/in/virtualsachin-example" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                LinkedIn
+            </a>
+            
+            <a href="https://twitter.com/virtualsachin" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                Twitter
+            </a>
+            
+        </div>
+    </div>
+</footer>
+    
+    <script src="/js/main.js" defer></script>
+</body>
+
+</html>

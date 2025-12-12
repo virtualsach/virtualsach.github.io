@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en-us" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Debugging the Air: Troubleshooting Packet Loss on WiMAX &amp; RF Links | Virtual Sachin</title>
+<meta name="description" content="Cloud Architect | Automation Expert | Infrastructure Strategy">
+
+
+<meta property="og:title" content="Debugging the Air: Troubleshooting Packet Loss on WiMAX &amp; RF Links" />
+<meta property="og:description"
+    content="Cloud Architect | Automation Expert | Infrastructure Strategy" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://virtualsach.in/posts/debugging-packet-loss-wimax/" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@500;700;900&display=swap"
+    rel="stylesheet">
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="flex flex-col min-h-screen text-base antialiased selection:bg-cyan-500 selection:text-white">
+    <header class="glass fixed w-full top-0 z-50">
+    <nav class="container flex justify-between items-center" style="height: 80px;" x-data="{ open: false }">
+        
+        <a href="/" class="text-xl font-bold font-heading">
+            Virtual<span class="text-primary">Sachin</span>.
+        </a>
+
+        
+        <div class="desktop-nav gap-md items-center">
+            
+            <a href="/about" class="nav-link font-medium text-sm uppercase tracking-wide">
+                About
+            </a>
+            
+            <a href="/projects" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Projects
+            </a>
+            
+            <a href="/posts" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Insights
+            </a>
+            
+            <a href="/contact" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Let&#39;s Talk
+            </a>
+            
+            <a href="/contact" class="btn-primary"
+                style="padding: 0.5rem 1.5rem; border: 1px solid var(--color-primary); border-radius: 50px; transition: all 0.3s;">
+                Let's Talk
+            </a>
+        </div>
+
+        
+        <button class="mobile-toggle text-2xl focus:outline-none" @click="open = !open">
+
+            <span x-show="!open">☰</span>
+            <span x-show="open" x-cloak>✕</span>
+        </button>
+
+        
+        <div x-show="open" x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 transform translate-y-[-10px]"
+            x-transition:enter-end="opacity-100 transform translate-y-0" x-cloak
+            class="mobile-menu-overlay absolute top-20 left-0 w-full glass border-b border-white/10 flex flex-col items-center py-8 gap-6 z-40">
+
+            
+            <a href="/about" class="text-lg font-medium" @click="open = false">About</a>
+            
+            <a href="/projects" class="text-lg font-medium" @click="open = false">Projects</a>
+            
+            <a href="/posts" class="text-lg font-medium" @click="open = false">Insights</a>
+            
+            <a href="/contact" class="text-lg font-medium" @click="open = false">Let&#39;s Talk</a>
+            
+            <a href="/contact" class="btn-primary px-6 py-2 rounded-full border border-primary text-primary"
+                @click="open = false">
+                Let's Talk
+            </a>
+        </div>
+    </nav>
+</header>
+<div style="height: 80px;"></div> 
+
+    <main class="flex-grow">
+        
+<article class="section container max-w-3xl mx-auto pt-24">
+    <header class="mb-12 text-center">
+        <div class="text-primary font-medium mb-4 uppercase tracking-wide text-sm">
+            September 15, 2011
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            Debugging the Air: Troubleshooting Packet Loss on WiMAX &amp; RF Links
+        </h1>
+        
+    </header>
+
+    <div class="prose prose-invert prose-lg mx-auto glass-card p-8 md:p-12">
+        <p>In the corporate world, &ldquo;The Cloud&rdquo; is a clean, white icon on a PowerPoint slide. It suggests that data floats effortlessly from a server to your laptop.</p>
+<p>But I was a Field Engineer at Spectranet. I knew the dirty truth.</p>
+<p>For thousands of enterprise customers, &ldquo;The Cloud&rdquo; isn&rsquo;t magic. It is a focused beam of radio waves blasting through the smog, dodging pigeons, and fighting the laws of physics to hit a receiver dish on a rooftop five kilometers away.</p>
+<p>When you work with WiMAX and RF (Radio Frequency), you aren&rsquo;t just a network engineer. You are a weather forecaster, a structural engineer, and occasionally, a steeplejack.</p>
+<h2 id="the-400-pm-mystery">The 4:00 PM Mystery</h2>
+<p>I once had a ticket that haunted me for a week. A high-priority enterprise customer was reporting crippling packet loss.</p>
+<p>The symptoms were maddeningly specific: The link was rock solid all morning. Perfect throughput, low jitter. But exactly at 4:00 PM, like clockwork, the connection would choke. Dropped packets, latency spikes, and angry phone calls. By 5:30 PM, it would clear up.</p>
+<h2 id="the-debug-cli-vs-reality">The Debug: CLI vs. Reality</h2>
+<p>I did what every engineer does first. I blamed the router.</p>
+<p>I logged into the edge device. I checked the CPU utilization. I checked the buffer settings. I scoured the logs for interface flapping or duplex mismatches.</p>
+<ul>
+<li><strong>Config</strong>: Clean.</li>
+<li><strong>BGP Peers</strong>: Stable.</li>
+<li><strong>Errors</strong>: None on the copper side.</li>
+</ul>
+<p>From the safety of the NOC, everything looked perfect. But the customer was screaming.</p>
+<p>So, I grabbed my tool bag, put on my safety harness, and went to the site.</p>
+<h2 id="the-climb">The Climb</h2>
+<p>There is no air conditioning at Layer 1. I climbed the ladder to the customer&rsquo;s roof under the brutal afternoon sun.</p>
+<p>I hooked up my spectrum analyzer and signal meter to the IDU (Indoor Unit) and traced the cable to the ODU (Outdoor Unit) mounted on the mast.</p>
+<p>I looked at the <strong>RSSI</strong> (Received Signal Strength Indicator). It was fluctuating wildly. One second I had a solid <code>-65 dBm</code>, the next it dropped to <code>-85 dBm</code> (basically silence).</p>
+<p>I squinted across the skyline, following the invisible line of the Fresnel Zone toward our base station tower miles away.</p>
+<p>And then I saw it.</p>
+<p>It wasn&rsquo;t &ldquo;Rain Fade&rdquo;—the classic enemy of RF where heavy downpours absorb the signal. It wasn&rsquo;t a config error. <strong>It was a crane.</strong></p>
+<p>A new high-rise was going up three blocks away. Every day around 4:00 PM, the construction crew swung the crane arm into a specific position to unload materials for the end of the shift. That giant arm of steel was swinging right through my Line of Sight (LoS), scattering my radio waves like a shotgun blast.</p>
+<h2 id="the-fix-wrench-and-muscle">The Fix: Wrench and muscle</h2>
+<p>You can&rsquo;t fix a crane with Python code. You can&rsquo;t route-map your way around a building.</p>
+<p>The fix was physical. I had to unbolt the mast clamp, sweat dripping into my eyes, and physically manhandle the antenna. I re-aligned the azimuth and elevation, searching for a new signal lobe that bypassed the obstruction.</p>
+<p>I spent an hour up there, watching the signal meter while making millimeter adjustments.</p>
+<ul>
+<li>Tweak left. Signal drops.</li>
+<li>Tweak up. Signal drops.</li>
+<li>Tweak right. <strong>Boom. -58 dBm.</strong></li>
+</ul>
+<p>I locked down the bolts, waterproofed the connectors with fresh tape, and watched the packet loss counter hit zero.</p>
+<h2 id="the-lesson">The Lesson</h2>
+<p>We live in an era of Software-Defined Networking (SDN) and automated orchestration. We like to think we can control the world from a keyboard.</p>
+<p>But that day on the roof taught me the most important rule of networking: <strong>Always check Layer 1 first.</strong></p>
+<p>You can have the most sophisticated BGP policies in the world, but if a crane blocks your RF beam, or water gets into your connector, or a billboard goes up in your path, you are offline.</p>
+<p>You cannot code your way out of bad physics. Sometimes, you just need a wrench.</p>
+
+    </div>
+
+    <div class="mt-12 text-center">
+        <a href="/" class="text-primary hover:text-white transition-colors">
+            ← Back to Home
+        </a>
+    </div>
+</article>
+
+    </main>
+
+    <footer class="section glass" style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.05);">
+    <div class="container flex flex-col md:flex-row justify-between items-center gap-md">
+        <div class="text-muted text-sm">
+            © 2025 Virtual Sachin. All rights reserved.
+        </div>
+        <div class="flex gap-md">
+            
+            <a href="https://github.com/virtualsach" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                GitHub
+            </a>
+            
+            <a href="https://linkedin.com/in/virtualsachin-example" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                LinkedIn
+            </a>
+            
+            <a href="https://twitter.com/virtualsachin" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                Twitter
+            </a>
+            
+        </div>
+    </div>
+</footer>
+    
+    <script src="/js/main.js" defer></script>
+</body>
+
+</html>

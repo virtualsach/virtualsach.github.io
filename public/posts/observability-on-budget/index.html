@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en-us" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Observability on a Budget: RANCID &#43; Observium | Virtual Sachin</title>
+<meta name="description" content="Cloud Architect | Automation Expert | Infrastructure Strategy">
+
+
+<meta property="og:title" content="Observability on a Budget: RANCID &#43; Observium" />
+<meta property="og:description"
+    content="Cloud Architect | Automation Expert | Infrastructure Strategy" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://virtualsach.in/posts/observability-on-budget/" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@500;700;900&display=swap"
+    rel="stylesheet">
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="flex flex-col min-h-screen text-base antialiased selection:bg-cyan-500 selection:text-white">
+    <header class="glass fixed w-full top-0 z-50">
+    <nav class="container flex justify-between items-center" style="height: 80px;" x-data="{ open: false }">
+        
+        <a href="/" class="text-xl font-bold font-heading">
+            Virtual<span class="text-primary">Sachin</span>.
+        </a>
+
+        
+        <div class="desktop-nav gap-md items-center">
+            
+            <a href="/about" class="nav-link font-medium text-sm uppercase tracking-wide">
+                About
+            </a>
+            
+            <a href="/projects" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Projects
+            </a>
+            
+            <a href="/posts" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Insights
+            </a>
+            
+            <a href="/contact" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Let&#39;s Talk
+            </a>
+            
+            <a href="/contact" class="btn-primary"
+                style="padding: 0.5rem 1.5rem; border: 1px solid var(--color-primary); border-radius: 50px; transition: all 0.3s;">
+                Let's Talk
+            </a>
+        </div>
+
+        
+        <button class="mobile-toggle text-2xl focus:outline-none" @click="open = !open">
+
+            <span x-show="!open">☰</span>
+            <span x-show="open" x-cloak>✕</span>
+        </button>
+
+        
+        <div x-show="open" x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 transform translate-y-[-10px]"
+            x-transition:enter-end="opacity-100 transform translate-y-0" x-cloak
+            class="mobile-menu-overlay absolute top-20 left-0 w-full glass border-b border-white/10 flex flex-col items-center py-8 gap-6 z-40">
+
+            
+            <a href="/about" class="text-lg font-medium" @click="open = false">About</a>
+            
+            <a href="/projects" class="text-lg font-medium" @click="open = false">Projects</a>
+            
+            <a href="/posts" class="text-lg font-medium" @click="open = false">Insights</a>
+            
+            <a href="/contact" class="text-lg font-medium" @click="open = false">Let&#39;s Talk</a>
+            
+            <a href="/contact" class="btn-primary px-6 py-2 rounded-full border border-primary text-primary"
+                @click="open = false">
+                Let's Talk
+            </a>
+        </div>
+    </nav>
+</header>
+<div style="height: 80px;"></div> 
+
+    <main class="flex-grow">
+        
+<article class="section container max-w-3xl mx-auto pt-24">
+    <header class="mb-12 text-center">
+        <div class="text-primary font-medium mb-4 uppercase tracking-wide text-sm">
+            November 5, 2012
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            Observability on a Budget: RANCID &#43; Observium
+        </h1>
+        
+    </header>
+
+    <div class="prose prose-invert prose-lg mx-auto glass-card p-8 md:p-12">
+        <p>There is a specific kind of pressure that comes with managing a network team. You have 11 engineers looking to you for direction, a sprawling infrastructure that is growing by the day, and a management team that expects 99.999% uptime but gives you $0 budget for tooling.</p>
+<p>We didn’t have the luxury of SolarWinds or Splunk licenses. We had Linux boxes, some Perl scripts, and a whole lot of necessity.</p>
+<p>So, we built our own Network Operations Center (NOC) stack. It wasn’t pretty, but it was bulletproof. Here is how we achieved total network observability for the cost of a used server and some coffee.</p>
+<h2 id="1-the-safety-net-rancid-really-awesome-new-cisco-config-differ">1. The Safety Net: RANCID (Really Awesome New Cisco ConfIg Differ)</h2>
+<p>If you manage a network without automated backups, you are gambling with your career.</p>
+<p>We deployed <strong>RANCID</strong> to act as our configuration version control. Every hour, it would log into our routers and switches, grab the running config, and compare it to the previous version stored in CVS (later SVN). If anything changed—even a single line—it emailed the diff to the team.</p>
+<p><strong>The &ldquo;Save&rdquo;</strong>: I remember the exact moment RANCID paid for itself. A junior engineer, trying to troubleshoot a VLAN issue, accidentally issued a <code>write erase</code> followed by a <code>reload</code> on a critical distribution router.</p>
+<p>Panic set in. The router came back up with a factory default config. In a manual world, we would have been down for hours trying to rebuild the config from memory and outdated text files.</p>
+<p>Instead, I logged into the RANCID repository, pulled the config from 59 minutes ago, and pasted it back in. Downtime: 10 minutes. Lesson learned: Priceless.</p>
+<h2 id="2-the-eyes-observium--cacti">2. The Eyes: Observium &amp; Cacti</h2>
+<p>You cannot manage what you cannot measure. When users complain that &ldquo;the internet is slow,&rdquo; you need data, not guesses.</p>
+<p>We used a combination of <strong>Cacti</strong> and <strong>Observium</strong>.</p>
+<ul>
+<li><strong>Cacti</strong> gave us the nitty-gritty historical graphing. We could look back six months to see bandwidth trends on specific uplinks for capacity planning.</li>
+<li><strong>Observium</strong> was the &ldquo;single pane of glass.&rdquo; Its auto-discovery feature was a lifesaver. We pointed it at our subnets, and it mapped out devices, pulled OS versions, and flagged down interfaces automatically via SNMP.</li>
+</ul>
+<p>Suddenly, we weren&rsquo;t reacting to calls; we were calling customers to tell them their link was saturated before they even noticed.</p>
+<h2 id="3-the-truth-centralized-rsyslog">3. The Truth: Centralized rsyslog</h2>
+<p>There is nothing more soul-crushing than SSH-ing into 50 different routers one by one to <code>grep</code> local logs for an error message. It is inefficient and impossible during a live outage.</p>
+<p>We spun up a simple <code>rsyslog</code> server. Every device in the network was configured to ship its logs to this central IP.</p>
+<ul>
+<li><strong>Security</strong>: We could see failed login attempts across the entire fleet in real-time.</li>
+<li><strong>Troubleshooting</strong>: If OSPF flapped, we didn&rsquo;t have to hunt for the culprit. We just tailed the master log file and watched the error messages stream in from the affected devices.</li>
+</ul>
+<h2 id="the-takeaway">The Takeaway</h2>
+<p>We eventually grew enough to afford some commercial tools, but I still miss the simplicity of that stack.</p>
+<p>The lesson I taught my team was simple: <strong>&ldquo;You don&rsquo;t need Splunk to know your network. You need discipline.&rdquo;</strong></p>
+<p>Money can buy you pretty dashboards, but it can&rsquo;t buy you understanding. Building the monitoring stack yourself forces you to understand exactly how your network breathes, how SNMP works, and where the bodies are buried. And that knowledge is worth more than any software license.</p>
+
+    </div>
+
+    <div class="mt-12 text-center">
+        <a href="/" class="text-primary hover:text-white transition-colors">
+            ← Back to Home
+        </a>
+    </div>
+</article>
+
+    </main>
+
+    <footer class="section glass" style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.05);">
+    <div class="container flex flex-col md:flex-row justify-between items-center gap-md">
+        <div class="text-muted text-sm">
+            © 2025 Virtual Sachin. All rights reserved.
+        </div>
+        <div class="flex gap-md">
+            
+            <a href="https://github.com/virtualsach" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                GitHub
+            </a>
+            
+            <a href="https://linkedin.com/in/virtualsachin-example" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                LinkedIn
+            </a>
+            
+            <a href="https://twitter.com/virtualsachin" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                Twitter
+            </a>
+            
+        </div>
+    </div>
+</footer>
+    
+    <script src="/js/main.js" defer></script>
+</body>
+
+</html>

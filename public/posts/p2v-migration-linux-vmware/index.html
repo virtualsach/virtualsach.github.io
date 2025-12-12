@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en-us" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P2V Nightmares: Migrating Physical Linux Boxes to VMware ESXi | Virtual Sachin</title>
+<meta name="description" content="Cloud Architect | Automation Expert | Infrastructure Strategy">
+
+
+<meta property="og:title" content="P2V Nightmares: Migrating Physical Linux Boxes to VMware ESXi" />
+<meta property="og:description"
+    content="Cloud Architect | Automation Expert | Infrastructure Strategy" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://virtualsach.in/posts/p2v-migration-linux-vmware/" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@500;700;900&display=swap"
+    rel="stylesheet">
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="flex flex-col min-h-screen text-base antialiased selection:bg-cyan-500 selection:text-white">
+    <header class="glass fixed w-full top-0 z-50">
+    <nav class="container flex justify-between items-center" style="height: 80px;" x-data="{ open: false }">
+        
+        <a href="/" class="text-xl font-bold font-heading">
+            Virtual<span class="text-primary">Sachin</span>.
+        </a>
+
+        
+        <div class="desktop-nav gap-md items-center">
+            
+            <a href="/about" class="nav-link font-medium text-sm uppercase tracking-wide">
+                About
+            </a>
+            
+            <a href="/projects" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Projects
+            </a>
+            
+            <a href="/posts" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Insights
+            </a>
+            
+            <a href="/contact" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Let&#39;s Talk
+            </a>
+            
+            <a href="/contact" class="btn-primary"
+                style="padding: 0.5rem 1.5rem; border: 1px solid var(--color-primary); border-radius: 50px; transition: all 0.3s;">
+                Let's Talk
+            </a>
+        </div>
+
+        
+        <button class="mobile-toggle text-2xl focus:outline-none" @click="open = !open">
+
+            <span x-show="!open">☰</span>
+            <span x-show="open" x-cloak>✕</span>
+        </button>
+
+        
+        <div x-show="open" x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 transform translate-y-[-10px]"
+            x-transition:enter-end="opacity-100 transform translate-y-0" x-cloak
+            class="mobile-menu-overlay absolute top-20 left-0 w-full glass border-b border-white/10 flex flex-col items-center py-8 gap-6 z-40">
+
+            
+            <a href="/about" class="text-lg font-medium" @click="open = false">About</a>
+            
+            <a href="/projects" class="text-lg font-medium" @click="open = false">Projects</a>
+            
+            <a href="/posts" class="text-lg font-medium" @click="open = false">Insights</a>
+            
+            <a href="/contact" class="text-lg font-medium" @click="open = false">Let&#39;s Talk</a>
+            
+            <a href="/contact" class="btn-primary px-6 py-2 rounded-full border border-primary text-primary"
+                @click="open = false">
+                Let's Talk
+            </a>
+        </div>
+    </nav>
+</header>
+<div style="height: 80px;"></div> 
+
+    <main class="flex-grow">
+        
+<article class="section container max-w-3xl mx-auto pt-24">
+    <header class="mb-12 text-center">
+        <div class="text-primary font-medium mb-4 uppercase tracking-wide text-sm">
+            June 20, 2013
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            P2V Nightmares: Migrating Physical Linux Boxes to VMware ESXi
+        </h1>
+        
+    </header>
+
+    <div class="prose prose-invert prose-lg mx-auto glass-card p-8 md:p-12">
+        <p>If you worked in IT infrastructure during the great &ldquo;Virtualization Boom,&rdquo; you remember the promise of <strong>P2V (Physical-to-Virtual)</strong>.</p>
+<p>The brochures made it sound seamless. You install the VMware vCenter Converter Standalone, point it at your dusty, loud, heat-generating physical server, click &ldquo;Next,&rdquo; and 30 minutes later, it’s a beautiful, clean VM running on your shiny new vSphere cluster.</p>
+<p>That was the dream.</p>
+<p>Then there was the reality I faced at Net4 India: <strong>The Billing Server</strong>.</p>
+<h2 id="the-patient">The Patient</h2>
+<p>This server was the heartbeat of our revenue. It was running an ancient version of Red Hat Enterprise Linux (RHEL), ticking away on a custom-compiled kernel that probably hadn&rsquo;t been patched since the Bush administration. Nobody wanted to touch it. But we had to move it to our new IaaS cloud.</p>
+<h2 id="the-98-heartbreak">The 98% Heartbreak</h2>
+<p>I fired up the vCenter Converter. I configured the source and destination. I started the job.</p>
+<p>I watched the progress bar. 10%&hellip; 50%&hellip; 90%&hellip;</p>
+<p>At <strong>98%</strong>, the tool stalled. It sat there for an eternity, taunting me, before spitting out a generic &ldquo;Failed&rdquo; error.</p>
+<p>Technically, the data copy was done. The disk blocks were there. But when I tried to power on the VM, I didn&rsquo;t get a login prompt. I got the screen of death—white text on a black background:</p>
+<p><code>Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0)</code></p>
+<p>The VM was brain-dead.</p>
+<h2 id="the-root-cause-lost-in-translation">The Root Cause: Lost in Translation</h2>
+<p>After hours of troubleshooting, I realized what had happened. It was a driver mismatch.</p>
+<p>In its physical life, this server used a hardware RAID controller (likely a Dell PERC or HP SmartArray) which used the <code>megaraid</code> driver. The kernel was compiled specifically to look for that hardware at boot.</p>
+<p>But in its new virtual life on ESXi, I had assigned it a standard <strong>LSI Logic Parallel</strong> adapter.</p>
+<p>When the VM booted, the kernel looked for the physical RAID card. It found&hellip; nothing. It didn&rsquo;t have the drivers (<code>mptspi</code>) to talk to the virtual SCSI controller. It couldn&rsquo;t see its own hard drive, so it couldn&rsquo;t mount the root filesystem. It panicked.</p>
+<p>Because the kernel was custom-compiled, the standard VMware Converter injection scripts couldn&rsquo;t crack it open to insert the new drivers automatically.</p>
+<h2 id="the-fix-linux-surgery">The Fix: Linux Surgery</h2>
+<p>There is no GUI for this fix. I had to perform open-heart surgery on the OS.</p>
+<ol>
+<li><strong>The Rescue</strong>: I mounted a standard RHEL ISO to the VM and booted into Rescue Mode.</li>
+<li><strong>The Mount</strong>: I searched for the VM&rsquo;s partitions and mounted them manually to <code>/mnt/sysimage</code>.</li>
+<li><strong>The Chroot</strong>: This is where you feel like a hacker. I changed the root directory to make the OS think the rescue environment was the real server: <code>chroot /mnt/sysimage</code></li>
+</ol>
+<p>Now I was inside the belly of the beast. I verified the kernel version and checked the <code>modprobe.conf</code>. I needed to force the kernel to load the VMware-compatible SCSI drivers.</p>
+<p>I navigated to the boot directory and ran the command that saved my job. I manually rebuilt the initial RAM disk (initrd), forcing it to preload the LSI Logic drivers:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkinitrd -v -f --with<span style="color:#f92672">=</span>mptspi /boot/initrd-2.6.xx-custom.img 2.6.xx-custom
+</span></span></code></pre></div><p>I watched the verbose output scroll by. <code>Adding module mptbase... Adding module mptspi... Filesystem modules added...</code></p>
+<p>I typed <code>reboot</code> and held my breath.</p>
+<h2 id="the-triumph">The Triumph</h2>
+<p>The VMware BIOS flashed. The GRUB loader appeared. The kernel unpacked.</p>
+<p>And then, instead of the panic message, I saw the most beautiful words in the English language:</p>
+<p><code>Welcome to Red Hat Enterprise Linux</code>
+<code>localhost login: _</code></p>
+<h2 id="the-lesson">The Lesson</h2>
+<p>We like to think of Virtualization as a magic abstraction layer that hides the hardware. And 99% of the time, it is.</p>
+<p>But that day, I learned that Virtualization is magic, until you run into a custom kernel. Then, it&rsquo;s just Linux plumbing.</p>
+<p>The hypervisor can emulate all the hardware it wants, but if your OS doesn&rsquo;t know how to speak to it, you&rsquo;re dead in the water. Sometimes, to move to the cloud, you have to dig deep into the modules.</p>
+
+    </div>
+
+    <div class="mt-12 text-center">
+        <a href="/" class="text-primary hover:text-white transition-colors">
+            ← Back to Home
+        </a>
+    </div>
+</article>
+
+    </main>
+
+    <footer class="section glass" style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.05);">
+    <div class="container flex flex-col md:flex-row justify-between items-center gap-md">
+        <div class="text-muted text-sm">
+            © 2025 Virtual Sachin. All rights reserved.
+        </div>
+        <div class="flex gap-md">
+            
+            <a href="https://github.com/virtualsach" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                GitHub
+            </a>
+            
+            <a href="https://linkedin.com/in/virtualsachin-example" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                LinkedIn
+            </a>
+            
+            <a href="https://twitter.com/virtualsachin" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                Twitter
+            </a>
+            
+        </div>
+    </div>
+</footer>
+    
+    <script src="/js/main.js" defer></script>
+</body>
+
+</html>

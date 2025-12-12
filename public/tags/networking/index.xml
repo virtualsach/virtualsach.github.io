@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Networking on Virtual Sachin</title>
+    <link>https://virtualsach.in/tags/networking/</link>
+    <description>Recent content in Networking on Virtual Sachin</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 Jan 2014 09:00:00 +0530</lastBuildDate>
+    <atom:link href="https://virtualsach.in/tags/networking/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BGP Attributes: Using Local Pref to Save Bandwidth Costs</title>
+      <link>https://virtualsach.in/posts/bgp-attributes-cost-saving/</link>
+      <pubDate>Mon, 20 Jan 2014 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/bgp-attributes-cost-saving/</guid>
+      <description>I learned very quickly that BGP isn&amp;rsquo;t just a routing protocol. It is a financial instrument. Here is how we used Local Pref to slash bandwidth costs.</description>
+    </item>
+    <item>
+      <title>IPv4 Exhaustion is Real: My Strategy for IPv6 Dual Stacking</title>
+      <link>https://virtualsach.in/posts/ipv6-exhaustion-dual-stack/</link>
+      <pubDate>Wed, 14 Aug 2013 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/ipv6-exhaustion-dual-stack/</guid>
+      <description>We ran out of allocatable IPv4 blocks. This wasn&amp;rsquo;t a theoretical exercise; it was an operational crisis. Here is the deep dive into how we architected the transition to IPv6.</description>
+    </item>
+    <item>
+      <title>Capacity Planning with Cacti: Predicting the Bandwidth Cliff</title>
+      <link>https://virtualsach.in/posts/capacity-planning-cacti/</link>
+      <pubDate>Fri, 15 Feb 2013 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/capacity-planning-cacti/</guid>
+      <description>In the pre-cloud era, a 1 Gbps link was exactly 1 Gbps. If traffic hit 1.1 Gbps, the network broke. Here is how I used Cacti trend lines to predict a bandwidth cliff and prevent a catastrophic outage.</description>
+    </item>
+    <item>
+      <title>Observability on a Budget: RANCID &#43; Observium</title>
+      <link>https://virtualsach.in/posts/observability-on-budget/</link>
+      <pubDate>Mon, 05 Nov 2012 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/observability-on-budget/</guid>
+      <description>We built our own Network Operations Center (NOC) stack with RANCID and Observium. It wasn’t pretty, but it was bulletproof. Here is how we achieved total network observability for $0.</description>
+    </item>
+    <item>
+      <title>Building a Data Center from Scratch: The Cabling Nightmare</title>
+      <link>https://virtualsach.in/posts/building-data-center-from-scratch/</link>
+      <pubDate>Mon, 12 Mar 2012 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/building-data-center-from-scratch/</guid>
+      <description>For those of us who have built the infrastructure that the cloud sits on, we know the truth. The cloud has weight. It has heat. And it has miles of copper.</description>
+    </item>
+    <item>
+      <title>The Route Redistribution Loop that Took Down the Core</title>
+      <link>https://virtualsach.in/posts/route-redistribution-loop-outage/</link>
+      <pubDate>Thu, 15 Dec 2011 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/route-redistribution-loop-outage/</guid>
+      <description>I effectively DDoS-ed our own control plane from the inside. Here is the story of how I melted a core router by forgetting one line of code.</description>
+    </item>
+    <item>
+      <title>Debugging the Air: Troubleshooting Packet Loss on WiMAX &amp; RF Links</title>
+      <link>https://virtualsach.in/posts/debugging-packet-loss-wimax/</link>
+      <pubDate>Thu, 15 Sep 2011 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/debugging-packet-loss-wimax/</guid>
+      <description>For thousands of customers, &amp;lsquo;The Cloud&amp;rsquo; is a focused beam of radio waves. I learned that you can&amp;rsquo;t route-map your way around a building crane.</description>
+    </item>
+    <item>
+      <title>The Night the Fiber Cut: Lessons in WAN Redundancy</title>
+      <link>https://virtualsach.in/posts/fiber-cut-redundancy-lesson/</link>
+      <pubDate>Sun, 10 Jul 2011 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/fiber-cut-redundancy-lesson/</guid>
+      <description>The primary fiber was dead. The backup links were stalling. I learned a lesson that no textbook could teach: Redundancy is only real if you test it.</description>
+    </item>
+  </channel>
+</rss>

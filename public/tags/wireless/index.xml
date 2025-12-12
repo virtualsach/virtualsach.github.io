@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wireless on Virtual Sachin</title>
+    <link>https://virtualsach.in/tags/wireless/</link>
+    <description>Recent content in Wireless on Virtual Sachin</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 15 Sep 2011 09:00:00 +0530</lastBuildDate>
+    <atom:link href="https://virtualsach.in/tags/wireless/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Debugging the Air: Troubleshooting Packet Loss on WiMAX &amp; RF Links</title>
+      <link>https://virtualsach.in/posts/debugging-packet-loss-wimax/</link>
+      <pubDate>Thu, 15 Sep 2011 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/debugging-packet-loss-wimax/</guid>
+      <description>For thousands of customers, &amp;lsquo;The Cloud&amp;rsquo; is a focused beam of radio waves. I learned that you can&amp;rsquo;t route-map your way around a building crane.</description>
+    </item>
+  </channel>
+</rss>

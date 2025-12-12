@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Troubleshooting on Virtual Sachin</title>
+    <link>https://virtualsach.in/tags/troubleshooting/</link>
+    <description>Recent content in Troubleshooting on Virtual Sachin</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 20 Jun 2013 09:00:00 +0530</lastBuildDate>
+    <atom:link href="https://virtualsach.in/tags/troubleshooting/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>P2V Nightmares: Migrating Physical Linux Boxes to VMware ESXi</title>
+      <link>https://virtualsach.in/posts/p2v-migration-linux-vmware/</link>
+      <pubDate>Thu, 20 Jun 2013 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/p2v-migration-linux-vmware/</guid>
+      <description>The promise of P2V (Physical-to-Virtual) was seamless migration. But when I tried to virtualize our Billing Server, I ended up with a Kernel Panic and had to perform open-heart surgery on the OS.</description>
+    </item>
+    <item>
+      <title>Debugging the Air: Troubleshooting Packet Loss on WiMAX &amp; RF Links</title>
+      <link>https://virtualsach.in/posts/debugging-packet-loss-wimax/</link>
+      <pubDate>Thu, 15 Sep 2011 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/debugging-packet-loss-wimax/</guid>
+      <description>For thousands of customers, &amp;lsquo;The Cloud&amp;rsquo; is a focused beam of radio waves. I learned that you can&amp;rsquo;t route-map your way around a building crane.</description>
+    </item>
+  </channel>
+</rss>

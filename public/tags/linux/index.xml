@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Virtual Sachin</title>
+    <link>https://virtualsach.in/tags/linux/</link>
+    <description>Recent content in Linux on Virtual Sachin</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 20 Jun 2013 09:00:00 +0530</lastBuildDate>
+    <atom:link href="https://virtualsach.in/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>P2V Nightmares: Migrating Physical Linux Boxes to VMware ESXi</title>
+      <link>https://virtualsach.in/posts/p2v-migration-linux-vmware/</link>
+      <pubDate>Thu, 20 Jun 2013 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/p2v-migration-linux-vmware/</guid>
+      <description>The promise of P2V (Physical-to-Virtual) was seamless migration. But when I tried to virtualize our Billing Server, I ended up with a Kernel Panic and had to perform open-heart surgery on the OS.</description>
+    </item>
+  </channel>
+</rss>

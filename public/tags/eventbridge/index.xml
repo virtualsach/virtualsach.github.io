@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>EventBridge on Virtual Sachin</title>
+    <link>https://virtualsach.in/tags/eventbridge/</link>
+    <description>Recent content in EventBridge on Virtual Sachin</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 15 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://virtualsach.in/tags/eventbridge/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Project Nebula: Serverless Event Bus</title>
+      <link>https://virtualsach.in/projects/nebula/</link>
+      <pubDate>Fri, 15 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://virtualsach.in/projects/nebula/</guid>
+      <description>A multi-region serverless event bus capable of handling 50M+ events per day with &amp;lt;200ms E2E latency.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cost Optimization on Virtual Sachin</title>
+    <link>https://virtualsach.in/tags/cost-optimization/</link>
+    <description>Recent content in Cost Optimization on Virtual Sachin</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 Jan 2014 09:00:00 +0530</lastBuildDate>
+    <atom:link href="https://virtualsach.in/tags/cost-optimization/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BGP Attributes: Using Local Pref to Save Bandwidth Costs</title>
+      <link>https://virtualsach.in/posts/bgp-attributes-cost-saving/</link>
+      <pubDate>Mon, 20 Jan 2014 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/bgp-attributes-cost-saving/</guid>
+      <description>I learned very quickly that BGP isn&amp;rsquo;t just a routing protocol. It is a financial instrument. Here is how we used Local Pref to slash bandwidth costs.</description>
+    </item>
+  </channel>
+</rss>

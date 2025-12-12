@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en-us" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capacity Planning with Cacti: Predicting the Bandwidth Cliff | Virtual Sachin</title>
+<meta name="description" content="Cloud Architect | Automation Expert | Infrastructure Strategy">
+
+
+<meta property="og:title" content="Capacity Planning with Cacti: Predicting the Bandwidth Cliff" />
+<meta property="og:description"
+    content="Cloud Architect | Automation Expert | Infrastructure Strategy" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://virtualsach.in/posts/capacity-planning-cacti/" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@500;700;900&display=swap"
+    rel="stylesheet">
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="flex flex-col min-h-screen text-base antialiased selection:bg-cyan-500 selection:text-white">
+    <header class="glass fixed w-full top-0 z-50">
+    <nav class="container flex justify-between items-center" style="height: 80px;" x-data="{ open: false }">
+        
+        <a href="/" class="text-xl font-bold font-heading">
+            Virtual<span class="text-primary">Sachin</span>.
+        </a>
+
+        
+        <div class="desktop-nav gap-md items-center">
+            
+            <a href="/about" class="nav-link font-medium text-sm uppercase tracking-wide">
+                About
+            </a>
+            
+            <a href="/projects" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Projects
+            </a>
+            
+            <a href="/posts" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Insights
+            </a>
+            
+            <a href="/contact" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Let&#39;s Talk
+            </a>
+            
+            <a href="/contact" class="btn-primary"
+                style="padding: 0.5rem 1.5rem; border: 1px solid var(--color-primary); border-radius: 50px; transition: all 0.3s;">
+                Let's Talk
+            </a>
+        </div>
+
+        
+        <button class="mobile-toggle text-2xl focus:outline-none" @click="open = !open">
+
+            <span x-show="!open">☰</span>
+            <span x-show="open" x-cloak>✕</span>
+        </button>
+
+        
+        <div x-show="open" x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 transform translate-y-[-10px]"
+            x-transition:enter-end="opacity-100 transform translate-y-0" x-cloak
+            class="mobile-menu-overlay absolute top-20 left-0 w-full glass border-b border-white/10 flex flex-col items-center py-8 gap-6 z-40">
+
+            
+            <a href="/about" class="text-lg font-medium" @click="open = false">About</a>
+            
+            <a href="/projects" class="text-lg font-medium" @click="open = false">Projects</a>
+            
+            <a href="/posts" class="text-lg font-medium" @click="open = false">Insights</a>
+            
+            <a href="/contact" class="text-lg font-medium" @click="open = false">Let&#39;s Talk</a>
+            
+            <a href="/contact" class="btn-primary px-6 py-2 rounded-full border border-primary text-primary"
+                @click="open = false">
+                Let's Talk
+            </a>
+        </div>
+    </nav>
+</header>
+<div style="height: 80px;"></div> 
+
+    <main class="flex-grow">
+        
+<article class="section container max-w-3xl mx-auto pt-24">
+    <header class="mb-12 text-center">
+        <div class="text-primary font-medium mb-4 uppercase tracking-wide text-sm">
+            February 15, 2013
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            Capacity Planning with Cacti: Predicting the Bandwidth Cliff
+        </h1>
+        
+    </header>
+
+    <div class="prose prose-invert prose-lg mx-auto glass-card p-8 md:p-12">
+        <p>In the modern era of public cloud, &ldquo;capacity planning&rdquo; often just means setting an auto-scaling policy and forgetting about it. If traffic spikes, the cloud provider simply spins up more instances.</p>
+<p>But back at Net4, we lived in a different reality. We didn&rsquo;t have elastic compute or burstable bandwidth on demand. We had physical circuits with hard ceilings. A 1 Gbps link was exactly 1 Gbps. If traffic hit 1.1 Gbps, the network didn&rsquo;t scale; it broke. Packets dropped, latency skyrocketed, and customers went offline.</p>
+<p>In that environment, capacity planning wasn&rsquo;t an administrative task; it was a survival mechanism.</p>
+<h2 id="the-tool-cacti-and-the-snmp-heartbeat">The Tool: Cacti and the SNMP Heartbeat</h2>
+<p>We relied on <strong>Cacti</strong>, a frontend for RRDTool (Round Robin Database Tool). It was the industry standard for a reason.</p>
+<p>Every five minutes, Cacti would reach out to our border routers via SNMP (Simple Network Management Protocol) and ask a simple question: <em>&ldquo;How many octets have passed through interface GigabitEthernet0/1?&rdquo;</em></p>
+<p>It would plot these data points on a graph. To the untrained eye, these graphs just look like jagged mountains. To a network architect, they are a narrative of human behavior. You can see when the city wakes up, when the lunch rush hits, and when the backup jobs kick off at night.</p>
+<h2 id="the-analysis-beyond-the-average">The Analysis: Beyond the Average</h2>
+<p>The mistake most junior engineers make is looking at the &ldquo;Average&rdquo; utilization.</p>
+<p>Averages are comfortable liars. If a link is idle for 12 hours and 100% saturated for 12 hours, the average is 50%. The dashboard says &ldquo;Green,&rdquo; but your customers are screaming for half the day.</p>
+<p>My strategy focused on the <strong>95th Percentile</strong>.</p>
+<p>This metric discards the top 5% of data points (bursts) to ignore anomalies, giving you the &ldquo;sustained peak&rdquo; utilization—the bandwidth you are actually paying for and using.</p>
+<p>But I went deeper. I wasn&rsquo;t just checking if we were red today. I was calculating the <em>slope</em>.</p>
+<h2 id="the-bandwidth-cliff">The Bandwidth Cliff</h2>
+<p>One spring, I was auditing our primary transit link usage over a 3-month period.</p>
+<p>On a daily basis, things looked fine. We were peaking at about 70% utilization. Plenty of headroom, right? Most teams would have closed the ticket and moved on.</p>
+<p>But when I zoomed out to the quarterly view, I saw the trend line. Our traffic wasn&rsquo;t flat; it was growing at a consistent rate of 5% week-over-week.</p>
+<p>It was a slow creep, invisible in the daily noise. But simple math revealed the danger. Compounding that 5% growth meant that our &ldquo;safe&rdquo; 70% utilization would hit 100% saturation in exactly six weeks.</p>
+<p>I looked at the calendar. My projection showed we would hit the &ldquo;<strong>Bandwidth Cliff</strong>&quot;—total saturation—by July 1st.</p>
+<h2 id="the-silent-win">The Silent Win</h2>
+<p>I took the data to management. I showed them the graph, the slope, and the math.</p>
+<p>&ldquo;We are not out of bandwidth today,&rdquo; I explained. &ldquo;But we will be out of bandwidth on July 1st. And provisioning a new carrier circuit takes 4 weeks. We need to sign the PO today.&rdquo;</p>
+<p>We upgraded the circuit two weeks before the predicted deadline.</p>
+<p>On July 1st, traffic surged exactly as predicted. It crossed the old 1 Gbps limit without a stutter, flowing smoothly into the new capacity. No packets dropped. No alarms triggered. No customers called.</p>
+<h2 id="the-lesson">The Lesson</h2>
+<p>In Operations, silence is the only true applause.</p>
+<p>If you are fighting fires, you are already losing. The upgrade was a non-event, and that is exactly the point.</p>
+<p>The lesson I carried forward is this: <strong>&ldquo;Real capacity planning isn&rsquo;t looking at a dashboard to see where you are today. It&rsquo;s looking at the dashboard to see where you will be next month.&rdquo;</strong></p>
+<p>The difference between a stable network and a catastrophic outage is often just a spreadsheet and the foresight to trust the trend line.</p>
+
+    </div>
+
+    <div class="mt-12 text-center">
+        <a href="/" class="text-primary hover:text-white transition-colors">
+            ← Back to Home
+        </a>
+    </div>
+</article>
+
+    </main>
+
+    <footer class="section glass" style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.05);">
+    <div class="container flex flex-col md:flex-row justify-between items-center gap-md">
+        <div class="text-muted text-sm">
+            © 2025 Virtual Sachin. All rights reserved.
+        </div>
+        <div class="flex gap-md">
+            
+            <a href="https://github.com/virtualsach" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                GitHub
+            </a>
+            
+            <a href="https://linkedin.com/in/virtualsachin-example" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                LinkedIn
+            </a>
+            
+            <a href="https://twitter.com/virtualsachin" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                Twitter
+            </a>
+            
+        </div>
+    </div>
+</footer>
+    
+    <script src="/js/main.js" defer></script>
+</body>
+
+</html>

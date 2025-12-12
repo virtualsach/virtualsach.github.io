@@ -1,14 +1,17 @@
 {
-  "name": "virtualsach-site",
-  "version": "1.0.0",
-  "description": "Virtual Sachin Portfolio Site",
+  "name": "temp_astro",
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "dev": "hugo server -D",
-    "build": "hugo --minify",
-    "clean": "rm -rf public resources",
-    "new:post": "echo 'Run: hugo new content posts/your-slug.md'",
-    "new:project": "echo 'Run: hugo new content projects/your-slug.md'"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.13",
+    "@tailwindcss/vite": "^4.1.18",
+    "astro": "^5.16.5",
+    "tailwindcss": "^4.1.18"
+  }
 }

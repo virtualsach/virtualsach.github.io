@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en-us" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BGP Attributes: Using Local Pref to Save Bandwidth Costs | Virtual Sachin</title>
+<meta name="description" content="Cloud Architect | Automation Expert | Infrastructure Strategy">
+
+
+<meta property="og:title" content="BGP Attributes: Using Local Pref to Save Bandwidth Costs" />
+<meta property="og:description"
+    content="Cloud Architect | Automation Expert | Infrastructure Strategy" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://virtualsach.in/posts/bgp-attributes-cost-saving/" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@500;700;900&display=swap"
+    rel="stylesheet">
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="flex flex-col min-h-screen text-base antialiased selection:bg-cyan-500 selection:text-white">
+    <header class="glass fixed w-full top-0 z-50">
+    <nav class="container flex justify-between items-center" style="height: 80px;" x-data="{ open: false }">
+        
+        <a href="/" class="text-xl font-bold font-heading">
+            Virtual<span class="text-primary">Sachin</span>.
+        </a>
+
+        
+        <div class="desktop-nav gap-md items-center">
+            
+            <a href="/about" class="nav-link font-medium text-sm uppercase tracking-wide">
+                About
+            </a>
+            
+            <a href="/projects" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Projects
+            </a>
+            
+            <a href="/posts" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Insights
+            </a>
+            
+            <a href="/contact" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Let&#39;s Talk
+            </a>
+            
+            <a href="/contact" class="btn-primary"
+                style="padding: 0.5rem 1.5rem; border: 1px solid var(--color-primary); border-radius: 50px; transition: all 0.3s;">
+                Let's Talk
+            </a>
+        </div>
+
+        
+        <button class="mobile-toggle text-2xl focus:outline-none" @click="open = !open">
+
+            <span x-show="!open">☰</span>
+            <span x-show="open" x-cloak>✕</span>
+        </button>
+
+        
+        <div x-show="open" x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 transform translate-y-[-10px]"
+            x-transition:enter-end="opacity-100 transform translate-y-0" x-cloak
+            class="mobile-menu-overlay absolute top-20 left-0 w-full glass border-b border-white/10 flex flex-col items-center py-8 gap-6 z-40">
+
+            
+            <a href="/about" class="text-lg font-medium" @click="open = false">About</a>
+            
+            <a href="/projects" class="text-lg font-medium" @click="open = false">Projects</a>
+            
+            <a href="/posts" class="text-lg font-medium" @click="open = false">Insights</a>
+            
+            <a href="/contact" class="text-lg font-medium" @click="open = false">Let&#39;s Talk</a>
+            
+            <a href="/contact" class="btn-primary px-6 py-2 rounded-full border border-primary text-primary"
+                @click="open = false">
+                Let's Talk
+            </a>
+        </div>
+    </nav>
+</header>
+<div style="height: 80px;"></div> 
+
+    <main class="flex-grow">
+        
+<article class="section container max-w-3xl mx-auto pt-24">
+    <header class="mb-12 text-center">
+        <div class="text-primary font-medium mb-4 uppercase tracking-wide text-sm">
+            January 20, 2014
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            BGP Attributes: Using Local Pref to Save Bandwidth Costs
+        </h1>
+        
+    </header>
+
+    <div class="prose prose-invert prose-lg mx-auto glass-card p-8 md:p-12">
+        <p>In the world of ISPs and large enterprises, bandwidth is not an infinite resource—it is a line item on a spreadsheet, and usually the biggest one.</p>
+<p>During my time at Net4 and Spectranet, our biggest Operating Expense (OpEx) was the monthly bill we paid to our upstream transit providers. When you are moving Terabytes of data, even a marginal difference in cost-per-Mbps can swing the company’s profitability.</p>
+<p>I learned very quickly that <strong>BGP (Border Gateway Protocol)</strong> isn&rsquo;t just a routing protocol. It is a financial instrument.</p>
+<p>Here is how we used BGP attributes to slash our bandwidth costs without sacrificing performance.</p>
+<h2 id="the-scenario-the-multi-homing-dilemma">The Scenario: The Multi-Homing Dilemma</h2>
+<p>We were a classic Multi-Homed Autonomous System (AS). We had connections to multiple upstream providers:</p>
+<ul>
+<li><strong>Provider A (The &ldquo;Premium&rdquo; Link)</strong>: Tier-1 global carrier. Low latency, incredible stability, but expensive per Mbps.</li>
+<li><strong>Provider B (The &ldquo;Budget&rdquo; Link)</strong>: A local exchange or lower-tier provider. Higher latency, occasional jitter, but significantly cheaper (or flat-rate bulk pricing).</li>
+</ul>
+<p><strong>The Problem</strong>: By default, BGP looks for the shortest AS Path. It doesn&rsquo;t care about your budget. If the &ldquo;Premium&rdquo; link offered a slightly shorter path to a bandwidth-heavy destination (like a YouTube CDN or Netflix Open Connect appliance), BGP would blindly send all that bulk traffic over the expensive pipe. We were burning money to deliver cat videos in 4K.</p>
+<h2 id="the-fix-engineering-traffic-flow">The Fix: Engineering Traffic Flow</h2>
+<p>To solve this, we had to stop thinking about IP addresses and start thinking about <strong>traffic types</strong>. We needed &ldquo;Premium&rdquo; traffic (VoIP, gaming, banking) on Provider A, and &ldquo;Bulk&rdquo; traffic (streaming, downloads) on Provider B.</p>
+<p>We utilized two key BGP attributes: <strong>Local Preference (Local_Pref)</strong> for outbound traffic and <strong>AS Path Prepending</strong> for inbound traffic.</p>
+<h3 id="1-controlling-outbound-the-power-of-local_pref">1. Controlling Outbound: The Power of Local_Pref</h3>
+<p><code>Local_Pref</code> is the most powerful tool for influencing how traffic <em>leaves</em> your network. It is a value local to your AS; it doesn&rsquo;t leave your borders. The default is 100, and higher is better.</p>
+<p>We identified the prefixes for major content providers (Google, Netflix, Akamai). We then created a route-map to tag these prefixes with a higher Local_Pref when learned via our Cheap Link.</p>
+<pre tabindex="0"><code class="language-cisco" data-lang="cisco">! Cisco IOS Syntax Example
+route-map PREFER_CHEAP_LINK permit 10
+ match ip address prefix-list BULK_TRAFFIC_CDNS
+ set local-preference 200
+!
+router bgp 65000
+ neighbor 1.1.1.1 route-map PREFER_CHEAP_LINK in
+</code></pre><p>This simple configuration forced our routers to send requests for these services out through the cheap pipe.</p>
+<h3 id="2-controlling-inbound-the-art-of-as-path-prepending">2. Controlling Inbound: The Art of AS Path Prepending</h3>
+<p>Outbound is easy; Inbound is where it gets tricky. We needed the internet to send traffic <em>back</em> to us via the cheap link.</p>
+<p>To do this, we made the expensive link look less attractive. BGP selects the path with the fewest number of Autonomous Systems (AS hops). By &ldquo;<strong>prepending</strong>&rdquo; (repeating) our own AS number multiple times on the advertisements we sent to the Premium Provider, we artificially inflated the path length.</p>
+<p>To the outside world, the path via our Premium Provider looked &ldquo;longer&rdquo; and &ldquo;worse&rdquo; than the path via our Budget Provider. The result? The internet naturally shifted the heavy return traffic to the cheap link.</p>
+<h2 id="the-result">The Result</h2>
+<p>The impact was immediate.</p>
+<ul>
+<li><strong>Cost Reduction</strong>: We successfully offloaded about 60-70% of our heavy, latency-insensitive traffic (bulk downloads/streaming) to the cheaper link.</li>
+<li><strong>Performance Check</strong>: Because we kept the Premium link uncongested, our latency-sensitive applications (VoIP, SSH sessions) actually performed better because they weren&rsquo;t fighting for bandwidth against Netflix streams.</li>
+</ul>
+<h2 id="the-takeaway">The Takeaway</h2>
+<p>There is a misconception that &ldquo;good engineering&rdquo; always means &ldquo;fastest path.&rdquo; That is false. Good engineering is about efficiency.</p>
+<p>Routing isn&rsquo;t just about connectivity; it&rsquo;s about economics.</p>
+<p>As a Network Architect, your job isn&rsquo;t just to make sure packets get from A to B. It’s to make sure they get there in a way that keeps the CFO happy. If you aren&rsquo;t looking at your BGP tables with a dollar sign in mind, you aren&rsquo;t optimizing the network—you&rsquo;re just connecting wires.</p>
+
+    </div>
+
+    <div class="mt-12 text-center">
+        <a href="/" class="text-primary hover:text-white transition-colors">
+            ← Back to Home
+        </a>
+    </div>
+</article>
+
+    </main>
+
+    <footer class="section glass" style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.05);">
+    <div class="container flex flex-col md:flex-row justify-between items-center gap-md">
+        <div class="text-muted text-sm">
+            © 2025 Virtual Sachin. All rights reserved.
+        </div>
+        <div class="flex gap-md">
+            
+            <a href="https://github.com/virtualsach" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                GitHub
+            </a>
+            
+            <a href="https://linkedin.com/in/virtualsachin-example" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                LinkedIn
+            </a>
+            
+            <a href="https://twitter.com/virtualsachin" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                Twitter
+            </a>
+            
+        </div>
+    </div>
+</footer>
+    
+    <script src="/js/main.js" defer></script>
+</body>
+
+</html>

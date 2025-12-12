@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en-us" class="scroll-smooth">
+
+<head>
+	<meta name="generator" content="Hugo 0.152.2">
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Virtual Sachin</title>
+<meta name="description" content="Cloud Architect | Automation Expert | Infrastructure Strategy">
+
+
+<meta property="og:title" content="Virtual Sachin" />
+<meta property="og:description"
+    content="Cloud Architect | Automation Expert | Infrastructure Strategy" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://virtualsach.in/" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@500;700;900&display=swap"
+    rel="stylesheet">
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="flex flex-col min-h-screen text-base antialiased selection:bg-cyan-500 selection:text-white">
+    <header class="glass fixed w-full top-0 z-50">
+    <nav class="container flex justify-between items-center" style="height: 80px;" x-data="{ open: false }">
+        
+        <a href="/" class="text-xl font-bold font-heading">
+            Virtual<span class="text-primary">Sachin</span>.
+        </a>
+
+        
+        <div class="desktop-nav gap-md items-center">
+            
+            <a href="/about" class="nav-link font-medium text-sm uppercase tracking-wide">
+                About
+            </a>
+            
+            <a href="/projects" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Projects
+            </a>
+            
+            <a href="/posts" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Insights
+            </a>
+            
+            <a href="/contact" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Let&#39;s Talk
+            </a>
+            
+            <a href="/contact" class="btn-primary"
+                style="padding: 0.5rem 1.5rem; border: 1px solid var(--color-primary); border-radius: 50px; transition: all 0.3s;">
+                Let's Talk
+            </a>
+        </div>
+
+        
+        <button class="mobile-toggle text-2xl focus:outline-none" @click="open = !open">
+
+            <span x-show="!open">☰</span>
+            <span x-show="open" x-cloak>✕</span>
+        </button>
+
+        
+        <div x-show="open" x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 transform translate-y-[-10px]"
+            x-transition:enter-end="opacity-100 transform translate-y-0" x-cloak
+            class="mobile-menu-overlay absolute top-20 left-0 w-full glass border-b border-white/10 flex flex-col items-center py-8 gap-6 z-40">
+
+            
+            <a href="/about" class="text-lg font-medium" @click="open = false">About</a>
+            
+            <a href="/projects" class="text-lg font-medium" @click="open = false">Projects</a>
+            
+            <a href="/posts" class="text-lg font-medium" @click="open = false">Insights</a>
+            
+            <a href="/contact" class="text-lg font-medium" @click="open = false">Let&#39;s Talk</a>
+            
+            <a href="/contact" class="btn-primary px-6 py-2 rounded-full border border-primary text-primary"
+                @click="open = false">
+                Let's Talk
+            </a>
+        </div>
+    </nav>
+</header>
+<div style="height: 80px;"></div> 
+
+    <main class="flex-grow">
+        
+<section class="section relative overflow-hidden flex items-center justify-center min-h-[80vh]">
+    
+    <div
+        style="position: absolute; top: 10%; left: 10%; width: 300px; height: 300px; background: var(--color-primary); filter: blur(150px); opacity: 0.2; border-radius: 50%; z-index: -1;">
+    </div>
+    <div
+        style="position: absolute; bottom: 10%; right: 10%; width: 400px; height: 400px; background: var(--color-secondary); filter: blur(150px); opacity: 0.2; border-radius: 50%; z-index: -1;">
+    </div>
+
+    <div class="container text-center animate-float reveal">
+        <h1 class="text-4xl md:text-7xl font-bold mb-4">
+            Building the <span class="text-gradient">Future</span>
+            <br>Bit by Bit.
+        </h1>
+        <p class="text-xl md:text-2xl text-muted max-w-2xl mx-auto mb-8">
+            Architecting scalable systems, designing intuitive interfaces, and exploring the edge of AI.
+        </p>
+        <div class="flex justify-center gap-md">
+            <a href="/projects" class="glass"
+                style="padding: 1rem 2rem; border-radius: 50px; font-weight: 600; border: 1px solid var(--color-primary); color: var(--color-primary);">
+                View Projects
+            </a>
+            <a href="/about" style="padding: 1rem 2rem; color: var(--text-muted); font-weight: 500;">
+                About Me →
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="section container reveal">
+    <div class="flex justify-between items-end mb-8">
+        <h2 class="text-3xl font-bold">Latest <span class="text-gradient">Insights</span></h2>
+        <a href="/posts" class="text-sm text-primary hover:text-white">View All Posts</a>
+    </div>
+
+    <div class="grid grid-cols-3 gap-md">
+        
+        <article class="glass-card p-6 flex flex-col h-full">
+            <div class="text-sm text-muted mb-2">
+                Jan 20, 2014
+            </div>
+            <h3 class="text-xl font-bold mb-2">
+                <a href="https://virtualsach.in/posts/bgp-attributes-cost-saving/" class="hover:text-primary transition-colors">
+                    BGP Attributes: Using Local Pref to Save Bandwidth Costs
+                </a>
+            </h3>
+            <p class="text-muted text-sm mb-4 flex-grow">
+                I learned very quickly that BGP isn&rsquo;t just a routing protocol. It is a financial instrument. …
+            </p>
+            <a href="https://virtualsach.in/posts/bgp-attributes-cost-saving/"
+                class="text-primary text-sm font-medium hover:translate-x-1 transition-transform inline-block">
+                Read More →
+            </a>
+        </article>
+        
+        <article class="glass-card p-6 flex flex-col h-full">
+            <div class="text-sm text-muted mb-2">
+                Aug 14, 2013
+            </div>
+            <h3 class="text-xl font-bold mb-2">
+                <a href="https://virtualsach.in/posts/ipv6-exhaustion-dual-stack/" class="hover:text-primary transition-colors">
+                    IPv4 Exhaustion is Real: My Strategy for IPv6 Dual Stacking
+                </a>
+            </h3>
+            <p class="text-muted text-sm mb-4 flex-grow">
+                We ran out of allocatable IPv4 blocks. This wasn&rsquo;t a theoretical exercise; it was an …
+            </p>
+            <a href="https://virtualsach.in/posts/ipv6-exhaustion-dual-stack/"
+                class="text-primary text-sm font-medium hover:translate-x-1 transition-transform inline-block">
+                Read More →
+            </a>
+        </article>
+        
+        <article class="glass-card p-6 flex flex-col h-full">
+            <div class="text-sm text-muted mb-2">
+                Jun 20, 2013
+            </div>
+            <h3 class="text-xl font-bold mb-2">
+                <a href="https://virtualsach.in/posts/p2v-migration-linux-vmware/" class="hover:text-primary transition-colors">
+                    P2V Nightmares: Migrating Physical Linux Boxes to VMware ESXi
+                </a>
+            </h3>
+            <p class="text-muted text-sm mb-4 flex-grow">
+                The promise of P2V (Physical-to-Virtual) was seamless migration. But when I tried to virtualize our …
+            </p>
+            <a href="https://virtualsach.in/posts/p2v-migration-linux-vmware/"
+                class="text-primary text-sm font-medium hover:translate-x-1 transition-transform inline-block">
+                Read More →
+            </a>
+        </article>
+        
+    </div>
+</section>
+
+<section class="section container reveal">
+    <div class="flex justify-between items-end mb-8">
+        <h2 class="text-3xl font-bold">Featured <span class="text-gradient">Projects</span></h2>
+        <a href="/projects" class="text-sm text-primary hover:text-white">View All Projects</a>
+    </div>
+
+    
+    <div class="grid grid-cols-2 gap-md">
+        
+        <a href="https://virtualsach.in/projects/sentinel/" class="glass-card p-8 bg-gradient-to-br from-white/5 to-transparent block group">
+            <h3 class="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">Project Sentinel: AI Infrastructure Anomaly Detection</h3>
+            <p class="text-muted mb-4">Using Prometheus metrics and Unsupervised Learning to predict outages before they happen.</p>
+            <div class="flex gap-sm flex-wrap">
+                
+                <span class="text-xs glass px-2 py-1 rounded text-primary">Python</span>
+                
+                <span class="text-xs glass px-2 py-1 rounded text-primary">TensorFlow</span>
+                
+                <span class="text-xs glass px-2 py-1 rounded text-primary">Prometheus</span>
+                
+                <span class="text-xs glass px-2 py-1 rounded text-primary">AI</span>
+                
+            </div>
+        </a>
+        
+        <a href="https://virtualsach.in/projects/nebula/" class="glass-card p-8 bg-gradient-to-br from-white/5 to-transparent block group">
+            <h3 class="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">Project Nebula: Serverless Event Bus</h3>
+            <p class="text-muted mb-4">A multi-region serverless event bus capable of handling 50M+ events per day with &lt;200ms E2E latency.</p>
+            <div class="flex gap-sm flex-wrap">
+                
+                <span class="text-xs glass px-2 py-1 rounded text-primary">AWS</span>
+                
+                <span class="text-xs glass px-2 py-1 rounded text-primary">EventBridge</span>
+                
+                <span class="text-xs glass px-2 py-1 rounded text-primary">Lambda</span>
+                
+                <span class="text-xs glass px-2 py-1 rounded text-primary">Go</span>
+                
+            </div>
+        </a>
+        
+        <a href="https://virtualsach.in/projects/titan/" class="glass-card p-8 bg-gradient-to-br from-white/5 to-transparent block group">
+            <h3 class="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">Project Titan: Monolith to Microservices</h3>
+            <p class="text-muted mb-4">Strangler Fig migration of a 10-year-old Java monolith to a federated Go microservices mesh.</p>
+            <div class="flex gap-sm flex-wrap">
+                
+                <span class="text-xs glass px-2 py-1 rounded text-primary">Kubernetes</span>
+                
+                <span class="text-xs glass px-2 py-1 rounded text-primary">Istio</span>
+                
+                <span class="text-xs glass px-2 py-1 rounded text-primary">Java</span>
+                
+                <span class="text-xs glass px-2 py-1 rounded text-primary">Go</span>
+                
+            </div>
+        </a>
+        
+    </div>
+</section>
+
+    </main>
+
+    <footer class="section glass" style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.05);">
+    <div class="container flex flex-col md:flex-row justify-between items-center gap-md">
+        <div class="text-muted text-sm">
+            © 2025 Virtual Sachin. All rights reserved.
+        </div>
+        <div class="flex gap-md">
+            
+            <a href="https://github.com/virtualsach" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                GitHub
+            </a>
+            
+            <a href="https://linkedin.com/in/virtualsachin-example" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                LinkedIn
+            </a>
+            
+            <a href="https://twitter.com/virtualsachin" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                Twitter
+            </a>
+            
+        </div>
+    </div>
+</footer>
+    
+    <script src="/js/main.js" defer></script>
+</body>
+
+</html>

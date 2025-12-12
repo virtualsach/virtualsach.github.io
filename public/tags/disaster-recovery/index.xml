@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Disaster Recovery on Virtual Sachin</title>
+    <link>https://virtualsach.in/tags/disaster-recovery/</link>
+    <description>Recent content in Disaster Recovery on Virtual Sachin</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 10 Jul 2011 09:00:00 +0530</lastBuildDate>
+    <atom:link href="https://virtualsach.in/tags/disaster-recovery/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Night the Fiber Cut: Lessons in WAN Redundancy</title>
+      <link>https://virtualsach.in/posts/fiber-cut-redundancy-lesson/</link>
+      <pubDate>Sun, 10 Jul 2011 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/fiber-cut-redundancy-lesson/</guid>
+      <description>The primary fiber was dead. The backup links were stalling. I learned a lesson that no textbook could teach: Redundancy is only real if you test it.</description>
+    </item>
+  </channel>
+</rss>

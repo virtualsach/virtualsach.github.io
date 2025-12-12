@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en-us" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Architecting for Failure: Chaos Engineering | Virtual Sachin</title>
+<meta name="description" content="Testing the unknown unknowns.">
+
+
+<meta property="og:title" content="Architecting for Failure: Chaos Engineering" />
+<meta property="og:description"
+    content="Testing the unknown unknowns." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://virtualsach.in/posts/chaos-engineering/" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@500;700;900&display=swap"
+    rel="stylesheet">
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="flex flex-col min-h-screen text-base antialiased selection:bg-cyan-500 selection:text-white">
+    <header class="glass fixed w-full top-0 z-50">
+    <nav class="container flex justify-between items-center" style="height: 80px;" x-data="{ open: false }">
+        
+        <a href="/" class="text-xl font-bold font-heading">
+            Virtual<span class="text-primary">Sachin</span>.
+        </a>
+
+        
+        <div class="desktop-nav gap-md items-center">
+            
+            <a href="/about" class="nav-link font-medium text-sm uppercase tracking-wide">
+                About
+            </a>
+            
+            <a href="/projects" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Projects
+            </a>
+            
+            <a href="/posts" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Insights
+            </a>
+            
+            <a href="/contact" class="nav-link font-medium text-sm uppercase tracking-wide">
+                Let&#39;s Talk
+            </a>
+            
+            <a href="/contact" class="btn-primary"
+                style="padding: 0.5rem 1.5rem; border: 1px solid var(--color-primary); border-radius: 50px; transition: all 0.3s;">
+                Let's Talk
+            </a>
+        </div>
+
+        
+        <button class="mobile-toggle text-2xl focus:outline-none" @click="open = !open">
+
+            <span x-show="!open">☰</span>
+            <span x-show="open" x-cloak>✕</span>
+        </button>
+
+        
+        <div x-show="open" x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 transform translate-y-[-10px]"
+            x-transition:enter-end="opacity-100 transform translate-y-0" x-cloak
+            class="mobile-menu-overlay absolute top-20 left-0 w-full glass border-b border-white/10 flex flex-col items-center py-8 gap-6 z-40">
+
+            
+            <a href="/about" class="text-lg font-medium" @click="open = false">About</a>
+            
+            <a href="/projects" class="text-lg font-medium" @click="open = false">Projects</a>
+            
+            <a href="/posts" class="text-lg font-medium" @click="open = false">Insights</a>
+            
+            <a href="/contact" class="text-lg font-medium" @click="open = false">Let&#39;s Talk</a>
+            
+            <a href="/contact" class="btn-primary px-6 py-2 rounded-full border border-primary text-primary"
+                @click="open = false">
+                Let's Talk
+            </a>
+        </div>
+    </nav>
+</header>
+<div style="height: 80px;"></div> 
+
+    <main class="flex-grow">
+        
+<article class="section container max-w-3xl mx-auto pt-24">
+    <header class="mb-12 text-center">
+        <div class="text-primary font-medium mb-4 uppercase tracking-wide text-sm">
+            January 22, 2025
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            Architecting for Failure: Chaos Engineering
+        </h1>
+        
+        <p class="text-xl text-muted">
+            Testing the unknown unknowns.
+        </p>
+        
+    </header>
+
+    <div class="prose prose-invert prose-lg mx-auto glass-card p-8 md:p-12">
+        <h1 id="architecting-for-failure">Architecting for Failure</h1>
+<p>Everything fails, all the time. Hard drives die, networks get congested, and bad code gets deployed. If your architecture assumes a happy path, you are building a house of cards.</p>
+<h2 id="the-principles-of-chaos">The Principles of Chaos</h2>
+<p>Chaos Engineering isn&rsquo;t just &ldquo;breaking stuff randomly&rdquo;. It&rsquo;s a disciplined approach to identifying weaknesses.</p>
+<ol>
+<li><strong>Define Steady State</strong>: What does &ldquo;normal&rdquo; look like? (e.g., Error rate &lt; 1%).</li>
+<li><strong>Hypothesize</strong>: &ldquo;If I kill the primary database node, the secondary will take over in &lt; 30s.&rdquo;</li>
+<li><strong>Inject Fault</strong>: Actually kill the node.</li>
+<li><strong>Verify</strong>: Did it work? If not, fix it.</li>
+</ol>
+<h2 id="real-world-example">Real World Example</h2>
+<p>At my last role, we assumed our Redis cache was optional. We thought, &ldquo;If Redis dies, the app will just hit the DB.&rdquo;</p>
+<p>We ran a Game Day where we flushed Redis. <strong>Result</strong>: The database melted down instantly under the load. The app wasn&rsquo;t resilient; it was dependent.</p>
+<h3 id="the-fix">The Fix</h3>
+<p>We implemented <strong>Circuit Breakers</strong> and <strong>Graceful Degradation</strong>. If Redis is down, we serve stale data or a default fallback, rather than hammering the DB.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Don&rsquo;t wait for an outage to test your resilience. Schedule it.</p>
+
+    </div>
+
+    <div class="mt-12 text-center">
+        <a href="/" class="text-primary hover:text-white transition-colors">
+            ← Back to Home
+        </a>
+    </div>
+</article>
+
+    </main>
+
+    <footer class="section glass" style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.05);">
+    <div class="container flex flex-col md:flex-row justify-between items-center gap-md">
+        <div class="text-muted text-sm">
+            © 2025 Virtual Sachin. All rights reserved.
+        </div>
+        <div class="flex gap-md">
+            
+            <a href="https://github.com/virtualsach" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                GitHub
+            </a>
+            
+            <a href="https://linkedin.com/in/virtualsachin-example" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                LinkedIn
+            </a>
+            
+            <a href="https://twitter.com/virtualsachin" target="_blank" rel="noopener noreferrer"
+                class="text-muted hover:text-primary transition-colors">
+                Twitter
+            </a>
+            
+        </div>
+    </div>
+</footer>
+    
+    <script src="/js/main.js" defer></script>
+</body>
+
+</html>

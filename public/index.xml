@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Virtual Sachin</title>
+    <link>https://virtualsach.in/</link>
+    <description>Recent content on Virtual Sachin</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 09 Dec 2025 15:00:00 +0530</lastBuildDate>
+    <atom:link href="https://virtualsach.in/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Let&#39;s Talk</title>
+      <link>https://virtualsach.in/contact/</link>
+      <pubDate>Tue, 09 Dec 2025 15:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/contact/</guid>
+      <description>&lt;h1 id=&#34;connect-with-virtual-sachin&#34;&gt;Connect with Virtual Sachin&lt;/h1&gt;&#xA;&lt;p&gt;I am currently accepting consulting engagements and speaking opportunities for Late 2025.&lt;/p&gt;&#xA;&lt;p&gt;If you have a complex distributed system that needs architecting, or a team that needs high-velocity DevOps transformation, I would love to hear from you.&lt;/p&gt;&#xA;&lt;h2 id=&#34;contact-information&#34;&gt;Contact Information&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;Email&lt;/strong&gt;: &lt;a href=&#34;mailto:hello@virtualsachin.example&#34;&gt;hello@virtualsachin.example&lt;/a&gt;&lt;br&gt;&#xA;&lt;strong&gt;Location&lt;/strong&gt;: Bangalore / Remote Global&lt;br&gt;&#xA;&lt;strong&gt;Timezone&lt;/strong&gt;: IST (UTC+05:30)&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;send-a-message&#34;&gt;Send a Message&lt;/h2&gt;&#xA;&lt;form class=&#34;flex flex-col gap-6 max-w-lg&#34; onsubmit=&#34;event.preventDefault(); alert(&#39;Thank you for your message! This is a demo form.&#39;);&#34;&gt;&#xA;    &lt;div&gt;&#xA;        &lt;label class=&#34;block text-sm font-bold mb-2 text-primary&#34;&gt;Name&lt;/label&gt;&#xA;        &lt;input type=&#34;text&#34; class=&#34;w-full p-3 rounded bg-white/5 border border-white/10 focus:border-cyan-400 focus:outline-none transition-colors&#34; placeholder=&#34;Jane Doe&#34;&gt;&#xA;    &lt;/div&gt;&#xA;    &lt;div&gt;&#xA;        &lt;label class=&#34;block text-sm font-bold mb-2 text-primary&#34;&gt;Email&lt;/label&gt;&#xA;        &lt;input type=&#34;email&#34; class=&#34;w-full p-3 rounded bg-white/5 border border-white/10 focus:border-cyan-400 focus:outline-none transition-colors&#34; placeholder=&#34;jane@enterprise.com&#34;&gt;&#xA;    &lt;/div&gt;&#xA;    &lt;div&gt;&#xA;        &lt;label class=&#34;block text-sm font-bold mb-2 text-primary&#34;&gt;Message&lt;/label&gt;&#xA;        &lt;textarea rows=&#34;5&#34; class=&#34;w-full p-3 rounded bg-white/5 border border-white/10 focus:border-cyan-400 focus:outline-none transition-colors&#34; placeholder=&#34;Tell me about your tech stack...&#34;&gt;&lt;/textarea&gt;&#xA;    &lt;/div&gt;&#xA;    &lt;button type=&#34;submit&#34; class=&#34;btn-primary self-start px-8 py-3 rounded-full font-bold bg-white/10 hover:bg-white/20 border border-primary text-primary transition-all&#34;&gt;&#xA;        Send Inquiry&#xA;    &lt;/button&gt;&#xA;&lt;/form&gt;</description>
+    </item>
+    <item>
+      <title>About Me</title>
+      <link>https://virtualsach.in/about/</link>
+      <pubDate>Tue, 09 Dec 2025 14:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/about/</guid>
+      <description>&lt;h1 id=&#34;the-architects-manifesto&#34;&gt;The Architect&amp;rsquo;s Manifesto&lt;/h1&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&amp;ldquo;We shape our tools, and thereafter our tools shape us.&amp;rdquo; — &lt;em&gt;Marshall McLuhan&lt;/em&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;I am &lt;strong&gt;Virtual Sachin&lt;/strong&gt;, a Technical Architect focused on building scalable, resilient, and human-centric software systems. My career is defined by a relentless pursuit of simplicity in complex environments. I don&amp;rsquo;t just write code; I design ecosystems where code can thrive.&lt;/p&gt;&#xA;&lt;h2 id=&#34;my-philosophy&#34;&gt;My Philosophy&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;strong&gt;Complexity is the Enemy&lt;/strong&gt;: Any fool can write code that a computer can understand. Good programmers write code that humans can understand.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Infrastructure as Art&lt;/strong&gt;: I treat infrastructure with the same rigor as application code. Immutable, reproducible, and self-healing.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Data Gravity&lt;/strong&gt;: Architecture follows data. Understanding how information flows is key to designing the pipes that carry it.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;technical-radar&#34;&gt;Technical Radar&lt;/h2&gt;&#xA;&lt;h3 id=&#34;core-competencies&#34;&gt;Core Competencies&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Distributed Systems&lt;/strong&gt;: Event-driven architectures, Microservices, CAP Theorem navigation.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Cloud Native&lt;/strong&gt;: Kubernetes (EKS/AKS), Docker, Helm, Istio.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Infrastructure as Code&lt;/strong&gt;: Terraform, Ansible, Pulumi.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;languages&#34;&gt;Languages&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Expert&lt;/strong&gt;: Go (Golang), Python, TypeScript.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Proficient&lt;/strong&gt;: Rust, Java, Bash.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Curious&lt;/strong&gt;: Zig, Elixir.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;data--storage&#34;&gt;Data &amp;amp; Storage&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;SQL&lt;/strong&gt;: PostgreSQL, CockroachDB.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;NoSQL&lt;/strong&gt;: DynamoDB, Cassandra, Redis.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Streaming&lt;/strong&gt;: Apache Kafka, NATS JetStream.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;experience-highlights&#34;&gt;Experience Highlights&lt;/h2&gt;&#xA;&lt;h3 id=&#34;principal-architect--techgiant-corp&#34;&gt;&lt;strong&gt;Principal Architect @ TechGiant Corp&lt;/strong&gt;&lt;/h3&gt;&#xA;&lt;p&gt;&lt;em&gt;Lead the migration of a monolithic e-commerce platform handling 50k RPS to a federated microservices architecture.&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Project Sentinel: AI Infrastructure Anomaly Detection</title>
+      <link>https://virtualsach.in/projects/sentinel/</link>
+      <pubDate>Fri, 10 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://virtualsach.in/projects/sentinel/</guid>
+      <description>Using Prometheus metrics and Unsupervised Learning to predict outages before they happen.</description>
+    </item>
+    <item>
+      <title>Project Nebula: Serverless Event Bus</title>
+      <link>https://virtualsach.in/projects/nebula/</link>
+      <pubDate>Fri, 15 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://virtualsach.in/projects/nebula/</guid>
+      <description>A multi-region serverless event bus capable of handling 50M+ events per day with &amp;lt;200ms E2E latency.</description>
+    </item>
+    <item>
+      <title>Project Titan: Monolith to Microservices</title>
+      <link>https://virtualsach.in/projects/titan/</link>
+      <pubDate>Tue, 20 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>https://virtualsach.in/projects/titan/</guid>
+      <description>Strangler Fig migration of a 10-year-old Java monolith to a federated Go microservices mesh.</description>
+    </item>
+    <item>
+      <title>BGP Attributes: Using Local Pref to Save Bandwidth Costs</title>
+      <link>https://virtualsach.in/posts/bgp-attributes-cost-saving/</link>
+      <pubDate>Mon, 20 Jan 2014 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/bgp-attributes-cost-saving/</guid>
+      <description>I learned very quickly that BGP isn&amp;rsquo;t just a routing protocol. It is a financial instrument. Here is how we used Local Pref to slash bandwidth costs.</description>
+    </item>
+    <item>
+      <title>IPv4 Exhaustion is Real: My Strategy for IPv6 Dual Stacking</title>
+      <link>https://virtualsach.in/posts/ipv6-exhaustion-dual-stack/</link>
+      <pubDate>Wed, 14 Aug 2013 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/ipv6-exhaustion-dual-stack/</guid>
+      <description>We ran out of allocatable IPv4 blocks. This wasn&amp;rsquo;t a theoretical exercise; it was an operational crisis. Here is the deep dive into how we architected the transition to IPv6.</description>
+    </item>
+    <item>
+      <title>P2V Nightmares: Migrating Physical Linux Boxes to VMware ESXi</title>
+      <link>https://virtualsach.in/posts/p2v-migration-linux-vmware/</link>
+      <pubDate>Thu, 20 Jun 2013 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/p2v-migration-linux-vmware/</guid>
+      <description>The promise of P2V (Physical-to-Virtual) was seamless migration. But when I tried to virtualize our Billing Server, I ended up with a Kernel Panic and had to perform open-heart surgery on the OS.</description>
+    </item>
+    <item>
+      <title>Capacity Planning with Cacti: Predicting the Bandwidth Cliff</title>
+      <link>https://virtualsach.in/posts/capacity-planning-cacti/</link>
+      <pubDate>Fri, 15 Feb 2013 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/capacity-planning-cacti/</guid>
+      <description>In the pre-cloud era, a 1 Gbps link was exactly 1 Gbps. If traffic hit 1.1 Gbps, the network broke. Here is how I used Cacti trend lines to predict a bandwidth cliff and prevent a catastrophic outage.</description>
+    </item>
+    <item>
+      <title>Observability on a Budget: RANCID &#43; Observium</title>
+      <link>https://virtualsach.in/posts/observability-on-budget/</link>
+      <pubDate>Mon, 05 Nov 2012 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/observability-on-budget/</guid>
+      <description>We built our own Network Operations Center (NOC) stack with RANCID and Observium. It wasn’t pretty, but it was bulletproof. Here is how we achieved total network observability for $0.</description>
+    </item>
+    <item>
+      <title>Firewall Hell: Managing Policies Across Cisco PIX, Juniper, and Fortinet</title>
+      <link>https://virtualsach.in/posts/firewall-hell-managing-policies/</link>
+      <pubDate>Mon, 15 Oct 2012 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/firewall-hell-managing-policies/</guid>
+      <description>On paper, a multi-vendor security strategy sounds sophisticated. In the trenches, it is a nightmare. Managing one vendor is a job; managing three is a punishment.</description>
+    </item>
+    <item>
+      <title>Building a Data Center from Scratch: The Cabling Nightmare</title>
+      <link>https://virtualsach.in/posts/building-data-center-from-scratch/</link>
+      <pubDate>Mon, 12 Mar 2012 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/building-data-center-from-scratch/</guid>
+      <description>For those of us who have built the infrastructure that the cloud sits on, we know the truth. The cloud has weight. It has heat. And it has miles of copper.</description>
+    </item>
+    <item>
+      <title>The Route Redistribution Loop that Took Down the Core</title>
+      <link>https://virtualsach.in/posts/route-redistribution-loop-outage/</link>
+      <pubDate>Thu, 15 Dec 2011 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/route-redistribution-loop-outage/</guid>
+      <description>I effectively DDoS-ed our own control plane from the inside. Here is the story of how I melted a core router by forgetting one line of code.</description>
+    </item>
+    <item>
+      <title>Debugging the Air: Troubleshooting Packet Loss on WiMAX &amp; RF Links</title>
+      <link>https://virtualsach.in/posts/debugging-packet-loss-wimax/</link>
+      <pubDate>Thu, 15 Sep 2011 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/debugging-packet-loss-wimax/</guid>
+      <description>For thousands of customers, &amp;lsquo;The Cloud&amp;rsquo; is a focused beam of radio waves. I learned that you can&amp;rsquo;t route-map your way around a building crane.</description>
+    </item>
+    <item>
+      <title>The Night the Fiber Cut: Lessons in WAN Redundancy</title>
+      <link>https://virtualsach.in/posts/fiber-cut-redundancy-lesson/</link>
+      <pubDate>Sun, 10 Jul 2011 09:00:00 +0530</pubDate>
+      <guid>https://virtualsach.in/posts/fiber-cut-redundancy-lesson/</guid>
+      <description>The primary fiber was dead. The backup links were stalling. I learned a lesson that no textbook could teach: Redundancy is only real if you test it.</description>
+    </item>
+  </channel>
+</rss>

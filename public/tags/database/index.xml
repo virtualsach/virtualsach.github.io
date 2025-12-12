@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Database on Virtual Sachin</title>
+    <link>https://virtualsach.in/tags/database/</link>
+    <description>Recent content in Database on Virtual Sachin</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 14 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://virtualsach.in/tags/database/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Fallacy of &#39;Right Now&#39; Consistency</title>
+      <link>https://virtualsach.in/posts/consistency/</link>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://virtualsach.in/posts/consistency/</guid>
+      <description>Why chasing strong consistency in distributed systems is often a fool&amp;rsquo;s errand, and how to embrace Eventual Consistency.</description>
+    </item>
+  </channel>
+</rss>
