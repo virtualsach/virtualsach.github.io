@@ -2,14 +2,24 @@
 trigger: always_on
 ---
 
-Engine: Astro (Node.js based).
+Engine: Astro (v4+).
 
 Styling: Tailwind CSS (Utility classes). Do not write raw CSS files.
 
-Content Location: Blog posts go in src/content/blog/. Images go in public/images/.
+Content Location:
 
-File Extension: Components are .astro. Content is .md or .mdx.
+Blog Posts: src/content/blog/ (Markdown/MDX).
+
+Projects: src/content/projects/ (Markdown/MDX).
+
+File Structure:
+
+Pages: src/pages/
+
+Components: src/components/ (Must be .astro files).
+
+Layouts: src/layouts/
+
+Config: src/content/config.ts defines the data schema.
 
 Brand Identity: Virtual Sachin (Associate Director, Cloud Architect).
-
-Deploy: GitHub Actions (astro.yml) to GitHub Pages.
