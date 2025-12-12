@@ -6,40 +6,41 @@ draft: false
 tags: ["ipv6", "nat64", "dns64", "a10", "load-balancing", "wipro"]
 ---
 
-It was October 2015. I was the Security Lead at Wipro for a major telecom client. They had just issued a mandate: *"All external-facing applications must be reachable via IPv6 by year-end."*
+> "The backend servers were hardcoded IPv4 dinosaurs. Re-IPing them was a non-starter. But the client mandate was clear: 'All external-facing apps must be reachable via IPv6 by year-end.'"
 
-The Problem: The backend infrastructure was decades old. Hardcoded IPs, legacy Java apps, and mainframes that thought "128-bit" referred to encryption keys, not IP addresses. Re-IPing the backend to IPv6 was a non-starter.
+It was October 2015. I was the Security Lead at **Wipro** for a major telecom client.
 
-## The Solution: SLB-PT (Server Load Balancing - Protocol Translation)
+# The Problem
 
-We implemented **SLB-PT** on our A10 Thunder ADCs. This is essentially **NAT64**.
+The backend infrastructure was decades old. Hardcoded IPs, legacy Java apps, and mainframes that thought "128-bit" referred to encryption keys, not IP addresses.
 
-**The Flow:**
+---
+
+# The Solution: SLB-PT
+
+We implemented **SLB-PT** (Server Load Balancing - Protocol Translation) on our **A10 Thunder ADCs**. This is essentially **NAT64**.
+
+## The Flow
 
 1. **Client (IPv6)**: `2001:db8::1` sends a request to the VIP.
 2. **VIP (IPv6)**: `2001:db8::100` receives it.
-3. **A10 ADC (Translation)**: Terminates the session, performs Source NAT (using an IPv4 pool) and Destination NAT (to the specific backend server).
-4. **Server (IPv4)**: `192.168.10.50` sees a request coming from an internal IPv4 address.
+3. **A10 ADC (Translation)**: Terminates the session, performs Source NAT (IPv4 pool) and Destination NAT.
+4. **Server (IPv4)**: `192.168.10.50` sees a request from an internal IPv4 address.
 
-The server never knew the client was on IPv6. The client never knew the server was on IPv4.
+The server never knew the client was on IPv6.
 
-## The Technical Deep Dive: NAT64 vs. DNS64
+## Technical Deep Dive: NAT64 vs. DNS64
 
-The most confusing part for the team was understanding the two components needed to make this work.
+* **DNS64**: The "Phonebook." It synthesizes a fake **AAAA record** (e.g., `64:ff9b::192.168.10.50`) when only an IPv4 A record exists.
+* **NAT64**: The "Translator." It strips the prefix and routes to the IPv4 address.
 
-* **DNS64**: This is the "Phonebook." When an IPv6 client asks for the AAAA record of `legacy-app.com`, the DNS64 server sees that only an A record (IPv4) exists. It synthesizes a fake AAAA record (e.g., `64:ff9b::192.168.10.50`) and gives it to the client.
-* **NAT64**: This is the "Translator." When the client tries to connect to that fake `64:ff9b::` address, the network routes it to the A10 ADC, which strips off the prefix and routes the packet to the actual IPv4 address.
+**The Headache: Embedded IPs**
+Protocols like **FTP** and **SIP** embed IP addresses inside the payload.
 
-You generally need both. DNS64 tricks the client into initiating the connection; NAT64 handles the actual packets.
+* **The Fix**: Enabled **Application Layer Gateways (ALGs)** on the A10 to inspect and rewrite the payload on the fly.
 
-## The Headache: Protocols that Embed IPs
-
-HTTP was easy. **FTP and SIP** were nightmares.
-These protocols embed IP addresses inside the payload (e.g., FTP `PORT` command). The ADC would translate the packet header, but the payload would still contain the IPv6 address, confusing the IPv4 server.
-
-**The Fix**: capabilities of the A10 have widely known as **Application Layer Gateways (ALGs)**. We had to enable specific ALGs that inspect the payload and rewrite the IP addresses inside the data stream on the fly.
-
-## The Lesson
+### Key Takeaway
 
 **The world isn't dual-stack yet.**
-Ideally, everything would run IPv4 and IPv6 side-by-side. In reality, translation mechanisms like NAT64 are the bridge that keeps the internet working while we slowly retire the legacy world.
+
+Ideally, everything would run IPv4 and IPv6 side-by-side. In reality, translation mechanisms like NAT64 are the bridge that keeps the internet working.

@@ -6,45 +6,42 @@ draft: false
 tags: ["f5", "ssl", "certificates", "openssl", "operations", "wipro"]
 ---
 
-It was January 2017. I was leading the Security Operations team at Wipro. We stood between the internet and 50 different banking and insurance clients.
+> "An expired certificate is exactly the same as a server outage. 45 minutes of a bank being offline because of a text file."
 
-We managed SSL offloading for over **200 domains** on our F5 LTM farm. And this was the dark age before **Let's Encrypt** automation was ubiquitous. Certificates expired randomly—some after 1 year, some after 3 years, some on Tuesdays, some on Sundays.
+It was January 2017. I was leading Security Operations at **Wipro**.
 
-## The Incident
+We managed SSL offloading for over **200 domains** on our F5 LTM farm. This was the dark age before **Let's Encrypt** automation. Certificates expired randomly.
 
-It happened on a Sunday morning (naturally). A critical banking portal started throwing `NET::ERR_CERT_DATE_INVALID`.
-The certificate had expired at midnight. The VIP (Virtual IP) was up. The servers were healthy. But to the user, the site was dead.
+# The Incident
 
-**An expired certificate is exactly the same as a server outage.**
+It happened on a Sunday morning. A critical banking portal started throwing `NET::ERR_CERT_DATE_INVALID`.
 
-## The Immediate Fix
+I had to manually generate a new CSR, email it to Symantec, validate via DNS, download the CRT, and upload it to the F5.
+**It took 45 minutes.**
 
-I had to manually generate a new CSR (Certificate Signing Request) on the F5, email it to the Symantec/DigiCert portal, validate the domain via email/DNS, download the `.crt` file, upload it to the F5, and bind it to the **Client SSL Profile**.
+---
 
-It took 45 minutes. 45 minutes of a bank being offline because of a text file.
-
-## The Technical Deep Dive: Client vs. Server SSL
+# The Technical Deep Dive: Client vs. Server SSL
 
 New engineers often confused the two profiles on the F5:
 
-* **Client SSL Profile**: This handles the encryption between the **Browser and the F5**. This is where your public CA certificate lives (google.com). This allows the F5 to decrypt the traffic, inspect it (WAF), and then pass it on.
-* **Server SSL Profile**: This handles the encryption between the **F5 and the Backend Server**. Usually, this uses a long-lived internal self-signed cert.
+* **Client SSL Profile**: Encryption between **Browser and F5**. This is where your public CA certificate lives.
+* **Server SSL Profile**: Encryption between **F5 and Backend Server**. Usually self-signed.
 
-The outage was on the Client SSL side. The public face of the bank had expired.
+The outage was on the Client SSL side.
 
-## The Systemic Fix
+# The Systemic Fix
 
-We couldn't rely on "Outlook Calendar Reminders" anymore.
-I wrote a bash script that iterated through our list of domains and used **OpenSSL** to check the expiration date from the outside.
-
-**The Command:**
+We couldn't rely on Outlook Reminders. I wrote a bash script that iterated through our domains and used **OpenSSL** to check expiration:
 
 ```bash
 echo | openssl s_client -servername secure.bank.com -connect secure.bank.com:443 2>/dev/null | openssl x509 -noout -enddate
 ```
 
-I fed this into a dashboard. If any date was `< 30 days`, it turned the screen red.
+I fed this into a dashboard. If any date was `< 30 days`, the screen turned red.
 
-## The Lesson
+### Key Takeaway
 
-We take automated certificate rotation for granted today. But remember: **Visibility is the only cure for complexity.** If you don't know when your certs expire, you don't own your infrastructure; it owns you.
+**Visibility is the only cure for complexity.**
+
+If you don't know when your certs expire, you don't own your infrastructure; it owns you.

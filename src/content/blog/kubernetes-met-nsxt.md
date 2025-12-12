@@ -6,16 +6,18 @@ draft: false
 tags: ["kubernetes", "nsx-t", "ncp", "cni", "devops", "ntt-data"]
 ---
 
+> "Developers wanted to spin up 50 namespaces today. Network Ops wanted IPAM, Firewalls, and Compliance. It was the classic Speed vs. Control deadlock."
+
 It was May 2021. The "Cloud Native" wave had hit our client.
 
-**The Clash:**
+# The Clash
 
-* **Developers**: "We need to spin up 50 namespaces today for testing. We can't file a ticket for every subnet."
-* **Network Ops**: "We can't just let you create rogue networks. We need IPAM, we need Firewall rules, and we need compliance."
+* **Developers**: "We need to spin up 50 namespaces today for testing."
+* **Network Ops**: "We can't just let you create rogue networks."
 
-It was the classic Speed vs. Control deadlock.
+---
 
-## The Solution: NSX Container Plugin (NCP)
+# The Solution: NSX Container Plugin (NCP)
 
 We implemented the **NSX Container Plugin (NCP)**.
 
@@ -25,22 +27,24 @@ To the Developer, it looked like standard Kubernetes. To the Network Engineer, i
 
 At the heart of this was the **Container Network Interface (CNI)**.
 
-Kubernetes doesn't actually know how to do networking; it outsources that to a CNI plugin. We replaced the default `flannel` or `calico` CNI with the NSX CNI.
+Kubernetes doesn't actually know how to do networking; it outsources that to a plugin. We replaced the default `flannel` or `calico` CNI with the NSX CNI.
 
 **Here is the magic flow:**
 
 1. Dev runs `kubectl create namespace app-test`.
-2. The **NCP**, running as a Pod, listens to the K8s API Server. "Oh, a new namespace?"
+2. The **NCP** listens to the K8s API Server.
 3. NCP talks to the **NSX Manager API**.
-4. NSX Manager automatically creates a new **Logical Switch (Segment)** and a **Tier-1 Gateway** just for that namespace.
+4. NSX Manager automatically creates a **Tier-1 Gateway** and **Logical Segment**.
 5. It allocates a `/24` subnet from the central IPAM block.
 
-## The Impact
+# The Impact
 
 The Developers got their self-service. They ran `kubectl`, and the network appeared.
-The Ops team got their control. Every time a new Namespace appeared, it automatically inherited the "Global Default Firewall Policy" from NSX.
 
-## The Lesson
+The Ops team got their control. Every new Namespace automatically inherited the "Global Default Firewall Policy" from NSX.
+
+### Key Takeaway
 
 **Don't fight the platform. Integrate with it.**
+
 If you try to wrap legacy ITIL ticketing processes around Kubernetes, you will fail. You have to build the guardrails into the platform itself.
