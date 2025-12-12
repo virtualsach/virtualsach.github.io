@@ -95,7 +95,11 @@ body {
 }
 
 .about-content ul li {
-    @apply glass-card p-6 m-0 flex flex-col justify-start items-start h-full;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    @apply rounded-xl transition-all duration-300 p-6 m-0 flex flex-col justify-start items-start h-full;
 }
 
 .about-content ul li::before {
