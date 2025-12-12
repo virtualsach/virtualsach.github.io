@@ -6,17 +6,24 @@ draft: false
 tags: ["nsx-t", "ansible", "automation", "iac", "devops", "ntt-data"]
 ---
 
-It was July 2020. I was at NTT Data, building a private cloud for a healthcare giant.
+> "Manual configuration is 'Snowflake' infrastructure—unique, fragile, and unrepeatable. Code is 'Phoenix' infrastructure—burn it down, and it rises again exactly the same."
 
-The requirement: Create 100 Logical Segments (VLAN-backed overlay) for a new multi-tenant environment.
-The Manual Way: Click "Add Segment", type Name, type Gateway, type VLAN ID, Select Transport Zone. Repeat 100 times.  
-Estimated time: 3 days (plus human error).
+It was July 2020. I was at **NTT Data**, building a private cloud for a healthcare giant.
 
-## The Solution: Ansible
+The requirement was simple: Create **100 Logical Segments** (VLAN-backed overlay) for a new multi-tenant environment.
 
-I decided to treat the network as code. I used the `vmware.ansible_nsxt` collection.
+**The Manual Way:**
+Click "Add Segment", type Name, type VLAN ID. Repeat 100 times.
 
-First, I defined the "State" of the network in a simple YAML file:
+* **Estimated time:** 3 days.
+
+---
+
+# The Solution: Ansible
+
+I decided to treat the network as code. I utilized the `vmware.ansible_nsxt` collection.
+
+First, I defined the "State" of the network in a simple **YAML** file.
 
 ```yaml
 # tenants.yml
@@ -32,9 +39,9 @@ segments:
     vlan: 103
 ```
 
-## The Playbook
+# The Playbook
 
-Then, I wrote the logic. The `nsxt_policy_segment` module is idempotent—if the segment exists, it does nothing. If it's missing, it creates it.
+Then, I wrote the logic. The `nsxt_policy_segment` module is **idempotent**—if the segment exists, it does nothing.
 
 ```yaml
 - name: "Deploy NSX-T Segments"
@@ -43,9 +50,6 @@ Then, I wrote the logic. The `nsxt_policy_segment` module is idempotent—if the
     - name: "Create Logical Segments"
       nsxt_policy_segment:
         hostname: "{{ nsx_manager }}"
-        username: "{{ nsx_user }}"
-        password: "{{ nsx_password }}"
-        validate_certs: False
         display_name: "{{ item.name }}"
         state: "present"
         transport_zone_id: "{{ tz_overlay_uuid }}"
@@ -54,17 +58,17 @@ Then, I wrote the logic. The `nsxt_policy_segment` module is idempotent—if the
       loop: "{{ segments }}"
 ```
 
-## The Impact
+# The Impact
 
 I ran the playbook.
-`PLAY [Deploy NSX-T Segments] *************************************************`
 `changed: [localhost] => (item=Tenant_A_Web)`...
 
 **4 minutes.**
 
 The entire network topology was deployed while I finished my coffee.
 
-## The Lesson
+### Key Takeaway
 
 **If it isn't in Git, it doesn't exist.**
-Manual configuration is "Snowflake" infrastructure—unique, fragile, and unrepeatable. Code is "Phoenix" infrastructure—burn it down, and it rises again exactly the same.
+
+Moving from manual "ClickOps" to Infrastructure as Code isn't just about speed; it's about reliability.

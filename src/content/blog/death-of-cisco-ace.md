@@ -6,29 +6,35 @@ draft: false
 tags: ["cisco", "f5", "load-balancing", "migration", "wipro", "scripting"]
 ---
 
-It was 2014, and I was a Technical Lead at Wipro. The writing was on the wall: Cisco had announced the end-of-life for their Application Control Engine (ACE) load balancers. For many of us who had cut our teeth on the Catalyst 6500 service modules, it was the end of an era. But for our client—a major bank—it was a crisis.
+> "For many of us who had cut our teeth on the Catalyst 6500 service modules, existing the ACE era was the end of a chapter. But for our client—a major bank—it was a crisis."
 
-We had a critical banking application running on ACE modules that needed to be migrated to F5 LTMs immediately. The traffic couldn't stop, and the logic was complex.
+It was 2014, and I was a **Technical Lead** at Wipro. Cisco had announced the end-of-life for their **Application Control Engine (ACE)** load balancers.
 
-## The Concept Map: ACE Contexts vs. F5 Route Domains
+We had a critical banking application running on ACE modules that needed to be migrated to **F5 LTMs** immediately. The traffic couldn't stop, and the logic was complex.
+
+---
+
+# The Concept Map
 
 The first mental hurdle was mapping the virtualization concepts.
 
-In Cisco ACE, we used **Contexts** to virtualize the hardware. You could slice a single physical ACE module into multiple virtual load balancers, each with its own VLANs and IP space.
+In **Cisco ACE**, we used **Contexts** to virtualize the hardware. You could slice a single physical ACE module into multiple virtual load balancers.
 
-On the F5 side, the equivalent wasn't just "Administrative Partitions" (which separate config), but **Route Domains**.
+On the **F5** side, the equivalent wasn't just "Administrative Partitions." We needed strict network isolation.
 
 * **Cisco ACE Context**: Virtualizes resources + network separation.
 * **F5 Partition**: Administrative separation (RBAC).
 * **F5 Route Domain**: Strict network isolation (overlapping IPs).
 
-We had to design the F5 architecture to use specific Route Domains (ID %10, %20) to match the strict isolation the bank required for their DMZ and Internal zones.
+We designed the F5 architecture using **Route Domains (ID %10, %20)** to match the strict isolation required for the DMZ and Internal zones.
 
-## The Scripting: Tcl to iRules
+# The Scripting: Tcl to iRules
 
-The banking app relied heavily on Layer 7 manipulation. On ACE, this was done using **Tcl scripts** embedded in the policy maps. F5 uses **iRules** (also Tcl-based, but with different syntax and events).
+The banking app relied heavily on **Layer 7 manipulation**.
 
-Here is the exact logic we had to port: *If the URI starts with `/finance`, send to the secure pool. If the user-agent is mobile, redirect to `m.bank.com`.*
+On ACE, this was done using **Tcl scripts** embedded in the policy maps. F5 uses **iRules** (also Tcl-based, but with distinct syntax).
+
+We had to port this logic: *If the URI starts with `/finance`, send to the secure pool. If the user-agent is mobile, redirect to `m.bank.com`.*
 
 ### The Old Cisco ACE Script
 
@@ -64,23 +70,17 @@ when HTTP_REQUEST {
 }
 ```
 
-The migration wasn't just a copy-paste; it was a translation of intent.
-
-## The Pain: SSL Offloading
+# The Pain: SSL Offloading
 
 The biggest headache was **SSL Offloading**.
 
-On Cisco ACE, the certificate management was... clunky. You imported the cert and key, assigned it to a proxy service, and that was it.
+* **ACE:** One config block handled everything.
+* **F5:** We needed a **ClientSSL** profile (decrypt client side) AND a **ServerSSL** profile (re-encrypt to server).
 
-On F5, we had to deal with **ClientSSL** and **ServerSSL** profiles. The bank's backend servers required end-to-end encryption (Re-encryption).
+We spent two nights debugging a "Connection Reset" error. It turned out the backend servers were rejecting the F5's cipher suite. We had to tune the **ServerSSL profile** to match the legacy ciphers supported by the backend Mainframes.
 
-* **ACE**: One config block handled it.
-* **F5**: We needed a ClientSSL profile (decrypt client side) AND a ServerSSL profile (re-encrypt to server).
+### Key Takeaway
 
-We spent two nights debugging a "Connection Reset" error, only to realize the backend servers were rejecting the F5's cipher suite. We had to tune the ServerSSL profile to match the legacy ciphers supported by the backend Mainframes.
+The migration succeeded. The F5s offered way more visibility than the ACEs ever did.
 
-## The Aftermath
-
-The migration succeeded. The F5s offered way more visibility than the ACEs ever did. But I still miss the raw CLI speed of the Cisco ACE. It was specialized hardware for a specialized job. The F5 was a Swiss Army knife.
-
-In the end, this project taught me that "Load Balancing" is dead; "Application Delivery" is the reality.
+But I still miss the raw CLI speed of the Cisco ACE. It was specialized hardware for a specialized job. The F5 was a Swiss Army knife.
