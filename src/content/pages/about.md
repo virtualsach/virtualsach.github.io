@@ -1,21 +1,22 @@
 ---
 title: "About Me"
-date: 2025-12-09T14:00:00+05:30
-draft: false
-description: "Technical Architect, Systems thinker, and builder of digital cathedrals."
+date: 2025-12-12
+description: "Associate Director, Systems Thinker, and Builder of Resilient Clouds."
 ---
 
 # The Architect's Manifesto
 
-> "We shape our tools, and thereafter our tools shape us." — *Marshall McLuhan*
+> "Complexity is the enemy of execution."
 
-I am **Virtual Sachin**, a Technical Architect focused on building scalable, resilient, and human-centric software systems. My career is defined by a relentless pursuit of simplicity in complex environments. I don't just write code; I design ecosystems where code can thrive.
+I am **Virtual Sachin**, an Associate Director and Cloud Architect with over **20 years** of experience building the internet's backbone. From pulling fiber cables in dusty data centers to architecting serverless ecosystems for global financial giants, I have seen every layer of the stack.
+
+I don't just design systems; I build **digital cathedrals**—structures that are robust, beautiful in their utility, and built to outlast the trends.
 
 ## My Philosophy
 
-1. **Complexity is the Enemy**: Any fool can write code that a computer can understand. Good programmers write code that humans can understand.
-2. **Infrastructure as Art**: I treat infrastructure with the same rigor as application code. Immutable, reproducible, and self-healing.
-3. **Data Gravity**: Architecture follows data. Understanding how information flows is key to designing the pipes that carry it.
+* **Infrastructure as Code, Culture as Code:** A script can build a server, but only culture can maintain it. I automate the "boring stuff" (Ansible, Terraform) so my teams can focus on innovation.
+* **Resilience over Uptime:** Uptime is luck; resilience is engineering. I design systems that expect failure (Chaos Engineering) and recover before the pager goes off.
+* **Security by Design:** Security isn't a firewall at the edge; it's an identity in the cloud. I believe in Zero Trust, micro-segmentation, and rigorous identity governance.
 
 ---
 
@@ -23,43 +24,54 @@ I am **Virtual Sachin**, a Technical Architect focused on building scalable, res
 
 ### Core Competencies
 
-* **Distributed Systems**: Event-driven architectures, Microservices, CAP Theorem navigation.
-* **Cloud Native**: Kubernetes (EKS/AKS), Docker, Helm, Istio.
-* **Infrastructure as Code**: Terraform, Ansible, Pulumi.
+* **Cloud Architecture:** Azure Enterprise Scale, AWS Landing Zones, IBM SoftLayer.
+* [cite_start]**Network Virtualization:** Deep expertise in **VMware NSX-T**, NSX-V, and Software-Defined Data Centers [SDDC](cite: 7, 26, 34).
+* [cite_start]**Automation:** Ansible Tower, Python (Netmiko/Paramiko), PowerShell/PowerCLI[cite: 8, 26, 39].
 
-### Languages
+### The Toolbelt
 
-* **Expert**: Go (Golang), Python, TypeScript.
-* **Proficient**: Rust, Java, Bash.
-* **Curious**: Zig, Elixir.
-
-### Data & Storage
-
-* **SQL**: PostgreSQL, CockroachDB.
-* **NoSQL**: DynamoDB, Cassandra, Redis.
-* **Streaming**: Apache Kafka, NATS JetStream.
+* **Infrastructure:** Terraform, Kubernetes (AKS/EKS), Docker.
+* [cite_start]**Networking:** BGP Traffic Engineering, OSPF, MPLS, HW-VTEP Integration[cite: 35, 39].
+* [cite_start]**Security:** Palo Alto, Checkpoint, F5 LTM/GTM, Cisco ASA/Firepower[cite: 66].
 
 ---
 
-## Experience Highlights
+## The Journey (Highlights)
 
-### **Principal Architect @ TechGiant Corp**
+### **Systems Integration Advisor @ NTT Data**
 
-*Lead the migration of a monolithic e-commerce platform handling 50k RPS to a federated microservices architecture.*
+*Architected private clouds for the financial sector.*
 
-* Reduced deployment time from 2 days to 15 minutes.
-* Implemented "Chaos Monkey" practices to ensure 99.99% availability.
+* [cite_start]**Automation First:** Built an end-to-end automation suite using **Ansible and PowerCLI** to deploy NSX-T environments, reducing provisioning time by 80%[cite: 26].
+* [cite_start]**Modernization:** Led the migration of mission-critical banking workloads from legacy vSphere/NSX-V to a future-proof **NSX-T** infrastructure[cite: 28].
 
-### **Staff Engineer @ CloudScale Startups**
+### **VMware NSX Consultant @ IBM**
 
-*Designed a multi-region serverless aggregation pipeline.*
+*Designed the bridge between physical and virtual worlds.*
 
-* Processed 1TB+ of daily telemetry data with sub-second latency.
-* Mentored a team of 15 senior engineers.
+* [cite_start]**Hybrid Cloud:** Designed the **SDDC (Software Defined Data Center)** architecture on IBM SoftLayer to migrate on-prem workloads to the cloud[cite: 34].
+* [cite_start]**Complex Networking:** Successfully integrated **Arista Hardware VTEPs** with NSX to stretch Layer 2 networks between bare-metal databases and virtual apps[cite: 35].
+* [cite_start]**Migration:** Executed massive workload migrations using **VMware HCX**, moving hundreds of VMs with zero downtime[cite: 37].
+
+### **Technical Lead (Security) @ Wipro**
+
+*Managed high-stakes security operations.*
+
+* [cite_start]**Migration:** Led the critical migration of business apps from **Cisco ACE** to **F5 LTM**, improving SSL offloading performance[cite: 68, 69].
+* [cite_start]**Team Leadership:** Mentored a team of 18 engineers, serving as the escalation point for Sev1 "War Room" incidents[cite: 60, 72].
+* [cite_start]**IPv6 Strategy:** Designed and implemented **NAT64/DNS64** solutions on A10 Load Balancers to bridge legacy IPv4 apps to the modern web[cite: 71].
+
+### **The Foundation @ Net4 & Spectranet**
+
+*Where I learned the physics of the internet.*
+
+* [cite_start]**Greenfield Build:** Designed two Tier-3 Data Centers from scratch, handling everything from cabling to Core Routing[cite: 80].
+* [cite_start]**Traffic Engineering:** Optimized BGP peering policies to reduce bandwidth costs while maintaining low latency for ISP customers[cite: 84].
 
 ---
 
 ## Connect
 
-I am always open to discussing complex engineering challenges.
-[Email Me](mailto:sachin@virtualsach.in) | [GitHub](https://github.com/virtualsach) | [LinkedIn](https://www.linkedin.com/in/sachin-sharma-711/)
+I am currently accepting consulting engagements for **Cloud Cost Optimization**, **Azure Architecture Reviews**, and **Senior Engineering Career Coaching**.
+
+**Reach me directly:** [sachin@virtualsach.in](mailto:sachin@virtualsach.in)
