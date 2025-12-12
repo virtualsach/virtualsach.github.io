@@ -1,5 +1,5 @@
 ---
-title: "Defining the Network: Deploying NSX-T with Ansible"
+title: "Infrastructure as Code: Deploying the Entire Network with Ansible"
 date: 2020-07-22
 description: "Manually creating 100 VLANs took 3 days. I wrote an Ansible playbook to do it in 4 minutes. If your infrastructure isn't in Git, does it even exist?"
 draft: false
