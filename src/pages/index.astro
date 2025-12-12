@@ -2,30 +2,94 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
-const posts = await getCollection('blog');
-const recentPosts = posts
+const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
+
+const projects = (await getCollection('projects'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 2);
 ---
 
 <Layout title="Virtual Sachin">
-	<main class="container mx-auto px-4 py-8">
-		<h1 class="text-4xl font-bold mb-8 text-blue-400">Virtual Sachin</h1>
-        <p class="mb-12 text-xl">Migration to Astro Successful.</p>
-		
-		<section>
-			<h2 class="text-2xl font-bold mb-4">Latest Insights</h2>
-			<ul class="space-y-4">
-				{recentPosts.map((post) => (
-					<li class="p-4 border border-slate-700 rounded-lg hover:bg-slate-800 transition">
-						<a href={`/blog/${post.slug}`} class="block">
-							<h3 class="text-xl font-semibold">{post.data.title}</h3>
-							<p class="text-sm text-slate-400">{post.data.date.toLocaleDateString()}</p>
-                            {post.data.description && <p class="mt-2 text-slate-300">{post.data.description}</p>}
+	<section class="relative overflow-hidden flex items-center justify-center min-h-[80vh] text-center px-6">
+        <!-- Background Decor -->
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/20 rounded-full blur-[100px] -z-10 animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-[100px] -z-10 animate-pulse delay-700"></div>
+
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                Building the <span class="text-gradient">Future</span>
+                <br />Bit by Bit.
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-400 mb-10 max-w-2xl mx-auto">
+                Architecting scalable systems, designing intuitive interfaces, and exploring the edge of AI.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="/projects" class="px-8 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-all hover:scale-105 shadow-lg shadow-blue-500/25">
+                    View Projects
+                </a>
+                <a href="/about" class="px-8 py-3 rounded-full glass hover:bg-white/10 font-semibold transition-all">
+                    About Me →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Insights -->
+	<section class="container mx-auto px-6 py-20">
+		<div class="flex justify-between items-end mb-10">
+			<h2 class="text-3xl font-bold">Latest <span class="text-gradient">Insights</span></h2>
+			<a href="/blog" class="text-blue-400 hover:text-white transition-colors text-sm font-medium">View All Posts →</a>
+		</div>
+
+		<div class="grid md:grid-cols-3 gap-8">
+			{posts.map((post) => (
+				<article class="glass-card p-6 flex flex-col h-full hover:border-blue-500/30 transition-colors">
+					<div class="text-sm text-blue-400 mb-2">
+						{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+					</div>
+					<h3 class="text-xl font-bold mb-3">
+						<a href={`/blog/${post.slug}`} class="hover:text-blue-400 transition-colors">
+							{post.data.title}
 						</a>
-					</li>
-				))}
-			</ul>
-		</section>
-	</main>
+					</h3>
+					<p class="text-slate-400 text-sm mb-6 flex-grow line-clamp-3">
+						{post.data.description}
+					</p>
+					<a href={`/blog/${post.slug}`} class="text-blue-400 text-sm font-medium hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+						Read More <span>→</span>
+					</a>
+				</article>
+			))}
+		</div>
+	</section>
+
+    <!-- Featured Projects -->
+    <section class="container mx-auto px-6 py-20 border-t border-white/5">
+		<div class="flex justify-between items-end mb-10">
+			<h2 class="text-3xl font-bold">Featured <span class="text-gradient">Projects</span></h2>
+			<a href="/projects" class="text-blue-400 hover:text-white transition-colors text-sm font-medium">View All Projects →</a>
+		</div>
+
+		<div class="grid md:grid-cols-2 gap-8">
+			{projects.map((project) => (
+				<a href={`/projects/${project.slug}`} class="glass-card p-8 block group hover:bg-white/5 transition-all">
+					<h3 class="text-2xl font-bold mb-3 group-hover:text-blue-400 transition-colors">
+						{project.data.title}
+					</h3>
+					<p class="text-slate-400 mb-6">
+						{project.data.description}
+					</p>
+                    <div class="flex flex-wrap gap-2">
+                        {project.data.tags?.map(tag => (
+                            <span class="text-xs px-2 py-1 rounded-full border border-slate-700 bg-slate-800/50 text-slate-300">
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+				</a>
+			))}
+		</div>
+	</section>
 </Layout>

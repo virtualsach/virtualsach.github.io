@@ -2,10 +2,14 @@
 trigger: always_on
 ---
 
-Engine: Hugo (Static Site Generator).
+Engine: Astro (Node.js based).
 
-Active Styles: ONLY use assets/css/style.css for design reference. Do NOT reference static/css/main.css.
+Styling: Tailwind CSS (Utility classes). Do not write raw CSS files.
 
-Content Location: Blog posts go in content/posts/. Project case studies go in content/projects/.
+Content Location: Blog posts go in src/content/blog/. Images go in public/images/.
 
-Images: Store in static/images/ and reference as /images/filename.png. * Deploy Method: Git push to main triggers GitHub Actions hugo.yaml workflow.
+File Extension: Components are .astro. Content is .md or .mdx.
+
+Brand Identity: Virtual Sachin (Associate Director, Cloud Architect).
+
+Deploy: GitHub Actions (astro.yml) to GitHub Pages.

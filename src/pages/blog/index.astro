@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Layout title="Insights | Virtual Sachin">
+	<main class="container mx-auto px-6 py-12">
+		<header class="mb-16 text-center">
+			<h1 class="text-4xl md:text-5xl font-bold mb-6">Latest <span class="text-gradient">Insights</span></h1>
+			<p class="text-xl text-slate-400 max-w-2xl mx-auto">
+				Architectural patterns, war stories, and engineering philosophy.
+			</p>
+		</header>
+
+		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+			{posts.map((post) => (
+				<article class="glass-card p-6 flex flex-col h-full hover:border-blue-500/30 transition-colors">
+					<div class="text-sm text-blue-400 mb-2">
+						{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+					</div>
+					<h2 class="text-xl font-bold mb-3">
+						<a href={`/blog/${post.slug}`} class="hover:text-blue-400 transition-colors">
+							{post.data.title}
+						</a>
+					</h2>
+					<p class="text-slate-400 text-sm mb-6 flex-grow line-clamp-3">
+						{post.data.description || "Click to read more..."}
+					</p>
+					<a href={`/blog/${post.slug}`} class="text-blue-400 text-sm font-medium hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+						Read Article <span>→</span>
+					</a>
+				</article>
+			))}
+		</div>
+	</main>
+</Layout>

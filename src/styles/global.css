@@ -1,1 +1,72 @@
 @import "tailwindcss";
+
+:root {
+    --color-bg: #0f172a;
+    --color-primary: #3b82f6;
+    --color-secondary: #8b5cf6;
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+}
+
+body {
+    background-color: var(--color-bg);
+    background-image:
+        radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08), transparent 25%);
+    color: #e2e8f0;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Glassmorphism Utilities */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+}
+
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    @apply rounded-xl transition-all duration-300;
+}
+
+.glass-card:hover {
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
+    transform: translateY(-2px);
+}
+
+.text-gradient {
+    background: linear-gradient(to right, #60a5fa, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Typography for Markdown Content */
+.prose-invert {
+    --tw-prose-body: #94a3b8;
+    --tw-prose-headings: #f8fafc;
+    --tw-prose-links: #60a5fa;
+    --tw-prose-bold: #f1f5f9;
+    --tw-prose-counters: #94a3b8;
+    --tw-prose-bullets: #475569;
+    --tw-prose-hr: #334155;
+    --tw-prose-quotes: #f1f5f9;
+    --tw-prose-quote-borders: #334155;
+    --tw-prose-code: #e2e8f0;
+    --tw-prose-pre-code: #e2e8f0;
+    --tw-prose-pre-bg: #1e293b;
+}
+
+.prose-invert a {
+    text-decoration: none;
+    border-bottom: 1px solid rgba(96, 165, 250, 0.3);
+    transition: border-color 0.2s;
+}
+
+.prose-invert a:hover {
+    border-color: #60a5fa;
+}
