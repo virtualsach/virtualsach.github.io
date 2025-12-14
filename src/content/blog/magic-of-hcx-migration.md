@@ -1,7 +1,7 @@
 ---
 title: "The Magic of HCX: Moving 500 VMs Without Re-IPing"
 date: 2019-01-15
-description: "A client had 30 days to exit their data center. Re-IPing provided to be impossible. Enter VMware HCX: How we stretched L2 to the cloud and moved 500 VMs with zero downtime."
+description: "A client had 30 days to exit their data center. Re-IPing proved to be impossible. Enter VMware HCX: How we stretched L2 to the cloud and moved 500 VMs with zero downtime."
 draft: false
 tags: ["vmware", "hcx", "migration", "cloud", "ibm", "softlayer"]
 ---

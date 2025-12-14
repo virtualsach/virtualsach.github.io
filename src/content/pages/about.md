@@ -6,9 +6,6 @@ description: "Associate Director, Systems Thinker, and Builder of Resilient Clou
 
 # The Modern Architect
 
-> **Current Role:** Associate Director (Infrastructure & Cloud Architecture) at Kyndryl India.
-> **Intent:** I am looking for Principal Architect or Head of Infrastructure roles where I can leverage 20 years of "Iron-to-Cloud" experience.
-
 > "Complexity is the enemy of execution."
 
 I am **Virtual Sachin**, an Associate Director and Cloud Architect with over **20 years** of experience building the internet's backbone. From pulling fiber cables in dusty data centers to architecting serverless ecosystems for global financial giants, I have seen every layer of the stack.

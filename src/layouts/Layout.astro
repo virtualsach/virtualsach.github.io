@@ -4,6 +4,7 @@ import { ViewTransitions } from "astro:transitions";
 import GridBackground from "../components/GridBackground.astro";
 import CommandPalette from "../components/CommandPalette.astro";
 import Footer from "../components/Footer.astro";
+import Navigation from "../components/Navigation.astro";
 
 interface Props {
 	title: string;
@@ -50,42 +51,8 @@ const {
 		<GridBackground />
 
 		<!-- Navigation -->
-		<header
-			class="fixed w-full top-0 z-50 glass border-b border-white/5"
-			transition:persist
-		>
-			<nav
-				class="container mx-auto px-6 h-20 flex justify-between items-center"
-			>
-				<a href="/" class="text-xl font-bold tracking-tight">
-					Virtual<span class="text-blue-400">Sachin</span>.
-				</a>
-
-				<div class="hidden md:flex gap-8 items-center">
-					<a
-						href="/about"
-						class="text-sm font-medium hover:text-blue-400 transition-colors"
-						>About</a
-					>
-					<a
-						href="/projects"
-						class="text-sm font-medium hover:text-blue-400 transition-colors"
-						>Projects</a
-					>
-					<a
-						href="/blog"
-						class="text-sm font-medium hover:text-blue-400 transition-colors"
-						>Insights</a
-					>
-					<a
-						href="/contact"
-						class="px-5 py-2 rounded-full border border-blue-500/30 text-blue-400 text-sm font-medium hover:bg-blue-500/10 transition-all"
-					>
-						Let's Talk
-					</a>
-				</div>
-			</nav>
-		</header>
+		<!-- Navigation -->
+		<Navigation />
 
 		<!-- Main Content -->
 		<main class="flex-grow pt-24" transition:animate="fade">
