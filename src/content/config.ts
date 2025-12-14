@@ -4,11 +4,15 @@ const blog = defineCollection({
     type: 'content',
     schema: z.object({
         title: z.string(),
-        date: z.date(),
+        date: z.date().optional(),
+        pubDate: z.date().optional(),
         description: z.string().optional(),
         draft: z.boolean().optional(),
         tags: z.array(z.string()).optional(),
-    }),
+    }).transform((data) => ({
+        ...data,
+        date: data.date || data.pubDate || new Date(),
+    })),
 });
 
 const projects = defineCollection({
