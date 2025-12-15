@@ -19,10 +19,11 @@ const projects = defineCollection({
     type: 'content',
     schema: z.object({
         title: z.string(),
-        date: z.date(),
-        description: z.string().optional(),
-        summary: z.string().optional(),
+        description: z.string(),
+        date: z.coerce.date(),
+        role: z.string().optional(),
         tags: z.array(z.string()).optional(),
+        summary: z.string().optional(),
     }),
 });
 

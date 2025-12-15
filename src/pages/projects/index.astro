@@ -44,9 +44,15 @@ const projects = (await getCollection("projects")).sort(
 								)}
 							</div>
 							
-							<h2 class="text-3xl font-bold mb-4 leading-tight group-hover:text-blue-400 transition-colors">
+							<h2 class="text-3xl font-bold mb-2 leading-tight group-hover:text-blue-400 transition-colors">
 								{project.data.title}
 							</h2>
+							
+							{project.data.role && (
+								<div class="text-sm font-medium text-blue-400 mb-4">
+									{project.data.role}
+								</div>
+							)}
 							
 							<p class="text-slate-400 text-lg leading-relaxed mb-6 flex-grow">
 								{project.data.summary || project.data.description}

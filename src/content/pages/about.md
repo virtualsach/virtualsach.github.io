@@ -14,7 +14,7 @@ I don't just design systems; I build **digital cathedrals**—structures that ar
 
 ## My Philosophy
 
-* **Infrastructure as Code, Culture as Code:** A script can build a server, but only culture can maintain it. I automate the "boring stuff" so teams can focus on innovation.
+* **Infrastructure as Code, Culture as Code:** A script can build a server, but only culture can maintain it. I've spent **100+ hours** in 2023 alone mastering modern DevOps toolchains to ensure I automate the "boring stuff" effectively.
 * **Identity is the Perimeter:** The firewall is dead. In a work-from-anywhere world, I secure the Identity and the Data, not just the network edge.
 * **Data Gravity:** Architecture follows data. Understanding how information flows is the key to designing the pipes that carry it.
 
@@ -28,24 +28,132 @@ I don't just design systems; I build **digital cathedrals**—structures that ar
 
 ## Technical Radar
 
-### Core Competencies
+<div class="grid md:grid-cols-2 gap-6 not-prose mb-12">
+  <div class="glass p-6 rounded-xl border border-blue-500/20">
+    <h3 class="text-white text-lg font-bold mb-4 flex items-center gap-2">
+      <span class="text-blue-400">🎯</span> Strategic
+    </h3>
+    <ul class="space-y-3 text-sm text-slate-300">
+      <li class="flex items-start gap-2">
+        <span class="text-blue-400 mt-1">▸</span>
+        <div>
+          <strong class="text-white block">Cloud Architecture</strong>
+          <span class="text-slate-500 text-xs">Azure Enterprise Scale, AWS Landing Zones, IBM SoftLayer</span>
+        </div>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="text-blue-400 mt-1">▸</span>
+        <div>
+          <strong class="text-white block">Network Virtualization</strong>
+          <span class="text-slate-500 text-xs">Deep expertise in VMware NSX-T, NSX-V, and SDDC</span>
+        </div>
+      </li>
+       <li class="flex items-start gap-2">
+        <span class="text-blue-400 mt-1">▸</span>
+        <div>
+          <strong class="text-white block">Zero Trust Security</strong>
+          <span class="text-slate-500 text-xs">Identity-First Architecture, Micro-segmentation</span>
+        </div>
+      </li>
+    </ul>
+  </div>
 
-* **Cloud Architecture:** Azure Enterprise Scale, AWS Landing Zones, IBM SoftLayer.
-* **Network Virtualization:** Deep expertise in **VMware NSX-T**, NSX-V, and Software-Defined Data Centers (SDDC).
-* **Automation:** Ansible Tower, Python (Netmiko/Paramiko), PowerShell/PowerCLI.
+  <div class="glass p-6 rounded-xl border border-purple-500/20">
+    <h3 class="text-white text-lg font-bold mb-4 flex items-center gap-2">
+      <span class="text-purple-400">⚔️</span> Battle-Tested
+    </h3>
+    <ul class="space-y-3 text-sm text-slate-300">
+      <li class="flex items-start gap-2">
+        <span class="text-purple-400 mt-1">▸</span>
+        <div>
+          <strong class="text-white block">Infrastructure Code</strong>
+          <span class="text-slate-500 text-xs">Terraform, Ansible Tower, Python (Netmiko/Paramiko)</span>
+        </div>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="text-purple-400 mt-1">▸</span>
+        <div>
+          <strong class="text-white block">Core Networking</strong>
+          <span class="text-slate-500 text-xs">BGP Traffic Engineering, OSPF, MPLS, HW-VTEP</span>
+        </div>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="text-purple-400 mt-1">▸</span>
+        <div>
+          <strong class="text-white block">Security Appliances</strong>
+          <span class="text-slate-500 text-xs">Palo Alto, Checkpoint, F5 LTM/GTM, Cisco ASA/Firepower</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
 
-### The Toolbelt
+## Certifications & Milestones
 
-* **Infrastructure:** Terraform, Kubernetes (AKS/EKS), Docker.
-* **Networking:** BGP Traffic Engineering, OSPF, MPLS, HW-VTEP Integration.
-* **Security:** Palo Alto, Checkpoint, F5 LTM/GTM, Cisco ASA/Firepower.
+<div class="grid md:grid-cols-2 gap-6 not-prose">
+  <div class="glass p-6 rounded-xl border border-blue-500/20">
+    <h3 class="text-white text-lg font-bold mb-4 flex items-center gap-2">
+      <span class="text-blue-400">☁️</span> Cloud & Networking
+    </h3>
+    <ul class="space-y-3 text-sm text-slate-300">
+      <li class="flex items-start gap-2">
+        <span class="text-green-400 mt-1">✓</span>
+        <div>
+          <strong class="text-white block">Microsoft Certified: Azure Network Engineer Associate</strong>
+          <span class="text-slate-500 text-xs">AZ-700 Strategy & Implementation</span>
+        </div>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="text-green-400 mt-1">✓</span>
+        <div>
+          <strong class="text-white block">VMware NSX-T Data Center 3.2</strong>
+          <span class="text-slate-500 text-xs">Federation & Multi-Site Design</span>
+        </div>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="text-green-400 mt-1">✓</span>
+        <div>
+          <strong class="text-white block">NSX Advanced Load Balancer (Avi)</strong>
+          <span class="text-slate-500 text-xs">GSLB & WAF Architecture</span>
+        </div>
+      </li>
+    </ul>
+  </div>
 
----
+  <div class="glass p-6 rounded-xl border border-purple-500/20">
+    <h3 class="text-white text-lg font-bold mb-4 flex items-center gap-2">
+      <span class="text-purple-400">⚡</span> DevOps & Automation
+    </h3>
+    <ul class="space-y-3 text-sm text-slate-300">
+      <li class="flex items-start gap-2">
+        <span class="text-green-400 mt-1">✓</span>
+        <div>
+          <strong class="text-white block">Infrastructure Automation with Terraform</strong>
+          <span class="text-slate-500 text-xs">2023 • State Management & Modules</span>
+        </div>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="text-green-400 mt-1">✓</span>
+        <div>
+          <strong class="text-white block">Docker & Kubernetes Practical Guide</strong>
+          <span class="text-slate-500 text-xs">2023 • Container Orchestration</span>
+        </div>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="text-green-400 mt-1">✓</span>
+        <div>
+          <strong class="text-white block">Python Fundamentals</strong>
+          <span class="text-slate-500 text-xs">45 Hours • Automation Scripting</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 
 ## Connect
 
-Open to architecture discussions, mentoring, and leadership roles.
+I am currently driving value as an Associate Director, but I am open to discussing **Principal Architect** roles where I can leverage my 20 years of experience.
 
-**For opportunities or architecture discussions:** [sachin@virtualsach.in](mailto:sachin@virtualsach.in) or LinkedIn.
+**Contact:** [sachin@virtualsach.in](mailto:sachin@virtualsach.in) or [LinkedIn](https://www.linkedin.com/in/sachin-sharma-711/).

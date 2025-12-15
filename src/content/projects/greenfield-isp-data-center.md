@@ -3,6 +3,7 @@ title: "Scaling to 5k Tenants: Tier-3 Data Center & IPv6 Design"
 date: 2012-06-20
 description: "Designed and built two Tier-3 Data Centers from the ground up to support a rapidly growing ISP. Implemented a future-proof Dual-Stack (IPv4/IPv6) BGP architecture."
 summary: "Ground-up design of Tier-3 Data Centers with Dual-Stack BGP architecture."
+role: "Data Center Solutions Architect"
 tags: ["cisco", "juniper", "bgp", "data-center", "ipv6", "isp", "case-study"]
 ---
 

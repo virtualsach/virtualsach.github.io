@@ -3,7 +3,8 @@ title: "99.9% Uptime: Automated BGP Failover for Enterprise WAN"
 date: 2011-08-22
 description: "Architected a 99.9% uptime failover solution for premium enterprise customers using Multi-Homed BGP, automated via Route Maps and BFD."
 summary: "Automated BGP Failover between Fiber and RF/WiMAX using Route Maps and BFD."
-tags: ["bgp", "cisco", "wan", "routing", "bfd", "high-availability", "case-study"]
+role: "Senior Network Engineer"
+tags: ["bgp", "wan", "routing", "resilience", "enterprise", "high-availability", "case-study"]
 ---
 
 > "For premium Enterprise customers, a single backhoe digging up a road meant a complete business outage. The 'Last Mile' was the weakest link."
