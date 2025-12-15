@@ -92,65 +92,18 @@ I don't just design systems; I build **digital cathedrals**—structures that ar
 
 I believe in continuous evolution. In 2023, I dedicated **100+ hours** to mastering the modern DevOps stack to complement my infrastructure roots.
 
-<div class="grid md:grid-cols-2 gap-6 not-prose">
-  <div class="glass p-6 rounded-xl border border-blue-500/20">
-    <h3 class="text-white text-lg font-bold mb-4 flex items-center gap-2">
-      <span class="text-blue-400">☁️</span> Cloud & Networking
-    </h3>
-    <ul class="space-y-3 text-sm text-slate-300">
-      <li class="flex items-start gap-2">
-        <span class="text-green-400 mt-1">✓</span>
-        <div>
-          <strong class="text-white block">Microsoft Certified: Azure Network Engineer Associate</strong>
-          <span class="text-slate-500 text-xs">AZ-700 Strategy & Implementation</span>
-        </div>
-      </li>
-      <li class="flex items-start gap-2">
-        <span class="text-green-400 mt-1">✓</span>
-        <div>
-          <strong class="text-white block">VMware NSX-T Data Center 3.2</strong>
-          <span class="text-slate-500 text-xs">Federation & Multi-Site Design</span>
-        </div>
-      </li>
-      <li class="flex items-start gap-2">
-        <span class="text-green-400 mt-1">✓</span>
-        <div>
-          <strong class="text-white block">NSX Advanced Load Balancer (Avi)</strong>
-          <span class="text-slate-500 text-xs">GSLB & WAF Architecture</span>
-        </div>
-      </li>
-    </ul>
-  </div>
+### 🏆 Industry Certifications
 
-  <div class="glass p-6 rounded-xl border border-purple-500/20">
-    <h3 class="text-white text-lg font-bold mb-4 flex items-center gap-2">
-      <span class="text-purple-400">⚡</span> DevOps & Automation
-    </h3>
-    <ul class="space-y-3 text-sm text-slate-300">
-      <li class="flex items-start gap-2">
-        <span class="text-green-400 mt-1">✓</span>
-        <div>
-          <strong class="text-white block">Infrastructure Automation with Terraform</strong>
-          <span class="text-slate-500 text-xs">2023 • State Management & Modules</span>
-        </div>
-      </li>
-      <li class="flex items-start gap-2">
-        <span class="text-green-400 mt-1">✓</span>
-        <div>
-          <strong class="text-white block">Docker & Kubernetes Practical Guide</strong>
-          <span class="text-slate-500 text-xs">2023 • Container Orchestration</span>
-        </div>
-      </li>
-      <li class="flex items-start gap-2">
-        <span class="text-green-400 mt-1">✓</span>
-        <div>
-          <strong class="text-white block">Python Fundamentals</strong>
-          <span class="text-slate-500 text-xs">45 Hours • Automation Scripting</span>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div>
+* **Microsoft Certified:** Azure Network Engineer Associate (AZ-700)
+* **VMware Certified:** NSX-T Data Center 3.2 Professional
+* **VMware Certified:** NSX Advanced Load Balancer (Avi) Administrator
+* **VMware Certified:** NSX-T Federation & Multi-Site Specialist
+
+### 📚 Specialized Training (2023)
+
+* **Infrastructure as Code:** Advanced Terraform & Azure DevOps (25 Hours)
+* **Containerization:** Docker & Kubernetes: The Practical Guide (23 Hours)
+* **Automation:** Python Fundamentals for Network Engineers (45 Hours)
 
 ---
 
