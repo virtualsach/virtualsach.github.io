@@ -88,7 +88,9 @@ I don't just design systems; I build **digital cathedrals**—structures that ar
   </div>
 </div>
 
-## Certifications & Milestones
+## Verified Credentials & Milestones
+
+I believe in continuous evolution. In 2023, I dedicated **100+ hours** to mastering the modern DevOps stack to complement my infrastructure roots.
 
 <div class="grid md:grid-cols-2 gap-6 not-prose">
   <div class="glass p-6 rounded-xl border border-blue-500/20">
