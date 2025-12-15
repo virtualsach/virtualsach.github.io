@@ -94,17 +94,26 @@ const projects = (await getCollection("projects"))
 
 	<!-- Latest Insights -->
 	<section class="container mx-auto px-6 py-20">
-		<div class="flex justify-between items-end mb-10">
-			<h2 class="text-3xl font-bold">
-				Latest <span class="text-gradient">Insights</span>
-			</h2>
+		<div class="flex justify-between items-end mb-12">
+			<div>
+				<h2 class="text-3xl font-bold mb-4">
+					Latest <span class="text-gradient">Insights</span>
+				</h2>
+				<p class="text-slate-400 max-w-2xl">
+					War stories and architectural patterns from the field.
+				</p>
+			</div>
 			<a
 				href="/blog"
-				class="text-blue-400 hover:text-white transition-colors text-sm font-medium"
-				>View All Posts →</a
+				class="hidden md:flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors group"
 			>
+				View all insights
+				<span
+					class="transform group-hover:translate-x-1 transition-transform"
+					>→</span
+				>
+			</a>
 		</div>
-
 		<div class="grid md:grid-cols-3 gap-8">
 			{
 				posts.map((post) => (

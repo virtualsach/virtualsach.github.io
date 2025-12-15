@@ -9,9 +9,9 @@ const posts = (await getCollection("blog")).sort(
 
 <Layout title="Insights | VirtualSach.in">
 	<main class="container mx-auto px-6 py-12">
-		<header class="mb-16 text-center">
-			<h1 class="text-4xl md:text-5xl font-bold mb-6">
-				Latest <span class="text-gradient">Insights</span>
+		<div class="container mx-auto px-6 py-20 relative">
+			<h1 class="text-4xl md:text-6xl font-extrabold mb-12 text-center">
+				<span class="text-gradient">Insights</span> & War Stories
 			</h1>
 			<p class="text-xl text-slate-400 max-w-2xl mx-auto">
 				Architectural patterns, war stories, and engineering philosophy.
@@ -69,7 +69,7 @@ const posts = (await getCollection("blog")).sort(
 					</a>
 				</div>
 			</div>
-		</header>
+		</div>
 
 		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 			{
