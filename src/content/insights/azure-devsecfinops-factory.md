@@ -94,14 +94,16 @@ graph TD
     Fin --> Spoke
     Hub --> NVA
 
-    %% Styles
-    classDef input fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
-    classDef process fill:#fff3e0,stroke:#e65100,stroke-width:2px;
-    classDef azure fill:#e8eaf6,stroke:#1a237e,stroke-width:2px;
+    %% Brand Styles - "Cyber-Glass"
+    classDef input fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#fff,stroke-dasharray: 5 5;
+    classDef process fill:#1e1b4b,stroke:#a855f7,stroke-width:2px,color:#fff;
+    classDef azure fill:#172554,stroke:#3b82f6,stroke-width:2px,color:#fff;
 
     class YAML,TF input;
     class Valid,Sec,Fin process;
     class Hub,Spoke,NVA azure;
+
+    linkStyle default stroke:#94a3b8,stroke-width:2px;
 </pre>
 
 ## 4. The "DevSecFinOps" Trinity
